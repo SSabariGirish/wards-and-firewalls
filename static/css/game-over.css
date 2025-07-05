@@ -1,0 +1,63 @@
+.image-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 20px auto;
+}
+
+.game-over-image-cent {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #8b7500;
+  box-shadow: 0 0 0 2px #000;
+  transition: transform 0.3s ease;
+}
+
+.game-over-image-left {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #8b7500;
+  box-shadow: 0 0 0 2px #000;
+  transition: transform 0.3s ease;
+}
+
+.gl {
+  background-image: url('/static/images/Menu/Guards Lose.jpg');
+}
+
+.tw {
+  background-image: url('/static/images/Menu/Thieves Win.jpg');
+}
+
+.gw {
+  background-image: url('/static/images/Menu/Guards Win.jpg');
+}
+
+.tl {
+  background-image: url('/static/images/Menu/Thieves Lose.jpg');
+}
+
+.wound {
+  background-image: url('/static/images/Menu/Wounded Barbarian.jpg');
+}
+
+.pillory {
+  background-image: url('/static/images/Menu/Thief Pillory.jpg');
+}
+
+.game-over-image-cent:hover,
+.game-over-image-left:hover {
+  transform: scale(1.05);
+}
+
+button.game-over-btn::after {
+  content: "⚔️";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/images.css">
+    <link rel="stylesheet" href="static/css/card.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative; padding-top: 40px; overflow-y: auto;">
+        
+        {% if idiot %}
+            <h1>🎲 Caught AGAIN!!!! 🎲</h1>
+        {% else %}
+            {% set roll_class = "roll-high" if roll >= 18 else "roll-low" if roll <= 2 else "roll-neutral" %}    
+            <h1>🎲 You have Rolled <span class="{{ roll_class }}">{{ roll }}</span> 🎲</h1>
+        {% endif %}    
+        <input type="hidden" value="{{ card_name }}" name="card_name" id="card_name">
+
+        {% if attack_success %}
+            <div class="left-image-roll guards-fail"></div>
+            <div class="right-image-roll thieves-success"></div>
+            <div class="scroll-container">
+                <div class="scroll-content"> 
+                    <h2>Things have fallen your way.....for now</h2>
+                    <h2>Answer the next question to deal the finishing blow 😈😈</h2>   
+                </div>
+            </div>
+            <div class="end-turn-button">
+                <form method="POST" action="{{ url_for('answer_mcq') }}">
+                    <input type="hidden" name="card_name" value="{{ card_name }}">
+                    <button type="submit" class="sword-btn">Answer the Question</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="left-image-roll guards-success"></div>
+            <div class="right-image-roll thieves-fail"></div>
+            <div class="scroll-container">
+                <div class="scroll-content">
+                    {% for msg in res_msg %}
+                        <h2>{{ msg | safe}}</h2> 
+                    {% endfor %}   
+                </div>
+            </div> 
+            <div class="end-turn-button">
+                <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Guard's Turn</button></a>
+            </div>                 
+        {% endif %}       
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1 class="thief-inf">Thief Turn: {{ thief_turn_counter }}</h1>
+    <h2>{{ guild_income_msg }}</h2>
+    <h2>The Guild earned {{ guild_turn_income }} Gold this turn</h2>
+    <h2>Current Gold: {{ total_gold }}</h2>
+    <div class="menu-container">
+        <div class="thief-plan-image"></div>
+        <div class="button-grid">
+            <a href="{{ url_for('thief_draws') }}"><button class="sword-btn">Draw Card</button></a>
+            <a href="{{ url_for('thief_plays') }}"><button class="sword-btn">Play Card</button></a>
+            <a href="{{ url_for('thief_card_explanation') }}"><button class="sword-btn">See Real Life Explanations</button></a>
+            <a href="{{ url_for('thief_countdown') }}"><button class="sword-btn">See Card Countdown</button></a>
+        </div>
+    </div>
+</body>
+</html>

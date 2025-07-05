@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Kingdom Drew a Card!</h1>
+    <div class="card-container">
+        <img src="/static/images/Guards/Guild of Watchful Scribes.jpg" class="card-image">
+        <h2 class="card-title">Guild of Watchful Scribes</h2>
+        <h3 class="card-text">Cost: 10 Gold <br><br>
+            Maintenance: 10 Gold <br><br>
+            No more fools allowed in the kingdom <br><br>
+            You commission the Royal scribes to teach the Guards and Townsfolk about the activities of sly salesmen and Alehouse drunkards <br>
+            By the 6th turn, the folk grow complacent once again <br><br>
+            Real life equivalent - Cyber Awareness Training <br></h3>
+    </div>
+    <h3 class="tutorial">Now that you have drawn Guild of Watchful Scribes, your turn is done</h3>
+    <h3 class="tutorial">Click on "Thief's Turn" to begin the Thief's Turn</h3>     
+    <div class="end-turn-button">
+        <a href="{{ url_for('page3') }}"><button class="sword-btn">Thief's Turn</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/images.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative; top:-60px;">
+        <div class="left-image guard-def-plan"></div>
+        <div class="right-image thieves-atk-plan"></div>
+        <h1 style="position: relative; ">{{ card_name }} has been Played</h1>
+        {% if defenses %}
+        <div class="scroll-container" style="position: relative;">
+            <div class="scroll-content">
+                {% for defense in defenses %}
+                    <h2>{{ defense | safe}} is/are active</h2>
+                {% endfor %}    
+            </div>
+        </div>
+        {% else %}
+            <div class="scroll-container">
+                <div class="scroll-content">
+                    <h2>Castle has no active method of defence against this attack</h2>
+                    <h3>This is your chance!</h3>
+                </div>
+            </div>        
+        {% endif %}
+        <h2>Roll at least {{ min_roll }} to successfully initiate the attack</h2>
+        <h2>If the roll is more than {{ min_roll }}, you must answer a question to execute the attack</h2>
+        <form method="POST" action="{{ url_for('roll_d20') }}">
+            <input type="hidden" name="min_roll" value="{{ min_roll }}">
+            <input type="hidden" name="card_name" value="{{ card_name }}">
+            <button type="submit" class="dice-btn">Roll D20</button>
+        </form>
+    </div>
+</body>
+</html>

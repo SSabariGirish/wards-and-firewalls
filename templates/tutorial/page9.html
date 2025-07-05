@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/images.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="margin-top: 40px;">
+        <div class="side-image scroll-position left-ins-menu-image-guard-play" style="margin-top: 500px;"></div>
+        <div class="side-image scroll-position right-ins-menu-image-guard-play" style="margin-top: 500px;"></div>
+        <h2 class="tutorial">Now that you've answered correctly, the upgrade is yours!</h2>
+        <h2 class="tutorial">Remember!<br>Each upgrade lasts you for 5 rounds before they deteriorate</h2>
+        <h2 class="tutorial">You can maintain your upgrades at a cheaper rate to extend them for 5 more rounds</h2>
+        <h1 class="roll-high">You Were Right!</h1>         
+        <h1>Scribe Training successfully Completed!</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h3>The right answer is</h3>
+                <h2>Lock the screen or log out</h2>
+                <h3>Locking prevents unauthorised access when you are away</h3><br>
+                <h2>Excellent!</h2>
+                <h2>The Royal Scribe and his assistants have educated the noblemen and guards about thieves all around the Kingdom</h2>
+                <h2>These guards notice all suspicious townsfolk and alert the guards</h2>                        
+            </div>
+        </div>
+        <h2 class="tutorial">What happens if you had chosen the wrong option?</h2>
+        <h2 class="tutorial">Click on the button to find out</h2>
+        
+        <div style="position: absolute; right: 60px; top: 1250px;">
+            <a href="{{ url_for('page10') }}"><button class="shield-btn">Alternate Option</button></a>
+        </div>
+    </div>
+</body>
+</html>

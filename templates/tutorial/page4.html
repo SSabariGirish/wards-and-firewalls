@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Guild Drew a Card!</h1>
+    <div class="card-container">
+        <img src="/static/images/Thieves/Poisoned Scroll.jpg" class="card-image">
+        <h2 class="card-title">Poisoned Scroll</h2>
+        <h3 class="card-text">Cost: 35 Gold <br><br>
+            You sneak behind the Royal Scribe and enchant a few royal scrolls carrying information to the nearby kingdom's Mayor <br><br>
+            Once the neighbouring Mayor opens the scroll, a mind control spell activates that poisons the mayor's mind <br><br>
+            If you succeed, <br><br>
+            You steal 50 Gold from the Castle during the chaos <br><br>
+            kingdom will earn only 50% Gold in their next withdrawal <br><br>
+            Weakness registered <br><br>   
+            Real life equivalent - Cross Site Scripting (XSS)
+        </h3>
+    </div>
+    <h3 class="tutorial">Now that you have drawn Poisoned Scroll, your turn is done</h3>
+    <h3 class="tutorial">Click on "Guard's Turn" to begin the Guard's Turn</h3>     
+    <div class="end-turn-button">
+        <a href="{{ url_for('page5') }}"><button class="shield-btn">Guard's Turn</button></a>
+    </div>
+</body>
+</html>

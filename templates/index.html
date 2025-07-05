@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
+</head>
+<body>
+    <div class="side-image fixed-position left-main-menu-image"></div>
+    <div class="side-image fixed-position right-main-menu-image"></div>
+    <div class="castle-top"></div>
+    <h1>Wards and Firewalls!</h1>
+    <div class="game-container">
+        <div class="menu-buttons">
+            <a href="{{ url_for('guard_turn') }}"><button class="shield-btn game-over-btn">Begin Game</button></a>
+            <a href="{{ url_for('instructions') }}"><button class="shield-btn game-over-btn">Instructions</button></a>
+            <a href="{{ url_for('tutorial') }}"><button class="shield-btn game-over-btn">Tutorial</button></a>
+            
+        </div>
+    </div>
+    <div class="flame-wall"></div>
+</body>
+</html>

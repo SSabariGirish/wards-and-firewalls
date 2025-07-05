@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card-grid.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
+    <link rel="stylesheet" href="static/css/glossary.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Guards' Roster</h1>
+    <div class="card-grid">
+    {% for i in range(guard_medieval_card|length) %}
+        <div class="card-pair-container">
+            <div class="card-container">
+                <img src="{{ guard_medieval_card[i].1 }}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">{{ guard_medieval_card[i].0 }}</h2>
+                </div>
+            </div>
+
+            <div class="arrow">&#x2192;</div> 
+            <div class="card-container">
+                <img src="{{ guard_real_card[i].3 }}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">{{ guard_real_card[i].0 }}</h2>
+                    <p class="card-text" style="margin-top: 25px;">{{ guard_real_card[i].2 | safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <br><br>
+    <h1>The Thieves' Arsenal</h1>
+    {% for i in range(thief_medieval_card|length) %}
+        <div class="card-pair-container">
+            <div class="card-container">
+                <img src="{{ thief_medieval_card[i].1 }}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">{{ thief_medieval_card[i].0 }}</h2>
+                </div>
+            </div>
+
+            <div class="arrow">&#x2192;</div> 
+            <div class="card-container">
+                <img src="{{ thief_real_card[i].3 }}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">{{ thief_real_card[i].0 }}</h2>
+                    <p class="card-text" style="margin-top: 25px;">{{ thief_real_card[i].2 | safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div> 
+    
+    <div class="menu-buttons-end-of-pg">
+        <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">Start a New Game</button></a>
+    </div>
+</body>
+</html>

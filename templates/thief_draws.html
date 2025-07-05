@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Guild Drew a Card!</h1>
+    <div class="card-container">
+        <img src="{{ img_link }}" class="card-image">
+        <h2 class="card-title">{{ medieval_header }}</h2>
+        <h3 class="card-text">{{ medieval_explanation | safe }}</h3>
+    </div>
+    <div class="end-turn-button">
+        <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Guard's Turn</button></a>
+    </div>
+</body>
+</html>

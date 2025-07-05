@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/images.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="margin-top: 40px;">
+        {% if heading %}
+            <div class="side-image scroll-position guard-upgrade-flop" style="margin-top: 160px;"></div>
+            <div class="side-image scroll-position thief-upgrade-success" style="margin-top: 160px;"></div>
+            <h1 class="roll-high">You Were Right!</h1>
+        {% else %}
+            <div class="side-image scroll-position left-ins-menu-image-guard-play" style="margin-top: 160px;"></div>
+            <div class="side-image scroll-position right-ins-menu-image-guard-play" style="margin-top: 160px;"></div>
+            <h1 class="roll-low">You'll Get it Next Time!</h1>
+             
+        {% endif %}       
+        <h1>{{ usr_msg }}</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h3>The right answer is</h3>
+                <h2> {{ right_answer | safe}}</h2>
+                <h3>{{ remark | safe }}</h3><br>
+                {% for msg in final_msg %}
+                    <h2>{{ msg | safe }}</h2> 
+                {% endfor %}       
+            </div>
+        </div>
+        <div style="position: absolute; right: 60px; top: 670px;">
+            <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Guard's Turn</button></a>
+        </div>
+    </div>
+</body>
+</html>

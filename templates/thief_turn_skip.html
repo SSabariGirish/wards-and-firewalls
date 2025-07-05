@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h1>Turn Skipped</h1>
+        <h1>You are still Wounded / Captured..</h1>
+        <h2>Remaing Turns: {{ extreme_wounds }}</h2>
+        <br>
+        <div class="image-container">
+            <div class="game-over-image-left pillory"></div>
+            <div class="game-over-image-cent wound"></div>
+        </div>
+        <div style="margin-bottom: 25px;"></div>
+        <div style="position: absolute; right: 80px; top: 420px;">
+            <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Guard's Turn</button></a>
+        </div>
+    </div>
+</body>
+</html>
+</body>
+</html>

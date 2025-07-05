@@ -1,0 +1,84 @@
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.guard-plan-image {
+  width: 400px;
+  height: 400px;
+  background-image: url('/static/images/Menu/Guards Plan.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #8b7500;
+  box-shadow: 0 0 0 2px #000;
+  margin-bottom: 30px;
+  margin-right: 40px;
+  transition: transform 0.3s ease;
+}
+
+.guard-plan-image:hover {
+  transform: scale(1.05);
+}
+
+.thief-plan-image {
+  width: 400px;
+  height: 400px;
+  background-image: url('/static/images/Menu/Thieves Plan.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #8b7500;
+  box-shadow: 0 0 0 2px #000;
+  margin-bottom: 30px;
+  margin-right: 40px;
+  transition: transform 0.3s ease;
+}
+
+.thief-plan-image:hover {
+  transform: scale(1.05);
+}
+
+.thief-plan-image {
+  width: 400px;
+  height: 400px;
+  background-image: url('/static/images/Menu/Thieves Plan.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #8b7500;
+  box-shadow: 0 0 0 2px #000;
+  margin-bottom: 30px;
+  margin-right: 40px;
+  transition: transform 0.3s ease;
+}
+
+.thief-plan-image:hover {
+  transform: scale(1.05);
+}
+
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #8b7500;
+  border-radius: 10px;
+}
+
+.guard-inf {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.thief-inf {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 8px 0;
+}

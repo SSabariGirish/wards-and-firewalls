@@ -1,0 +1,38 @@
+.card-container {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #f4e4bc;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: 3px solid #8b7500;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid #8b7500;
+}
+
+.card-title {
+  color: #5c3317;
+  font-family: "Fondamento", serif;
+  text-align: center;
+  margin: 15px 0 10px;
+  font-size: 1.8rem;
+}
+
+.card-text {
+  color: #5c3317;
+  font-family: "Fondamento", serif;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.2rem;
+  padding: 0 10px;
+}
+
+.end-turn-button {
+  text-align: center;
+  margin-top: 30px;
+}

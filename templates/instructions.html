@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <div class="side-image scroll-position left-ins-menu-image"></div>
+        <div class="side-image scroll-position right-ins-menu-image"></div>
+        <h1>Instructions</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h2>The Rules of Wards and Firewalls</h2>
+                <br>
+                <h3>Player 1 plays as the Castle Guards</h3>
+                <h3>Player 2 plays as the Thieves Guild</h3>
+                <h3>The Guards protect the Castle, while the Thief Guild wants to destroy it</h3>
+                <h3>The Guards win once the Castle has survived for 20 turns</h3>
+                <h3>The thieves win when an attack turns the Castle bankrupt</h3>
+                <h3>Each team automatically earns some money every turn</h3>
+                <h3>You have the option to draw cards or play the cards you have</h3>
+                <h3>Beware. Some cards need access to the castle to be played</h3>
+            </div>
+        </div>
+        <div style="position: absolute; right: 60px; top: 520px;">
+            <a href="{{ url_for('instructions2') }}"><button class="shield-btn">Playing as the Guards</button></a>
+        </div>
+    </div>
+</body>
+</html>

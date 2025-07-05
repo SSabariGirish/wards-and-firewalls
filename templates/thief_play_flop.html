@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/flop.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h1>Card Not Played!</h1>
+        <div class="laugh-at-thieves-image"></div>
+        <div class="no-money-image-guild"></div>
+        <div style="margin-bottom: 20px;"></div>
+        <div class="scroll-container-mini">
+            <div class="scroll-content-mini">
+                <h2>You don't have enough Gold to execute that attack</h2>
+                <br>
+            </div>
+        </div>
+        <br><br>
+        <div class="menu-buttons-end-of-pg">
+            <a href="{{ url_for('thief_draws') }}"><button class="sword-btn">Draw Card</button></a>
+            <a href="{{ url_for('thief_plays') }}"><button class="sword-btn">Play Card</button></a>
+            <a href="{{ url_for('thief_card_explanation') }}"><button class="sword-btn">See Real Life Explanations</button></a>
+            <a href="{{ url_for('thief_countdown') }}"><button class="sword-btn">See Card Countdown</button></a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/form-medieval.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="margin-top: 40px;">
+        <div class="side-image scroll-position left-ins-menu-image-guard-play" style="margin-top: 60px;"></div>
+        <div class="side-image scroll-position right-ins-menu-image-guard-play" style="margin-top: 60px;"></div>
+        <h1>{{ card_title }} has been Played!</h1>
+
+        <form method="POST" action="{{ path }}" class="medieval-form">
+            <div style="margin-bottom: 25px;"></div>
+            <div class="scroll-container">
+                <div class="scroll-content">
+                    <h2>{{ question | safe}}</h2><br>
+                    {% for answer in list_of_answers %}
+                        <h3><input type="radio" name="answer" value="{{ answer }}" id="{{ loop.index }}">
+                        <label for="{{ loop.index }}">{{ answer }}</label></h3>
+                    {% endfor %}    
+                </div>
+            </div>
+            <input type="hidden" value="{{ right_answer }}" name="right_answer" id="right_answer">
+            <input type="hidden" value="{{ remark }}" name="remark" id="remark">
+            <input type="hidden" value="{{ deteriorated }}" name="deteriorated" id="deteriorated">
+            <button type="submit" class="shield-btn">Answer the Question</button>
+        </form>
+    </div>
+</body>
+</html>

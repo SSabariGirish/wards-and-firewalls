@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card-grid.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Kingdom's Drawn Cards!</h1>
+    <h2 class="tutorial">Now that we've learnt about Guild of Watchful Scribes, let's Play it</h2>
+    <h2 class="tutorial">Click on the Guild of Watchful Scribes card to play it</h2>
+    <div class="card-grid">
+            <a href="{{ url_for('page8') }}">
+                <button type="submit" name="number" class="transparent-button">
+                    <div class="card-container">
+                        <img src="/static/images/Guards/Guild of Watchful Scribes.jpg" alt="Card Image" class="card-image">
+                        <div class="card-content">
+                            <h2 class="card-title">Guild of Watchful Scribes</h2>
+                            <h3 class="card-text">Cost: 10 Gold <br><br>
+                                Maintenance: 10 Gold <br><br>
+                                No more fools allowed in the kingdom <br><br>
+                                You commission the Royal scribes to teach the Guards and Townsfolk about the activities of sly salesmen and Alehouse drunkards <br>
+                                By the 6th turn, the folk grow complacent once again <br><br>
+                                Real life equivalent - Cyber Awareness Training <br>
+                            </h3>
+                        </div>
+                    </div>
+                </button>
+            </a>
+            <button type="submit" name="number" class="transparent-button">
+                <div class="card-container">
+                    <img src="/static/images/Guards/Code of The Squire.jpg" alt="Card Image" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Code of The Squire</h2>
+                        <h3 class="card-text">Cost: 15 Gold <br><br>
+                            Maintenance: 10 Gold <br><br>
+                            In a fool's hands, even the finest of silk is no different from a torn rag <br><br>
+                            A squire may polish a knight's armor but cannot wield his sword <br><br>
+                            Townsfolk and guards may only access the places they need to use <br><br>
+                            Real life equivalent - Least Privilege Access
+                        </h3>
+                    </div>
+                </div>
+            </button>
+            <button type="submit" name="number" class="transparent-button">
+                <div class="card-container">
+                    <img src="/static/images/Guards/Ink Purification Ritual.jpg" alt="Card Image" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Ink Purification Ritual</h2>
+                        <h3 class="card-text">Cost: 20 Gold <br><br>
+                            Maintenance: 10 Gold <br><br>
+                            Magical cleansing <br><br>
+                            Scribes cleanse the scrolls of any hidden curses or malicious symbols that could corrupt the records <br><br>
+                            Real life equivalent - Input Sanitisation
+                        </h3>
+                    </div>
+                </div>
+            </button>    
+    </div> 
+    
+    <div class="menu-buttons-end-of-pg">
+        <button class="shield-btn">Draw Card</button>
+        <button class="shield-btn">See Real Life Explanations</button>
+        <button class="shield-btn">See Card Countdown</button>
+    </div>
+</body>
+</html>

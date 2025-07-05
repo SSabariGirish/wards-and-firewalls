@@ -1,0 +1,67 @@
+.medieval-pattern-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 100vh;
+  background: linear-gradient(180deg, #d4af37 0%, #8b7500 50%, #d4af37 100%);
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.1) 0px,
+      rgba(255, 255, 255, 0.1) 30px,
+      transparent 30px,
+      transparent 60px
+    );
+  border-right: 5px solid #d4af37;
+  box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.medieval-pattern-left::before {
+  content: "🛡️\A⚔️\A🏰\A👑\A🛡️\A⚔️\A🏰\A👑";
+  white-space: pre;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: #5c3317;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 3rem;
+  text-align: center;
+}
+
+.medieval-pattern-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 100vh;
+  background: linear-gradient(180deg, #8b0000 0%, #2f1b14 50%, #8b0000 100%);
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(139, 0, 0, 0.3) 0px,
+      rgba(139, 0, 0, 0.3) 20px,
+      transparent 20px,
+      transparent 40px
+    );
+  border-left: 5px solid #8b0000;
+  box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.medieval-pattern-right::before {
+  content: "🗡️\A💀\A🔥\A⚡\A🗡️\A💀\A🔥\A⚡";
+  white-space: pre;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: #8b0000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  line-height: 3rem;
+  text-align: center;
+}

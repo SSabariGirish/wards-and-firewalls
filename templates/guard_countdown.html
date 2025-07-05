@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>Castle's Active Upgrades</h1>
+    
+    <div class="countdown-scroll">
+        {% if empty_message %}
+            <h2 class="empty-message">{{ empty_message }}</h2>
+        {% else %}
+            {% for card, turn in data %}
+                <h2 class="countdown-item">{{ card }}: {{ turn }} turn(s)</h2>
+            {% endfor %}
+        {% endif %}
+        <h2 class="countdown-item">Upgrade/Maintenance Cost Multiplier: {{ cost }}</h2>
+        <h2 class="countdown-item">Castle Gold Exfiltration Multiplier: {{ exfil }}</h2>
+    </div>
+    
+    <div class="menu-buttons-end-of-pg">
+        <a href="{{ url_for('guard_draws') }}"><button class="shield-btn">Draw Card</button></a>
+        <a href="{{ url_for('guard_plays') }}"><button class="shield-btn">Play Card</button></a>
+        <a href="{{ url_for('guard_card_explanation') }}"><button class="shield-btn">See Card Explanations</button></a>
+    </div>
+</body>
+</html>

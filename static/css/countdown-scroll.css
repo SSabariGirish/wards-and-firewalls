@@ -1,0 +1,65 @@
+.countdown-scroll {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #f2e8c4;
+  border-radius: 10px;
+  padding: 20px 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  background-image: 
+    linear-gradient(to right, rgba(160, 82, 45, 0.1) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(160, 82, 45, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.countdown-scroll::before,
+.countdown-scroll::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 30px;
+  background-color: #8b7500;
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.countdown-scroll::before {
+  left: -15px;
+  top: 0;
+}
+
+.countdown-scroll::after {
+  right: -15px;
+  top: 0;
+}
+
+.countdown-item {
+  font-family: "Fondamento", serif;
+  color: #5c3317;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.countdown-item::before {
+  content: "⚔️";
+  margin-right: 10px;
+  color: #8b7500;
+}
+
+.countdown-item::after {
+  content: "⚔️";
+  margin-left: 10px;
+  color: #8b7500;
+}
+
+.empty-message {
+  font-family: "Fondamento", serif;
+  color: #8b0000;
+  text-align: center;
+  margin: 30px 0;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

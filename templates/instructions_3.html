@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/medieval-patterns.css">
+</head>
+<body>
+    <div class="medieval-pattern-left"></div>
+    <div class="medieval-pattern-right"></div>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h1>Playing as a Thief</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h2>You see 4 Options in your Menu</h2>
+                
+                <h3>Just like the guards, each turn, you draw or play a card</h3>
+                <h3>At the beginning of each round, you earn some amount of Gold</h3>
+                <h3>The whims of Lady Luck could lead to your glory or your downfall</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefMenu.PNG" style="width: 700px;"><br>
+                <h3>When you click on 'Draw Card', you draw a random card from the deck</h3>
+                
+                <h3>You may draw Duplicates, but they help you execute an attack once again</h3>
+                <h3>Your turn is Completed once you have drawn a Card</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefDrawnCard.PNG" style="width: 700px;"><br><br>
+                
+                <h3>When you click on 'See Real Life Equivalents', you can see which method of cyber attack each card represents</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefRLE.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Clicking 'Play Card' lets you play one of the cards you have drawn</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefPlayCard.PNG" style="width: 700px;"><br><br>
+
+                <h3>If you do not have enough Gold to play a Drawn card, you can play another Card or Draw a fresh card</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefNoMoney.PNG" style="width: 700px;"><br><br>
+
+                <h3>If you have been wise with your Budget, you can play a Card to attack the Castle</h3>
+                <h3>Attacks are essential in causing chaos within the Castle and keeping the Guards on their toes</h3>
+                <h3>Some attacks can be initiated outside the Castle, while some explicitly require access to the Castle</h3>
+                <h3>If your attack does not land, the Guards might become aware, and render the card useless for a few turns</h3>
+                <h3>An attack is successfully initiated by rolling a D20 die</h3>
+                <img src="/static/images/Screenshots/ThiefRollD20.PNG" style="width: 700px;"><br><br>
+
+                <h3>If you roll more than or equal to the mentioned number, you move to answering the question</h3>
+                <h3>Otherwise, your attack is directly deemed unsuccessful</h3>
+                <img src="/static/images/Screenshots/ThiefBadRoll.PNG" style="width: 700px;"><br><br>
+                <img src="/static/images/Screenshots/ThiefSuccessfulRole.PNG" style="width: 700px;"><br><br>
+                <img src="/static/images/Screenshots/ThiefMCQ.PNG" style="width: 700px;"><br><br>
+                
+                
+                <h3>Answering the question correctly, allows you to successfully execute the attack</h3>
+                <h3>Rome was not built in a day, learn about these dangerous cyber attacks at your own pace</h3>
+                <img src="/static/images/Screenshots/ThiefRightAns.PNG" style="width: 700px;"><br><br>
+                
+                <h3>If your answer is wrong, don't worry, there is always the next time</h3>
+                <h3>But for this turn, you miss out on your attack, your Gold and will initiate the applicable cooldowns on the card</h3>
+                <img src="/static/images/Screenshots/ThiefWrongAns.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Clicking 'See Card Countdown' reveals the number of turns before you can attempt a previously failed attack</h3>
+                <h3>Each successful attack registers a Weakness in the Castle</h3>
+                <h3>These Weaknesses can be used to in the 'Brigands and Bandits' Card</h3>
+                <br>
+                <img src="/static/images/Screenshots/ThiefCountdown.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Now that you have the basics down, look at the cards drawn by the Guards during their turn</h3>
+                <h3>Predict the time when the Guards might play their cards and counter them to ransack the Castle</h3>
+                <h3>Luck is a decisive factor here, but you can still forge the destiny of your Guild</h3>
+                <h3>If the Castle goes bankrupt, you Win!</h3>
+                <h3>The Castle is on fire and the Royal Family escapes</h3>
+                <img src="/static/images/Screenshots/GuardLose.PNG" style="width: 700px;"><br><br>
+                
+                <h3>If the Castle remains standing for 20 Turns, you Lose</h3>
+                <img src="/static/images/Screenshots/GuardWin.PNG" style="width: 700px;"><br><br>
+                
+                <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Begin Game</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="static/css/cyberpunk-thief.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Guild's Drawn Cards!</h1>
+    <div class="card-grid">
+        {% if empty %}
+            <h2>You haven't drawn any cards!</h2>
+        {% else %} 
+            {% for medieval, real_header, real_expl, img in data %}
+            <div class="card-container">
+                <img src="{{ img }}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">{{ real_header }}</h2>
+                    <h3 class="card-subtitle">{{ medieval }}</h3>
+                    <p class="card-text">{{ real_expl | safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}    
+    </div>
+    <div class="button-container">
+        <a href="{{ url_for('thief_draws') }}"><button class="sword-btn">Draw Card</button></a>
+        <a href="{{ url_for('thief_plays') }}"><button class="sword-btn">Play Card</button></a>
+        <a href="{{ url_for('thief_countdown') }}"><button class="sword-btn">See Card Countdown</button></a>
+    </div>
+</body>
+</html>

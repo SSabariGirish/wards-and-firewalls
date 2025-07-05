@@ -1,0 +1,138 @@
+.scroll-container {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  background-color: #f2e8c4;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  background-image: 
+    linear-gradient(to right, rgba(160, 82, 45, 0.1) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(160, 82, 45, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.scroll-container::before,
+.scroll-container::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 30px;
+  background-color: #8b7500;
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-container::before {
+  left: -15px;
+  top: 0;
+}
+
+.scroll-container::after {
+  right: -15px;
+  top: 0;
+}
+
+.scroll-content {
+  font-family: "Fondamento", serif;
+  color: #5c3317;
+  text-align: center;
+}
+
+.scroll-content h3 {
+  margin: 15px 0;
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.scroll-content h3::before {
+  content: "✦";
+  margin-right: 10px;
+  color: #8b7500;
+}
+
+.scroll-content h3::after {
+  content: "✦";
+  margin-left: 10px;
+  color: #8b7500;
+}
+
+.scroll-content h2 {
+  margin: 15px 0;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.scroll-content h2::before {
+  content: "✦✦✦";
+  margin-right: 10px;
+  color: #8b7500;
+}
+
+.scroll-content h2::after {
+  content: "✦✦✦";
+  margin-left: 10px;
+  color: #8b7500;
+}
+
+.scroll-container-mini {
+  max-width: 400px;
+  margin: 0 auto 40px;
+  background-color: #f2e8c4;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  background-image: 
+    linear-gradient(to right, rgba(160, 82, 45, 0.1) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(160, 82, 45, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.scroll-container-mini::before,
+.scroll-container-mini::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 30px;
+  background-color: #8b7500;
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-container-mini::before {
+  left: -15px;
+  top: 0;
+}
+
+.scroll-container-mini::after {
+  right: -15px;
+  top: 0;
+}
+
+.scroll-content-mini {
+  font-family: "Fondamento", serif;
+  color: #5c3317;
+  text-align: center;
+}
+
+.scroll-content-mini h2 {
+  margin: 15px 0;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.scroll-content-mini h2::before {
+  content: "✦";
+  margin-right: 10px;
+  color: #8b7500;
+}
+
+.scroll-content-mini h2::after {
+  content: "✦";
+  margin-left: 10px;
+  color: #8b7500;
+}

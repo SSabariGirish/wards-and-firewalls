@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/cyberpunk-thief.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Kingdom's Drawn Cards!</h1>
+    <h2 class="tutorial">Now let's learn more about what each Card means</h2>
+    <h2 class="tutorial">The Guild of Watchful Scribes card represents Cyber Awareness Training</h2>
+    <h2 class="tutorial">This helps in preventing employees from becoming victims of phishing</h2>
+    
+    <div class="card-grid">
+                <div class="card-container">
+                    <img src="/static/images/Guards RL/Cyber Awareness Training.jpg" alt="Card Image" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Cyber Awareness Training</h2>
+                        <h3 class="card-subtitle">Guild of Watchful Scribes</h3>
+                        <p class="card-text">
+                            Educating employees on recognising and preventing cyber threats like phishing and social engineering <br><br>
+                            Can significantly mitigate the chances of Mass Phishing, Spear Phishing and all other forms of Phishing <br><br>
+                            Over 90% of successful Cyber Attacks initiate via different forms of Phishing 
+                        </p>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <img src="/static/images/Guards RL/Least Privileged Access.jpg" alt="Card Image" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Least Privileged Access</h2>
+                        <h3 class="card-subtitle">Code of The Squire</h3>
+                        <p class="card-text">
+                            Granting users only the minimum access necessary to perform their tasks <br><br>
+                            Offers strong protection against Privilege Escalation attacks and significantly limits the damage from Malware and Lateral Movement <br><br>
+                            Reduces the attack surface, minimises the impact of a breach, and improves overall security posture by containing attacks
+                        </p>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <img src="/static/images/Guards RL/User Input Sanitisation.jpg" alt="Card Image" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Input Sanitisation</h2>
+                        <h3 class="card-subtitle">Ink Purification Ritual</h3>
+                        <p class="card-text">
+                            Filtering and validating user input to prevent security vulnerabilities like XSS and SQL injection <br><br>
+                            Offers strong protection against Cross-Site Scripting (XSS), SQL Injection and other code injection attacks <br><br>
+                            Prevents malicious code execution and protects data integrity by ensuring only safe and expected input is processed
+                        </p>
+                    </div>
+                </div>   
+    </div> 
+    <div class="button-container">
+        <button class="shield-btn">Draw Card</button>
+        <a href="{{ url_for('page7') }}"><button class="shield-btn">Play Card</button></a>
+        <button class="shield-btn">See Card Countdown</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/scroll.css">
+    <link rel="stylesheet" href="static/css/medieval-patterns.css">
+</head>
+<body>
+    <div class="medieval-pattern-left"></div>
+    <div class="medieval-pattern-right"></div>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h1>Playing as a Guard</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h2>You see 4 Options in your Menu</h2>
+                
+                <h3>Each turn, you draw or play a card</h3>
+                <h3>At the beginning of each round, you earn some amount of Gold</h3>
+                <h3>The whims of Lady Luck could lead to your glory or your downfall</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardMenu.PNG" style="width: 700px;"><br>
+                
+                <h3>When you click on 'Draw Card', you draw a random card from the deck</h3>
+                <h3>You may draw Duplicates, but they help you maintain your upgrades</h3>
+                <h3>Your turn is Completed once you have drawn a Card</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardDrawnCard.PNG" style="width: 700px;"><br><br>
+                
+                <h3>When you click on 'See Real Life Equivalents', you can see which method of cyber defense each card represents</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardRLE.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Clicking 'See Card Countdown' reveals the number of turns your acquired upgrades will remain active</h3>
+                <h3>The Cost Multiplier directly increases the buying cost; for example, a 1.5 multiplier makes a 60-cost item become 90</h3>
+                <h3>The Exfiltration Multiplier similarly boosts the amount of money Thieves successfully steal from the Castle</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardCountdown.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Clicking 'Play Card' lets you play one of the cards you have drawn</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardPlayCard.PNG" style="width: 700px;"><br><br>
+                
+                <h3>If you do not have enough Gold to play a Drawn card, you can play another Card or Draw a fresh card</h3>
+                <br>
+                <img src="/static/images/Screenshots/GuardNoMoney.PNG" style="width: 700px;"><br><br>
+                
+                <h3>If you have been wise with your Budget, you can play a Card to upgrade your defense</h3>
+                <h3>Upgrades are essential in protecting your Castle from the Thieves Guild</h3>
+                <h3>Each upgrade protects you for 5 turns before becoming obsolete</h3>
+                <h3>If you draw a duplicate card, you can play it again to maintain the upgrade at a cheaper price, extending the upgrade for 5 more turns</h3>
+                <h3>But upgrades are earned by answering a question based on the cards' real life equivalents</h3>
+                <img src="/static/images/Screenshots/GuardMCQ.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Answering the question correctly, earns you the upgrade</h3>
+                <h3>Rome was not built in a day, learn about these upgrades at your own pace</h3>
+                <img src="/static/images/Screenshots/GuardRightAns.PNG" style="width: 700px;"><br><br>
+                
+                <h3>If your answer is wrong, don't worry, there is always the next time</h3>
+                <h3>But for this turn, you miss out on your upgrade and your Gold</h3>
+                <img src="/static/images/Screenshots/GuardWrongAns.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Now that you have the basics down, look at the cards drawn by the Thieves during their turn</h3>
+                <h3>Predict the time when the Thieves might play their cards and counter them to protect your Castle</h3>
+                <h3>Luck is a decisive factor here, but you can still forge the destiny of your Castle</h3>
+                <h3>If your Castle goes bankrupt, you lose</h3>
+                <img src="/static/images/Screenshots/GuardLose.PNG" style="width: 700px;"><br><br>
+                
+                <h3>Protect your Castle for 20 Turns and you Win</h3>
+                <h3>The Thieves begin to grow paranoid, fight internally and leave the Kingdom</h3>
+                <img src="/static/images/Screenshots/GuardWin.PNG" style="width: 700px;"><br><br>
+                
+                <a href="{{ url_for('instructions3') }}"><button class="sword-btn">Playing as a Thief</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

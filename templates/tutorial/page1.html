@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h2 class="tutorial">Tutorial</h2>
+    <h1 class="guard-inf">Guard Turn: 1</h1>
+    <h2>Trade as usual, nothing to be concerned about</h2>
+    <h2>The Kingdom earned 15 Gold this turn</h2>
+    <h2>Current Gold: 45</h2>
+    <br><br>
+    <h2 class="tutorial">Click the 'Draw Card' button to draw a new Card</h2>
+    <div class="menu-container">
+        <div class="guard-plan-image"></div>
+        <div class="button-grid">
+            <a href="{{ url_for('page2') }}"><button class="shield-btn">Draw Card</button></a>
+            <a><button class="shield-btn">Play Card</button></a>
+            <a><button class="shield-btn">See Real Life Equivalents</button></a>
+            <a><button class="shield-btn">See Card Countdown</button></a>
+        </div>
+    </div>
+</body>
+</html>

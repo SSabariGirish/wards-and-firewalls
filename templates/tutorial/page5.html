@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1 class="guard-inf">Guard Turn: 3</h1>
+    <h2>Trade as usual, nothing to be concerned about</h2>
+    <h2>The Kingdom earned 15 Gold this turn</h2>
+    <h2>Current Gold: 75</h2>
+    <br><br>
+    <h2 class="tutorial">Let us assume that this is the 3rd turn and you drew a card in the previous turn<br>But what do these cards mean?</h2>
+    <h2 class="tutorial">How do they help in protecting a real life network and keep a company safe?</h2>
+    <h2 class="tutorial">Click on 'See Real Life Equivalents' to see more</h2>
+
+    <div class="menu-container">
+        <div class="guard-plan-image"></div>
+        <div class="button-grid">
+            <a><button class="shield-btn">Draw Card</button></a>
+            <a><button class="shield-btn">Play Card</button></a>
+            <a href="{{ url_for('page6') }}"><button class="shield-btn">See Real Life Equivalents</button></a>
+            <a><button class="shield-btn">See Card Countdown</button></a>
+        </div>
+    </div>
+</body>
+</html>

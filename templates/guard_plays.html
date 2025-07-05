@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Guard's Turn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/card-grid.css">
+    <link rel="stylesheet" href="static/css/countdown-scroll.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Kingdom's Drawn Cards!</h1>
+    <div class="card-grid">
+        {% if data|length == 0 %}
+            <h2>You haven't drawn any cards!</h2>
+        {% else %}    
+            {% for medieval, card_expl, img, number in data %}
+            <form action="/guard_play_result" method="POST">
+                <button type="submit" name="number" value="{{ number }}" class="transparent-button">
+                    <div class="card-container">
+                        <img src="{{ img }}" alt="Card Image" class="card-image">
+                        <div class="card-content">
+                            <h2 class="card-title">{{ medieval }}</h2>
+                            <h3 class="card-text">{{ card_expl | safe }}</h3>
+                        </div>
+                    </div>
+                </button>
+            </form>
+            {% endfor %}
+        {% endif %}    
+    </div> 
+    
+    <div class="menu-buttons-end-of-pg">
+        <a href="{{ url_for('guard_draws') }}"><button class="shield-btn">Draw Card</button></a>
+        <a href="{{ url_for('guard_card_explanation') }}"><button class="shield-btn">See Real Life Explanations</button></a>
+        <a href="{{ url_for('guard_countdown') }}"><button class="shield-btn">See Card Countdown</button></a>
+    </div>
+</body>
+</html>

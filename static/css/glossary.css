@@ -1,0 +1,78 @@
+.card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-pair-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 3px solid #8b7500;
+  position: relative;
+}
+
+.card-pair-container::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, #8b7500, #d4af37, transparent);
+}
+
+.card-container {
+  flex: 0 0 400px;
+  max-width: 400px;
+}
+
+.card-container:nth-child(3) {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.card-container:nth-child(3) .card-title {
+  color: #ff0080;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px #ff0080;
+  text-transform: uppercase;
+}
+
+.card-container:nth-child(3) .card-text {
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+
+.card-container:nth-child(1) {
+  min-height: auto;
+  height: auto;
+}
+
+.card-container:nth-child(1) .card-content {
+  padding: 10px;
+  min-height: auto;
+}
+
+.arrow {
+  font-size: 80px;
+  color: #d4af37;
+  text-shadow: 
+    3px 3px 0 #5c3317,
+    -1px -1px 0 #5c3317,
+    1px -1px 0 #5c3317,
+    -1px 1px 0 #5c3317,
+    0 0 10px #8b7500;
+  flex-shrink: 0;
+  font-weight: bold;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
+}
