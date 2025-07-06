@@ -2099,5 +2099,9 @@ def page10():
 def page11():
     return render_template("/tutorial/page11.html")
 
+@app.route("/page12")
+def page12():
+    return render_template("/tutorial/page12.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
