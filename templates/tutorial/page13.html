@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+    
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative; padding-top: 40px; overflow-y: auto;">
+
+        <h1>🎲 You have Rolled <span class="roll-high">20</span> 🎲</h1>
+        
+            <div class="left-image-roll guards-fail"></div>
+            <div class="right-image-roll thieves-success"></div>
+            <div class="scroll-container">
+                <div class="scroll-content"> 
+                    <h2>Things have fallen your way.....for now</h2>
+                    <h2>Answer the next question to deal the finishing blow 😈😈</h2>   
+                </div>
+            </div>
+            <h2 class="tutorial">Wow!! Luck favours you, doesn't it?<br>Keep the momentum going</h2>
+            <h2 class="tutorial">Click on the button to answer the question and execute your attack</h2>
+            <div class="end-turn-button">
+                <a href="{{ url_for('tutorial_page', page_num=14) }}"><button class="sword-btn">Answer the Question</button></a>
+            </div>
+            
+    </div>
+</body>
+</html>

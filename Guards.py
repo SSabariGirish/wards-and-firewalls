@@ -674,33 +674,33 @@ ids_q_response = [
 ids_answer_key = [2,2,1,0,2,2]
 
 firewall_questions = [
-    'What is the main job of a firewall in a computer network?',
-    'A firewall rule says: "ALLOW TCP PORT 80 INBOUND". What kind of internet traffic is this letting in?',
-    'If a firewall is set up to block everything EXCEPT what you specifically say is okay, what is this security approach called?',
-    'Someone can\'t open a secure website (HTTPS). The firewall log shows: "BLOCK TCP PORT 443 OUTBOUND". What\'s the problem?',
-    'You only want your office computer (IP 203.0.113.5) to connect to a special server using port 22 (for secure remote access). Which rule should you add?',
-    'Why does the order of rules matter in a firewall?'
+    'What is the primary purpose of a firewall?',
+    'Where is a firewall typically located to protect a home network?',
+    'If a firewall is blocking a program, what is it usually preventing?',
+    'What does "ALLOW" mean in a firewall rule?',
+    'What is the main difference between a firewall and an antivirus program?',
+    'In firewall terms, what does "OUTBOUND" traffic refer to?'
 ]
 
 firewall_answers = [
-    ['Speeding up the internet','Filtering incoming and outgoing network traffic','Encrypting files on computers','Setting up how computers connect to each other'],
-    ['Outgoing emails','Incoming HTTP web traffic (like regular websites)','Sending large files','DNS (website name lookup) requests'],
-    ['IP Blacklisting','Default Deny','Port forwarding','Stealth Mode'],
-    ['The website requires a special app','Their internet provider is down','The secure website (HTTPS) traffic is being blocked','Their computer\'s IP address is on a bad list'],
-    ['ALLOW TCP FROM 203.0.113.5 TO PORT 22','BLOCK ALL FROM 203.0.113.5 TO PORT 22','ALLOW UDP FROM ANY TO PORT 22','LOCK TCP PORT 22'],
-    ['Because rules are processed top-down, and the first rule that matches applies','Because rules are sorted alphabetically','Because rules only work during certain hours','Because rules are numbered and higher numbers are always better']
+    ['To make your computer run faster','To block unwanted network traffic','To organize your computer files','To create backup copies of your data'],
+    ['Between your home network and the internet','Inside your computer\'s screen','Hidden in your keyboard','Far away on a different server'],
+    ['The program from starting','The program from saving files','The program from closing','The program from connecting to the internet'],
+    ['Downloading updates for the game','Making your computer quieter','Blocking the game\'s connection to the internet','Changing the game\'s graphics settings'],
+    ['They both do exactly the same job','An antivirus is for old computers, a firewall is for new ones','A firewall fixes viruses, an antivirus blocks websites','A firewall controls network traffic, an antivirus deals with malicious software on your computer'],
+    ['Traffic that stays inside your network','Traffic leaving your network to the internet','Traffic coming into your network','Traffic between two websites']
 ]
 
 firewall_q_response = [
-    "Firewalls act like a security guard for your network, filtering incoming and outgoing network traffic based on rules to keep unwanted visitors out",
-    "TCP Port 80 is the standard port for HTTP web traffic, which is what regular (non-secure) websites use. So, this rule allows people to view websites hosted on that machine",
-    "This security approach is called 'Default Deny' (or 'whitelist'). It's very secure because it assumes all traffic is bad unless you specifically say it's allowed",
-    "Port 443 is used for secure website connections (HTTPS). If it's blocked, you won't be able to access most secure websites, which is why the user can't access it",
-    "The rule 'ALLOW TCP FROM 203.0.113.5 TO PORT 22' specifically permits TCP connections from only that exact IP address to port 22, providing precise control",
-    "The order of firewall rules is important because the firewall checks rules from top to bottom, and the first rule that matches the traffic will be applied, even if there's another rule later that also matches"
+    "A firewall acts as a security barrier, checking and controlling data coming into and going out of your network or computer to keep it safe from threats.",
+    "Firewalls are usually placed at the boundary between your internal network (like your home devices) and the external network (the internet) to filter traffic before it reaches your devices.",
+    "A firewall's core function is to enforce security policies by stopping traffic that doesn't meet its rules, often blocking suspicious attempts to access your system.",
+    "The 'ALLOW' action in a firewall rule means that any network traffic matching that rule's criteria will be permitted to pass through the firewall.",
+    "A firewall controls what data goes in and out of your network, acting as a gatekeeper, while antivirus software scans for and removes malicious programs already on your device.",
+    "Outbound traffic means data that is attempting to leave your computer or network and go to an external destination on the internet."
 ]
 
-firewall_answer_key = [1,1,1,2,0,0]
+firewall_answer_key = [1, 0, 3, 2, 3, 1]
 
 rate_limiting_questions = [
     'What is the main purpose of "rate limiting" on a website or app?',
