@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>Wards and Firewalls</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/scroll.css">
-    <link rel="stylesheet" href="static/css/images.css">
-    <link rel="stylesheet" href="static/css/countdown-scroll.css">
-    <link rel="stylesheet" href="static/css/tutorial.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/countdown-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
 </head>
 <body>
     <div class="castle-top"></div>
@@ -34,7 +34,7 @@
         <h2 class="tutorial">Click on the button to find out</h2>
         
         <div style="position: absolute; right: 60px; top: 1250px;">
-            <a href="{{ url_for('page10') }}"><button class="shield-btn">Alternate Option</button></a>
+            <a href="{{ url_for('tutorial_page', page_num=10) }}"><button class="shield-btn">Alternate Option</button></a>
         </div>
     </div>
 </body>

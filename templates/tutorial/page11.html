@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>Guard's Turn</title>
-    <link rel="stylesheet" href="static/css/card-grid.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/guard_menu.css">
-    <link rel="stylesheet" href="static/css/countdown-scroll.css">
-    <link rel="stylesheet" href="static/css/tutorial.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-grid.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/guard_menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/countdown-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
 </head>
 <body>
     <div class="castle-top"></div>
@@ -15,7 +15,7 @@
     <h2 class="tutorial">Now that we know how to see the real meanings behind these cards,<br> let us assume we have read about Snake Oil Salesman</h2>
     <h2 class="tutorial">Click on the Snake Oil Salesman card to begin scamming random guards on the street 😈😈</h2>
     <div class="card-grid">
-            <a href="{{ url_for('page12') }}">
+            <a href="{{ url_for('tutorial_page', page_num=12) }}">
                 <button type="submit" name="number" class="transparent-button">
                     <div class="card-container">
                         <img src="/static/images/Thieves/Snake Oil Salesman.jpg" alt="Card Image" class="card-image">

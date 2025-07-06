@@ -2059,49 +2059,12 @@ def glossary():
 def tutorial():
     return render_template("/tutorial/page1.html")
 
-@app.route("/page2")
-def page2():
-    return render_template("/tutorial/page2.html")
-
-@app.route("/page3")
-def page3():
-    return render_template("/tutorial/page3.html")
-
-@app.route("/page4")
-def page4():
-    return render_template("/tutorial/page4.html")
-
-@app.route("/page5")
-def page5():
-    return render_template("/tutorial/page5.html")
-
-@app.route("/page6")
-def page6():
-    return render_template("/tutorial/page6.html")
-
-@app.route("/page7")
-def page7():
-    return render_template("/tutorial/page7.html")
-
-@app.route("/page8")
-def page8():
-    return render_template("/tutorial/page8.html")
-
-@app.route("/page9", methods=["POST"])
-def page9():
-    return render_template("/tutorial/page9.html")
-
-@app.route("/page10")
-def page10():
-    return render_template("/tutorial/page10.html")
-
-@app.route("/page11")
-def page11():
-    return render_template("/tutorial/page11.html")
-
-@app.route("/page12")
-def page12():
-    return render_template("/tutorial/page12.html")
+@app.route("/page/<int:page_num>", methods=["GET", "POST"])
+def tutorial_page(page_num):
+    if 2 <= page_num <= 50:
+        return render_template(f"tutorial/page{page_num}.html")
+    else:
+        return "Page not found",  404
 
 if __name__ == "__main__":
     app.run(debug=True)

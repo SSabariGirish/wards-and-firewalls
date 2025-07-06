@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Thief's Turn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+    
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative; top:-60px;">
+        <div class="left-image guard-def-plan"></div>
+        <div class="right-image thieves-atk-plan"></div>
+        <h1 style="position: relative; ">Snake Oil Salesman has been Played</h1>
+        <div class="scroll-container" style="position: relative;">
+            <div class="scroll-content">
+                <h2>Guild of Watchful Scribes is/are active</h2>  
+            </div>
+        </div>
+        <h2 class="tutorial">Oof, what a curveball!<br>Now that Guild of Watchful scribes is active, people are wary of you</h2>
+        <h2>Roll at least 20 to successfully initiate the attack</h2>
+        <h2>If the roll is at least 20, you must answer a question to execute the attack</h2><br>
+        <h2 class="tutorial">It is difficult, but no impossible</h2>
+        <h2 class="tutorial">In real life situations as well, defensive countermeasures offer significant protection against threats</h2>
+        <h2 class="tutorial">But, they are not panacea and can still be breached</h2>
+        
+        <a href="{{ url_for('tutorial_page', page_num=13) }}"><button class="dice-btn">Roll D20</button></a>
+    </div>
+</body>
+</html>

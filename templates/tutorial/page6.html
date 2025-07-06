@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Guard's Turn</title>
-    <link rel="stylesheet" href="static/css/cyberpunk-thief.css">
-    <link rel="stylesheet" href="static/css/tutorial.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cyberpunk-thief.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+    
 </head>
 <body>
     <div class="castle-top"></div>
@@ -51,9 +52,11 @@
                     </div>
                 </div>   
     </div> 
+    <h2 class="tutorial">Now that we've learnt about these cards, let' play the first one</h2>
+    <h2 class="tutorial">Click on 'Play Card' to play a card</h2>
     <div class="button-container">
         <button class="shield-btn">Draw Card</button>
-        <a href="{{ url_for('page7') }}"><button class="shield-btn">Play Card</button></a>
+        <a href="{{ url_for('tutorial_page', page_num=7) }}"><button class="shield-btn">Play Card</button></a>
         <button class="shield-btn">See Card Countdown</button>
     </div>
 </body>

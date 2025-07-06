@@ -30,7 +30,7 @@
             </div>        
         {% endif %}
         <h2>Roll at least {{ min_roll }} to successfully initiate the attack</h2>
-        <h2>If the roll is more than {{ min_roll }}, you must answer a question to execute the attack</h2>
+        <h2>If the roll is at least {{ min_roll }}, you must answer a question to execute the attack</h2>
         <form method="POST" action="{{ url_for('roll_d20') }}">
             <input type="hidden" name="min_roll" value="{{ min_roll }}">
             <input type="hidden" name="card_name" value="{{ card_name }}">

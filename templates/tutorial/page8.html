@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>Wards and Firewalls</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/scroll.css">
-    <link rel="stylesheet" href="static/css/countdown-scroll.css">
-    <link rel="stylesheet" href="static/css/form-medieval.css">
-    <link rel="stylesheet" href="static/css/tutorial.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/countdown-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form-medieval.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
 
 </head>
 <body>
@@ -23,7 +23,7 @@
             <h2 class="tutorial">Select the 4th option for this to successfully earn the upgrade</h2>
             <div class="scroll-container">
                 <div class="scroll-content">
-                    <form id="myForm" action="/page9" class="medieval-form" method="POST">
+                    <form id="myForm" action="/page/9" class="medieval-form" method="POST">
                         <h2>What should you do when leaving your desk?</h2><br>
                         
                         <h3><input type="radio" name="answer" value="Minimise all windows" id="0">
