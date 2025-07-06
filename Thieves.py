@@ -544,7 +544,7 @@ thief_attack_explanation_medieval = [
     Real life equivalent - Spear Phishing 
 ''',
     '''
-    Requires castle access to be played
+    Requires castle access to be played !!
     Cost: 10 Gold
     
     You observe a set of loose stones in the castle wall
@@ -611,7 +611,7 @@ thief_attack_explanation_medieval = [
     Real life equivalent - Brute Force and Initial Access Brokerage (IAB)   
 ''',
     '''
-    Requires access to the Castle
+    Requires access to the Castle !
     Cost: 25 Gold
     
     You impersonate the nobleman and attempt to convince other nobles to give you access to the royal vault
