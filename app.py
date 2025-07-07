@@ -1292,7 +1292,7 @@ def thief_play_result():
                 min_roll = 20
                 guards_defenses.append('The Sylvan Oracle Snare') 
 
-        elif thief.card_headers_medieval[card_choice] == 'Poisoned Sccroll':
+        elif thief.card_headers_medieval[card_choice] == 'Poisoned Scroll':
             thief.guild_gold -= 35 
             min_roll = 8
 

@@ -533,67 +533,82 @@ guard_protection_explanation_real_life = [
 'Educating employees on recognising and preventing cyber threats like phishing and social engineering'
 '\n\nCan significantly mitigate the chances of Mass Phishing, Spear Phishing and all other forms of Phishing'
 '\n\nOver 90% of successful Cyber Attacks initiate via different forms of Phishing'
-'\n\nAlso offers moderate protection against Ransomware and Worms',
+'\n\nAlso offers moderate protection against Ransomware, Session Hijacking and Worms by enhancing users\' digital hygiene',
 
 'Requiring multiple verification methods mostly a normal password and a One-Time-Password to access an account'
 '\n\nCan be of significant help in stopping brute force attempts and work in tandem with regular Cyber Awareness Trainings'
-'\n\nAuthenticator Apps, FIDO2 Security Keys and Smart Cards are front-runners in MFA',
+'\n\nAuthenticator Apps, FIDO2 Security Keys and Smart Cards are front-runners in MFA'
+'\n\nWorks in tandem with strong cyber awareness training and offers moderate protection against Privilege escalation and Session Hijacking',
 
 'Monitors network traffic for suspicious activities and potential cyber threats'
 '\n\nCannot ACT on a threat, but immediately detects and logs the suspicious actions and informs the security personnel'
-'\n\nHigh scope for involvement of AI and ML in detecting common attack signatures and patterns',
+'\n\nHigh scope for involvement of AI and ML in detecting common attack signatures and patterns'
+'\n\nOffers strong protection against majority of cyber attacks through instant detection and flagging',
 
 'Security barriers that filter and control incoming and outgoing network traffic'
 '\n\nOffer significant protection against Worms and DDoS attacks and moderate protection against Backdoors and Brute Force attacks'
-'\n\nNext Generation Firewalls have Machine learning capabilities and offer stronger protection against evolving threats',
+'\n\nNext Generation Firewalls have Machine learning capabilities and offer stronger protection against evolving threats'
+'\n\nOffers moderate protection against DDoS, Ransomware, Worms, Backdoors, Brute Force, Supply Chain and Privilege Escalation attacks',
 
-'Restricting the number of requests a user or IP can make to prevent abuse and DDoS attacks'
+'Restricting the number of requests a user or IP can make to prevent abuse'
 '\n\nOffers strong protection against Brute Force attacks and helps mitigate DDoS attacks by preventing request floods'
-'\n\nEnsures service availability by preventing resource exhaustion',
+'\n\nEnsures service availability by preventing resource exhaustion'
+'\n\nOffers dedicated protection against DDoS attacks',
 
 'Encrypting data so only the sender and recipient can read it, even the service provider cannot'
 '\n\nOffers maximum protection against Man-in-the-Middle attacks and unauthorised access during transit'
-'\n\nEnsures strong privacy and confidentiality by providing verifiable data integrity',
+'\n\nEnsures strong privacy and confidentiality by providing verifiable data integrity'
+'\n\nOffers dedicated protection against Man-in-the-Middle attacks',
 
 'Encrypting internet traffic to secure communications and hide the user\'s IP address'
 '\n\nOffers strong protection against eavesdropping  on public networks and IP address tracking'
-'\n\nEnables secure remote access, helps bypass geo-restrictions, and enhances overall online privacy and data security',
+'\n\nEnables secure remote access, helps bypass geo-restrictions, and enhances overall online privacy and data security'
+'\n\nOffers dedicated protection against Man-in-the-Middle attacks and moderate protection against Session Hijacking',
 
 'Temporarily disabling an account after multiple failed login attempts to significantly hamper brute-force attempts'
 '\n\nSignificantly hinders Credential Stuffing attempts'
-'\n\nSecures user accounts by preventing automated password guessing and reduces the risk of unauthorised access',
+'\n\nSecures user accounts by preventing automated password guessing and reduces the risk of unauthorised access'
+'\n\nOffers dedicated protection against Brute Force attacks',
 
 'Granting users only the minimum access necessary to perform their tasks'
 '\n\nOffers strong protection against Privilege Escalation attacks and significantly limits the damage from Malware and Lateral Movement'
-'\n\nReduces the attack surface, minimises the impact of a breach, and improves overall security posture by containing attacks',
+'\n\nReduces the attack surface, minimises the impact of a breach, and improves overall security posture by containing attacks'
+'\n\nOffers dedicated protection against Privilege Escalation attacks and some protection against Ransomware',
 
 'A secure method to handle database queries, preventing SQL injection attacks'
 '\n\nOffers maximum protection against SQL Injection attacks and prevents malicious code execution within databases'
-'\n\nEnsures data integrity, prevents unauthorised database access by separating code from data',
+'\n\nEnsures data integrity, prevents unauthorised database access by separating code from data'
+'\n\nOffers dedicated protection against SQL Injection attacks',
 
 'Filtering and validating user input to prevent security vulnerabilities like XSS and SQL injection'
 '\n\nOffers strong protection against Cross-Site Scripting (XSS), SQL Injection and other code injection attacks'
-'\n\nPrevents malicious code execution and protects data integrity by ensuring only safe and expected input is processed',
+'\n\nPrevents malicious code execution and protects data integrity by ensuring only safe and expected input is processed'
+'\n\nOffers dedicated protection against XSS Attacks and moderate protection against SQL Injection attacks',
 
 'Dividing a network into isolated sections to limit the spread of cyber threats'
 '\n\nOffers strong containment against Worms, Ransomware, and Lateral Movement attempts, limiting the impact of a breach'
-'\n\nReduces the attack surface and improves threat detection by enforcing granular access controls',
+'\n\nReduces the attack surface and improves threat detection by enforcing granular access controls'
+'\n\nOffers dedicated protection against Worms and Privilege Escalation attacks and moderate protection against Ransomware, DDoS and Supply Chain attacks',
 
 'Encrypting web traffic using TLS to protect data transmitted between users and websites'
 '\n\nOffers strong protection against Man-in-the-Middle attacks and data interception'
-'\n\nVerifies website authenticity and builds user trust by displaying a secure connection indicator',
+'\n\nVerifies website authenticity and builds user trust by displaying a secure connection indicator'
+'\n\nOffers dedicated protection against Man-in-the-Middle attacks and Session Hijacking',
 
 'A security model where no entity, inside or outside the network, is automatically trusted'
 '\n\nOffers strong protection against insider threats, lateral movement, data breaches, and sophisticated, persistent attacks'
-'\n\nEnforces granular access control and enforces continuous verification for all users and devices',
+'\n\nEnforces granular access control and enforces continuous verification for all users and devices'
+'\n\nOffers dedicated protection against Supply Chain attacks and strong protection against majority of cyber attacks, but is difficult and expensive to maintain',
 
 'Storing backups in a geographically separate location to ensure data recovery after disasters'
 '\n\nOffers maximum protection against data loss from natural disasters and large-scale cyberattacks like ransomware'
-'\n\nEnsures business continuity, facilitates disaster recovery, and provides resilience against geographically targeted threats',
+'\n\nEnsures business continuity, facilitates disaster recovery, and provides resilience against geographically targeted threats'
+'\n\nOffers dedicated protection against Ransomware',
 
-'Protects web applications from threats like SQL injection, XSS, and API abuse'
+'Protects web applications from multiple cyber threats and API abuse'
 '\n\nOffers maximum protection against web application-specific attacks like SQL Injection, XSS and other OWASP Top 10 vulnerabilities'
 '\n\nInspects HTTP/S traffic at the application layer, filters malicious requests, and provides real-time threat intelligence for web-facing assets'
+'\n\nOffers moderate protection against DDoS, SQL Injection, XSS, Supply Chain attacks and Worms'
 ]
 
 training_questions = ['You receive an email from your bank asking you to "confirm your account details" via a link\n What should you do?',
