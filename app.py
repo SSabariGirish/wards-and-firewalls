@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request 
 import pygame
-import time
+import ast
 import random
 import math
 import Thieves as tf
@@ -257,10 +257,11 @@ def guard_plays():
 def guard_play_training():
     right_answer = request.form['right_answer']
     remark = request.form['remark']
-    user_answer = request.form['answer']
+    user_answer = request.form['answer'] 
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -282,7 +283,7 @@ def guard_play_training():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_mfa", methods=["POST"])
 def guard_play_mfa():
@@ -290,8 +291,10 @@ def guard_play_mfa():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -313,7 +316,7 @@ def guard_play_mfa():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_ids", methods=["POST"])
 def guard_play_ids():
@@ -321,8 +324,10 @@ def guard_play_ids():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -345,7 +350,7 @@ def guard_play_ids():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_firewall", methods=["POST"])
 def guard_play_firewall():
@@ -353,8 +358,10 @@ def guard_play_firewall():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -377,7 +384,7 @@ def guard_play_firewall():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_rate_limiting", methods=["POST"])
 def guard_play_rate_limiting():
@@ -385,8 +392,10 @@ def guard_play_rate_limiting():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -408,7 +417,7 @@ def guard_play_rate_limiting():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_e2ee", methods=["POST"])
 def guard_play_e2ee():
@@ -416,8 +425,10 @@ def guard_play_e2ee():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -439,7 +450,7 @@ def guard_play_e2ee():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark,heading=heading, deteriorated=dead)
+                            remark=remark,heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_vpn", methods=["POST"])
 def guard_play_vpn():
@@ -447,8 +458,10 @@ def guard_play_vpn():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -470,7 +483,7 @@ def guard_play_vpn():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_acc_lockout", methods=["POST"])
 def guard_play_acc_lockout():
@@ -478,8 +491,10 @@ def guard_play_acc_lockout():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -501,7 +516,7 @@ def guard_play_acc_lockout():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_lpa", methods=["POST"])
 def guard_play_lpa():
@@ -509,8 +524,10 @@ def guard_play_lpa():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -532,7 +549,7 @@ def guard_play_lpa():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_param_queries", methods=["POST"])
 def guard_play_param_queries():
@@ -540,8 +557,10 @@ def guard_play_param_queries():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -563,7 +582,7 @@ def guard_play_param_queries():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_input_sanitisation", methods=["POST"])
 def guard_play_input_sanitisation():
@@ -571,8 +590,10 @@ def guard_play_input_sanitisation():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -594,7 +615,7 @@ def guard_play_input_sanitisation():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_net_segmentation", methods=["POST"])
 def guard_play_net_segmentation():
@@ -602,8 +623,10 @@ def guard_play_net_segmentation():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -625,7 +648,7 @@ def guard_play_net_segmentation():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_https", methods=["POST"])
 def guard_play_https():
@@ -633,8 +656,10 @@ def guard_play_https():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -656,7 +681,7 @@ def guard_play_https():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_zta", methods=["POST"])
 def guard_play_zta():
@@ -664,8 +689,10 @@ def guard_play_zta():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -689,7 +716,7 @@ def guard_play_zta():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_offshore_backup", methods=["POST"])
 def guard_play_offshore_backup():
@@ -697,8 +724,10 @@ def guard_play_offshore_backup():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -720,7 +749,7 @@ def guard_play_offshore_backup():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_waf", methods=["POST"])
 def guard_play_waf():
@@ -728,8 +757,10 @@ def guard_play_waf():
     remark = request.form['remark']
     user_answer = request.form['answer']
     dead = request.form.getlist('deteriorated')
-    if dead == ['[]']:
-        dead = []
+    cleaned_dead = dead[0]
+    parsed_dead = ast.literal_eval(cleaned_dead)
+    parsed_dead = [item.replace('\n','<br>') for item in parsed_dead]
+    print(parsed_dead)
     usr_msg = ''
     final_msg = ''
     msg_list = []
@@ -755,7 +786,7 @@ def guard_play_waf():
 
     return render_template('guard_play_result.html',usr_msg=usr_msg, final_msg=msg_list,
                             right_answer=right_answer,
-                            remark=remark, heading=heading, deteriorated=dead)
+                            remark=remark, heading=heading, deteriorated=parsed_dead)
 
 @app.route("/guard_play_result", methods=["POST"])
 def guard_play_result():

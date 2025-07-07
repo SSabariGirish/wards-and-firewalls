@@ -532,7 +532,8 @@ guard_protection_explanation_medieval = [
 guard_protection_explanation_real_life = [
 'Educating employees on recognising and preventing cyber threats like phishing and social engineering'
 '\n\nCan significantly mitigate the chances of Mass Phishing, Spear Phishing and all other forms of Phishing'
-'\n\nOver 90% of successful Cyber Attacks initiate via different forms of Phishing',
+'\n\nOver 90% of successful Cyber Attacks initiate via different forms of Phishing'
+'\n\nAlso offers moderate protection against Ransomware and Worms',
 
 'Requiring multiple verification methods mostly a normal password and a One-Time-Password to access an account'
 '\n\nCan be of significant help in stopping brute force attempts and work in tandem with regular Cyber Awareness Trainings'
