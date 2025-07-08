@@ -1608,9 +1608,9 @@ def answer_mcq():
     elif card_name == 'Clatter of Brats':
 
         question = random.randint(0, 5)                          
-        return render_template("thief_plays_mcq.html", card_title=card_name, question=tf.ddos_questions[question].replace('\n', '<br>'),
-                               list_of_answers=tf.ddos_answers[question],right_answer=tf.ddos_answers[question][tf.ddos_answer_key[question]],
-                               remark=tf.ddos_q_response[question].replace('\n', '<br>')) 
+        return render_template("thief_plays_mcq.html", card_title=card_name, question=tf.dos_questions[question].replace('\n', '<br>'),
+                               list_of_answers=tf.dos_answers[question],right_answer=tf.dos_answers[question][tf.dos_answer_key[question]],
+                               remark=tf.dos_q_response[question].replace('\n', '<br>')) 
     
     elif card_name == 'The Ratcaller of Elwood':
 

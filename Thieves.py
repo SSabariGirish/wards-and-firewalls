@@ -495,7 +495,7 @@ class Thief:
         self.pestilence_countdown = self.pestilence_countdown - 1 if self.pestilence_countdown > 0 else self.pestilence_countdown
 
 
-thief_attack_header_real_life = ["Mass Phishing", "Spear Phishing", "Backdoor", "DDoS", "Ransomware",
+thief_attack_header_real_life = ["Mass Phishing", "Spear Phishing", "Backdoor", "DoS", "Ransomware",
                                  "Man-in-the-Middle", "Brute Force", "Privilege Escalation", "SQL Injection", "XSS",
                                  "Session Hijacking",
                                  "Supply Chain Attack", "Worms"]
@@ -567,7 +567,7 @@ thief_attack_explanation_medieval = [
         kingdom will earn only 20% Gold in the next turn
         Weakness registered   
     
-    Real life equivalent - Distributed Denial of Service (DDoS)  
+    Real life equivalent - Denial of Service (Dos)  
 ''',
     '''
     Cost: 20 Gold
@@ -713,7 +713,7 @@ thief_attack_explanation_real_life = [
     
     'Hackers flood a website or server with too much traffic, causing it to crash and stop working'
     '\n\nCan be mitigated by Rate Limiting requests'
-    '\n\nIDSs, Firewalls, Web Application Firewalls, Network Segmentation and ZTA offer moderate support against DDoS attacks'
+    '\n\nIDSs, Firewalls, Web Application Firewalls, Network Segmentation and ZTA offer moderate support against DoS attacks'
     '\n\nOften used as a distraction while hackers execute an attack on another part of the network',
     
     'A type of malware that locks or encrypts your files, and the hacker demands money to unlock them'
@@ -820,15 +820,15 @@ backdoor_q_response = [
 
 backdoor_answer_key = [3,1,3,0,0,1]
 
-ddos_questions = [
-    'What is the main goal of a DDoS attack?',
+dos_questions = [
+    'What is the main goal of a DoS attack?',
     'Imagine many zombie-like computers working together to attack a website. What is this group called?',
-    'Which common internet service, like looking up website names, can be tricked to make a DDoS attack bigger?',
-    'How do attackers try to hide who they are when doing a DDoS attack?',
-    'When would a DDoS attack cause the most problems for a website?',
-    'Why might someone use a DDoS attack as a distraction, like a magic trick?']
+    'Which common internet service, like looking up website names, can be tricked to make a DoS attack bigger?',
+    'How do attackers try to hide who they are when doing a DoS attack?',
+    'When would a DoS attack cause the most problems for a website?',
+    'Why might someone use a DoS attack as a distraction, like a magic trick?']
 
-ddos_answers = [
+dos_answers = [
     ['To upload a malware','To steal passwords','To make a website or service crash and stop working','To send annoying pop-ups'],
     ['A single hacker','Undead soldiers','A botnet','A computer club'],
     ['Email sending (SMTP)','File sharing (FTP)','Website Browse (HTTPS)','Domain Name System (DNS)'],
@@ -836,15 +836,15 @@ ddos_answers = [
     ['Late at night when no one is using it','During its busiest time, like a big sale','Early morning on a weekend','Only for a few seconds'],
     ['To make the website more popular','To make security guards focus on the attack while they do something else','To install new software','To get free internet access']]
 
-ddos_q_response = [
-    'The primary goal of a DDoS attack is to overwhelm a target with too much traffic, making it unavailable to legitimate users',
-    'A botnet is a network of hijacked computers controlled by an attacker, used to launch large-scale attacks like DDoS',
+dos_q_response = [
+    'The primary goal of a DoS attack is to overwhelm a target with too much traffic, making it unavailable to legitimate users',
+    'A botnet is a network of hijacked computers controlled by an attacker, used to launch large-scale attacks like DDoS, which is more dangerous compared to DoS',
     'Attackers can abuse the Domain Name System (DNS) by sending small requests that result in large responses directed at the victim, amplifying the attack',
     'Attackers often use IP spoofing to change the visible address of the attacking computers, making it harder to trace them back',
-    'A DDoS attack is most effective when it hits during peak usage times, causing maximum disruption and financial loss',
-    'Attackers sometimes use a DDoS attack as a diversion to keep security teams busy while they attempt another, more sneaky, breach elsewhere']
+    'A DoS attack is most effective when it hits during peak usage times, causing maximum disruption and financial loss',
+    'Attackers sometimes use a DoS attack as a diversion to keep security teams busy while they attempt another, more sneaky, breach elsewhere']
 
-ddos_answer_key = [2,2,3,1,1,1]
+dos_answer_key = [2,2,3,1,1,1]
 
 ransomware_questions = [
     "What does ransomware mainly try to do to your computer files?",
