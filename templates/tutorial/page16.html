@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game-over.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h2 class="tutorial">If the Thief steals enough Gold from the Castle to turn it bankrupt, the Thief wins</h2>
+        <h2 class="tutorial">Some attacks are difficult to cast, or needs lot of Gold, but are devastating</h2>
+        <h2 class="tutorial">Some work in tandem with each other</h2>
+        <h2 class="tutorial">Play the game again and again to see the relationships and sync across different attacks</h2>
+        <br><br>
+        <h1>Game Over</h1>
+        <h1 class="roll-low">The Castle has been Razed..</h1>
+        <br>
+        <div class="image-container">
+            <div class="game-over-image-left tw"></div>
+            <div class="game-over-image-cent gl"></div>
+        </div>
+        <div style="margin-bottom: 25px;"></div>
+        <div style="position: absolute; right: 70px; top: 870px;">
+            <a href="{{ url_for('tutorial_page', page_num=17) }}"><button class="shield-btn game-over-btn">Guard Win Scenario</button></a>
+        </div>
+    </div>
+</body>
+</html>
+</body>
+</html>

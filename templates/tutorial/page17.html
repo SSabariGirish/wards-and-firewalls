@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game-over.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">   
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="position: relative;">
+        <h2 class="tutorial">If the Guard survives the Thieves Guilds' attacks for 20 turns, the Guard wins</h2>
+        <h2 class="tutorial">Make sure you observe the thieves' cards before casting protective spells</h2>
+        <h2 class="tutorial">Timing is everything!</h2>
+        <h2 class="tutorial">Play the game again and again to see the relationships and sync across different defence methodologies</h2><br>
+        <h1>Game Over</h1>
+        <h1 class="roll-high">The Thieves Guild has Disbanded..</h1>
+        <br>
+        <div class="image-container">
+            <div class="game-over-image-left tl"></div>
+            <div class="game-over-image-cent gw"></div>
+        </div>
+        <div style="margin-bottom: 25px;"></div>
+        <div style="position: absolute; right: 70px; top: 870px;">
+            <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">Main Menu</button></a>
+        </div>
+        <h2 class="tutorial">Good Luck, Have Fun!</h2>
+        
+    </div>
+</body>
+</html>
+</body>
+</html>
