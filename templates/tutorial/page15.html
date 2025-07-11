@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/countdown-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <div class="content-wrapper" style="margin-top: 40px;">
+        <div class="side-image scroll-position guard-upgrade-flop" style="margin-top: 500px;"></div>
+        <div class="side-image scroll-position thief-upgrade-success" style="margin-top: 500px;"></div>
+        <h2 class="tutorial">Now that you've answered correctly and rolled more than the minimum roll, the attack has been executed!</h2>
+        <h2 class="tutorial">Remember!<br>If you miss out on an attack, there is a chance it may go into a cooldown</h2>
+        <h2 class="tutorial">Replaying an attack during its cooldown can extend the cooldown or can lead even more dire consequences </h2>
+        <h1 class="roll-high">You Were Right!</h1>         
+        <h1>The Salesman has Succeeded!</h1>
+        <div style="margin-bottom: 25px;"></div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h3>The right answer is</h3>
+                <h2>Customised to the target's details</h2>
+                <h3>Tailoring attacks to individuals (e.g., using their boss' name or job info) increases credibility</h3><br>
+                <h2>Success!!!</h2>
+                <h2>That scallywag managed to trick some fool!</h2>
+                <h2>You now have access to the castle!!</h2>                        
+            </div>
+        </div>
+        <h2 class="tutorial">Now that you know how to play the game, how do you win?</h2>
+        <h2 class="tutorial">Click on the button to find out</h2>
+        
+        <div style="position: absolute; right: 60px; top: 1250px;">
+            <a href="{{ url_for('tutorial_page', page_num=10) }}"><button class="shield-btn">Guard Win Scenario</button></a>
+        </div>
+    </div>
+</body>
+</html>
