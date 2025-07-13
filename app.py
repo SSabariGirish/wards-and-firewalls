@@ -170,7 +170,7 @@ def min_cost_return(card_choice):
 @app.route("/")
 def home():
     pygame.mixer.music.stop()
-    pygame.mixer.music.load("static/audio/GaiansCradle.mp3")
+    pygame.mixer.music.load("static/audio/BreakingTheSiege.mp3")
     pygame.mixer.music.play(-1)
     return render_template("index.html") 
 
@@ -190,13 +190,13 @@ def instructions3():
 def guard_turn():
 
     pygame.mixer.music.stop()
-    pygame.mixer.music.load("static/audio/PeacefulMoments.mp3")
+    pygame.mixer.music.load("static/audio/VillageConsort.mp3")
     pygame.mixer.music.play(-1)
 
     if guard.kingdom_gold < 0:
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/Origa.mp3")
-        pygame.mixer.music.play(start=16.0)
+        pygame.mixer.music.load("static/audio/DragonCastle.mp3")
+        pygame.mixer.music.play(start=9.0)
         return render_template("guard_game_over.html")
     
     elif guard_turn_counter > 20:
@@ -223,7 +223,7 @@ def guard_draws():
     if guard_future == True:
         guard_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/PeacefulMoments.mp3")
+        pygame.mixer.music.load("static/audio/VillageConsort.mp3")
         pygame.mixer.music.play(-1)
     
     deteriorated = guard.deteriorate()
@@ -797,7 +797,7 @@ def guard_play_result():
     if guard_future == True:
         guard_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/PeacefulMoments.mp3")
+        pygame.mixer.music.load("static/audio/VillageConsort.mp3")
         pygame.mixer.music.play(-1)
 
     card_choice = int(request.form['number'])
@@ -980,7 +980,7 @@ def guard_countdown():
     if guard_future == True:
         guard_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/PeacefulMoments.mp3")
+        pygame.mixer.music.load("static/audio/VillageConsort.mp3")
         pygame.mixer.music.play(-1)
 
     titles_and_attrs = [
@@ -1022,7 +1022,8 @@ def guard_countdown():
 @app.route("/thief_turn")
 def thief_turn():
     pygame.mixer.music.stop()
-    pygame.mixer.music.load("static/audio/VizimaOutskirtsNight.mp3")
+    pygame.mixer.music.load("static/audio/BattleOfTheCreek.mp3")
+    pygame.mixer.music.play(start=60.0)
     pygame.mixer.music.play(-1)
 
     if thief.extreme_wounds > 0:
@@ -1051,7 +1052,8 @@ def thief_draws():
     if thief_future == True:
         thief_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/VizimaOutskirtsNight.mp3")
+        pygame.mixer.music.load("static/audio/BattleOfTheCreek.mp3")
+        pygame.mixer.music.play(start=60.0)
         pygame.mixer.music.play(-1)
 
     global thief_turn_counter
@@ -1080,7 +1082,8 @@ def thief_plays():
     if thief_future == True:
         thief_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/VizimaOutskirtsNight.mp3")
+        pygame.mixer.music.load("static/audio/BattleOfTheCreek.mp3")
+        pygame.mixer.music.play(start=60.0)
         pygame.mixer.music.play(-1)
 
     card_explanation = [card.replace('\n', '<br>') for card in thief.card_explanations_medieval]
@@ -2027,7 +2030,8 @@ def thief_countdown():
     if thief_future == True:
         thief_future = False
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/VizimaOutskirtsNight.mp3")
+        pygame.mixer.music.load("static/audio/BattleOfTheCreek.mp3")
+        pygame.mixer.music.play(start=60.0)
         pygame.mixer.music.play(-1)
 
     titles_and_attrs = [
