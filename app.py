@@ -201,8 +201,8 @@ def guard_turn():
     
     elif guard_turn_counter > 20:
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/InsideTheHub.mp3")
-        pygame.mixer.music.play(start=20.6)    
+        pygame.mixer.music.load("static/audio/ForTomorrow.mp3")
+        pygame.mixer.music.play(start=38.0)    
         return render_template("thief_game_over.html")
     
     else:
