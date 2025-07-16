@@ -2,7 +2,7 @@ import Thieves as tf
 
 class Guard:
      def __init__(self):
-          self.kingdom_gold = 30
+          self.kingdom_gold = 300
           self.income_multiplier = 1
           self.cost_multiplier = 1
           self.exfiltration_multiplier = 1
@@ -700,7 +700,7 @@ firewall_questions = [
 
 firewall_answers = [
     ['To make your computer run faster','To block unwanted network traffic','To organize your computer files','To create backup copies of your data'],
-    ['Between your home network and the internet','Inside your computer\'s screen','Hidden in your keyboard','Far away on a different server'],
+    ['Between your home network and the internet','Inside your CPU','Decided by your ISP','Far away on a different server to protect your device'],
     ['The program from starting','The program from saving files','The program from closing','The program from connecting to the internet'],
     ['Downloading updates for the game','Making your computer quieter','Blocking the game\'s connection to the internet','Changing the game\'s graphics settings'],
     ['They both do exactly the same job','An antivirus is for old computers, a firewall is for new ones','A firewall fixes viruses, an antivirus blocks websites','A firewall controls network traffic, an antivirus deals with malicious software on your computer'],

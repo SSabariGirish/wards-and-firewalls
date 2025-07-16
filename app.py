@@ -167,6 +167,13 @@ def min_cost_return(card_choice):
 
     return min_cost    
 
+def reset_game_state():
+    global guard, thief, guard_turn_counter, thief_turn_counter
+    guard = gd.Guard()
+    thief = tf.Thief()
+    guard_turn_counter = 1
+    thief_turn_counter = 1
+
 @app.route("/")
 def home():
     pygame.mixer.music.stop()
@@ -197,12 +204,14 @@ def guard_turn():
         pygame.mixer.music.stop()
         pygame.mixer.music.load("static/audio/DragonCastle.mp3")
         pygame.mixer.music.play(start=9.0)
+        reset_game_state()
         return render_template("guard_game_over.html")
     
     elif guard_turn_counter > 20:
         pygame.mixer.music.stop()
         pygame.mixer.music.load("static/audio/ForTomorrow.mp3")
-        pygame.mixer.music.play(start=38.0)    
+        pygame.mixer.music.play(start=38.0)   
+        reset_game_state() 
         return render_template("thief_game_over.html")
     
     else:
