@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Registration!</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            setTimeout(function() {
+                window.location.href = "{{ url_for('guard_turn') }}";
+            }, 8000);
+        });
+    </script>
+</head>
+<body>
+    <div class="castle-top"></div>
+    
+    <div class="login-image guards-login"></div>
+    <div class="login-image thieves-login"></div>
+    
+    <div class="login-container">
+        <h2 class="login-title">Login Successful!</h2><br> 
+        <h3>{{ player1 }} is the Guard</h3><br>
+        <h3>{{ player2 }} is the Thief</h3><br>
+        <h3>Beginning Guard's Turn in 8 seconds...</h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wards and Firewalls - Login</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    
+    <div class="login-image guards-login"></div>
+    <div class="login-image thieves-login"></div>
+    
+    <div class="login-container">
+        <h1 class="login-title">Enter the Realm</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class=flashes>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="knight_username" class="form-label">Knight's Name:</label>
+                <input type="text" id="knight_username" name="knight_username" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="knight_password" class="form-label">Knight's Passphrase:</label>
+                <input type="password" id="knight_password" name="knight_password" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rogue_username" class="form-label">Rogue's Name:</label>
+                <input type="text" id="rogue_username" name="rogue_username" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rogue_password" class="form-label">Rogue's Passphrase:</label>
+                <input type="password" id="rogue_password" name="rogue_password" class="form-input" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Enter the Castle</button>
+        </form>
+        <br><br>
+        <h3>New to the foray? Enlist here!</h3>
+        <a href="{{ url_for('register') }}"><button class="login-btn">Register</button></a>
+    </div>
+</body>
+</html>

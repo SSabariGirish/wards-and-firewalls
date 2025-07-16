@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request 
+from flask import Flask, render_template, request, redirect, url_for, flash, session 
+from functools import wraps
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 import pygame
 import ast
 import random
 import math
+import os
 import Thieves as tf
 import Guards as gd
 
@@ -19,6 +23,28 @@ thief_turn_counter = 1
 guard = gd.Guard()
 thief = tf.Thief()
 
+app.config['SECRET_KEY'] = 'CauseImAPunkRockerYesIAm'
+instance_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance')
+os.makedirs(instance_path, exist_ok=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(instance_path, 'game.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+#Database
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(40), unique=True, nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
+
+def players_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'player1_id' not in session or 'player2_id' not in session:
+            flash('Both players must be logged in to play.')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 #Card Array Length
 guard_card_length = len(gd.guard_protection_header_real_life)
@@ -181,6 +207,65 @@ def home():
     pygame.mixer.music.play(-1)
     return render_template("index.html") 
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        knight_username = request.form.get('knight_username')
+        knight_password = request.form.get('knight_password')
+        rogue_username = request.form.get('rogue_username')
+        rogue_password = request.form.get('rogue_password')
+
+        user1 = User.query.filter_by(username=knight_username).first()
+        user2 = User.query.filter_by(username=rogue_username).first()
+
+        incorrect_one = False
+        incorrect_two = False 
+
+        if not user1 or not check_password_hash(user1.password_hash, knight_password):
+            incorrect_one = True
+
+        if not user2 or not check_password_hash(user2.password_hash, rogue_password):
+            incorrect_two = True
+        
+        if incorrect_one and incorrect_two:
+            flash('Both credentials are incorrect')
+            return redirect(url_for('login'))
+        elif incorrect_two:
+            flash('Player 2 (Thief) credentials are incorrect')
+            return redirect(url_for('login'))
+        elif incorrect_one:
+            flash('Player 1 (Guard) credentials are incorrect')
+            return redirect(url_for('login'))
+
+        session['player1_id'] = user1.id
+        session['player2_id'] = user2.id
+
+        return render_template("login_success.html", player1=knight_username, player2=rogue_username)
+
+    return render_template("login.html")
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(username=username).first()
+        if user:
+            flash('Username already exists. Please choose another.')
+            return redirect(url_for('register'))
+
+        new_user = User(
+            username=username,
+            password_hash=generate_password_hash(password, method='pbkdf2:sha256')
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        return render_template('register_success.html')
+
+    return render_template('register.html')
+
 @app.route("/instructions") 
 def instructions():
     return render_template("instructions.html")
@@ -196,33 +281,36 @@ def instructions3():
 @app.route("/guard_turn")
 def guard_turn():
 
-    pygame.mixer.music.stop()
-    pygame.mixer.music.load("static/audio/VillageConsort.mp3")
-    pygame.mixer.music.play(-1)
+    if 'player1_id' in session and 'player2_id' in session:
 
-    if guard.kingdom_gold < 0:
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/DragonCastle.mp3")
-        pygame.mixer.music.play(start=9.0)
-        reset_game_state()
-        return render_template("guard_game_over.html")
-    
-    elif guard_turn_counter > 20:
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load("static/audio/ForTomorrow.mp3")
-        pygame.mixer.music.play(start=38.0)   
-        reset_game_state() 
-        return render_template("thief_game_over.html")
-    
-    else:
-        kingdom_turn_income,kingdom_income_msg = kingdom_income()
-        guard.kingdom_gold += math.floor(kingdom_turn_income * guard.income_multiplier)
-        old_val = guard.income_multiplier
-        guard.income_multiplier = 1
+        pygame.mixer.music.load("static/audio/VillageConsort.mp3")
+        pygame.mixer.music.play(-1)
 
-        return render_template("guard_menu.html", kingdom_income_msg=kingdom_income_msg,
-                            kingdom_turn_income=math.floor(kingdom_turn_income * old_val), guard_turn_counter=guard_turn_counter,
-                            total_gold=guard.kingdom_gold)
+        if guard.kingdom_gold < 0:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("static/audio/DragonCastle.mp3")
+            pygame.mixer.music.play(start=9.0)
+            reset_game_state()
+            return render_template("guard_game_over.html")
+        
+        elif guard_turn_counter > 20:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("static/audio/ForTomorrow.mp3")
+            pygame.mixer.music.play(start=38.0)   
+            reset_game_state() 
+            return render_template("thief_game_over.html")
+    
+        else:
+            kingdom_turn_income,kingdom_income_msg = kingdom_income()
+            guard.kingdom_gold += math.floor(kingdom_turn_income * guard.income_multiplier)
+            old_val = guard.income_multiplier
+            guard.income_multiplier = 1
+
+            return render_template("guard_menu.html", kingdom_income_msg=kingdom_income_msg,
+                                kingdom_turn_income=math.floor(kingdom_turn_income * old_val), guard_turn_counter=guard_turn_counter,
+                                total_gold=guard.kingdom_gold, logged_in=True)
+    return redirect(url_for('login'))
 
 @app.route("/guard_draws")
 def guard_draws():
@@ -2111,4 +2199,6 @@ def tutorial_page(page_num):
         return "Page not found",  404
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

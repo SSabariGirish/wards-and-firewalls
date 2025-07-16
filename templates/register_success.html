@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Registration!</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            setTimeout(function() {
+                window.location.href = "{{ url_for('login') }}";
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div class="castle-top"></div>
+    
+    <div class="login-image guards-login"></div>
+    <div class="login-image thieves-login"></div>
+    
+    <div class="login-container">
+        <h2 class="login-title">Enlistment Successful! Redirecting to login page in 5 seconds...</h2>
+    </div>
+</body>
+</html>
