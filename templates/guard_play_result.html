@@ -24,12 +24,16 @@
         <div style="margin-bottom: 25px;"></div>
         <div class="scroll-container">
             <div class="scroll-content">
-                <h3>The right answer is</h3>
-                <h2> {{ right_answer | safe}}</h2>
-                <h3>{{ remark | safe }}</h3><br>
                 {% for msg in final_msg %}
                     <h2>{{ msg | safe }}</h2> 
-                {% endfor %}       
+                {% endfor %}
+            </div>
+        </div>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <h3>The right answer is</h3>
+                <h2> {{ right_answer | safe}}</h2>
+                <h3>{{ remark | safe }}</h3><br>          
             </div>
         </div>
         {% if deteriorated %}
