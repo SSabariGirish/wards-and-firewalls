@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/scroll.css">
     <link rel="stylesheet" href="static/css/medieval-patterns.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
 </head>
 <body>
     <div class="medieval-pattern-left"></div>
@@ -80,7 +81,8 @@
                 <h3>If the Castle remains standing for 20 Turns, you Lose</h3>
                 <img src="/static/images/Screenshots/GuardWin.PNG" style="width: 700px;"><br><br>
                 
-                <a href="{{ url_for('guard_turn') }}"><button class="shield-btn">Begin Game</button></a>
+                <a href="{{ url_for('tutorial') }}"><button class="shield-btn game-over-btn">Tutorial</button></a>
+                <a href="{{ url_for('guard_turn') }}"><button class="shield-btn game-over-btn">Begin Game</button></a>
             </div>
         </div>
     </div>
