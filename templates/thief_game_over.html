@@ -20,8 +20,11 @@
             <div class="game-over-image-cent gw"></div>
         </div>
         <div style="margin-bottom: 25px;"></div>
-        <div style="position: absolute; right: 80px; top: 420px;">
-            <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">Start a New Game</button></a>
+        <div style="position: absolute; right: 80px; top: 400px;">
+            <a href="{{ url_for('game_stats') }}"><button class="shield-btn game-over-btn">View Stats</button></a>
+        </div>
+        <div style="position: absolute; right: 80px; top: 520px;">
+            <a href="{{ url_for('glossary') }}"><button class="shield-btn game-over-btn">See Glossary</button></a>
         </div>
     </div>
 </body>

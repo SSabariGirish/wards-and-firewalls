@@ -380,6 +380,7 @@ def instructions3():
     return render_template("instructions_3.html")
 
 @app.route("/guard_turn")
+@players_required
 def guard_turn():
     global guard_total_questions, guard_right_answers, thief_total_questions, thief_right_answers
 
@@ -2368,6 +2369,43 @@ def tutorial_page(page_num):
         return render_template(f"tutorial/page{page_num}.html")
     else:
         return "Page not found",  404
+
+@app.route('/game_stats')
+@players_required
+def game_stats():
+    guard_id = session.get('player1_id')
+    thief_id = session.get('player2_id')
+
+    guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
+    thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
+
+    return render_template('game_stats.html', guard_stats=guard_stats, thief_stats=thief_stats)
+
+# In app.py, add this new route
+
+@app.route('/leaderboard')
+def leaderboard():
+    sort_by = request.args.get('sort_by', 'total_win_rate')
+
+    sort_options = {
+        'games_played': PlayerStats.total_games_played,
+        'total_win_rate': PlayerStats.total_win_rate,
+        'win_rate_as_guard': PlayerStats.win_rate_as_guard,
+        'win_rate_as_thief': PlayerStats.win_rate_as_thief,
+        'mcq_accuracy': PlayerStats.total_answer_accuracy
+    }
+
+    sort_column = sort_options.get(sort_by, PlayerStats.total_win_rate)
+
+    leaderboard_data = db.session.query(PlayerStats, User)\
+        .join(User, PlayerStats.user_id == User.id)\
+        .order_by(sort_column.desc())\
+        .limit(20)\
+        .all()
+
+    return render_template('leaderboard.html',
+                           leaderboard_data=leaderboard_data,
+                           current_sort=sort_by)
 
 if __name__ == "__main__":
     with app.app_context():

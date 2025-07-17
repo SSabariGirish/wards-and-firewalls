@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/leaderboard.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>The Royal Rankings</h1>
+
+    <div class="filters">
+        <strong>Sort by:</strong>
+        <a href="{{ url_for('leaderboard', sort_by='total_win_rate') }}"
+           class="{{ 'active' if current_sort == 'total_win_rate' }}">Total Win Rate</a>
+
+        <a href="{{ url_for('leaderboard', sort_by='games_played') }}"
+           class="{{ 'active' if current_sort == 'games_played' }}">Games Played</a>
+
+        <a href="{{ url_for('leaderboard', sort_by='win_rate_as_guard') }}"
+           class="{{ 'active' if current_sort == 'win_rate_as_guard' }}">Guard Win Rate</a>
+
+        <a href="{{ url_for('leaderboard', sort_by='win_rate_as_thief') }}"
+           class="{{ 'active' if current_sort == 'win_rate_as_thief' }}">Thief Win Rate</a>
+
+        <a href="{{ url_for('leaderboard', sort_by='mcq_accuracy') }}"
+           class="{{ 'active' if current_sort == 'mcq_accuracy' }}">MCQ Accuracy</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="rank">Rank</th>
+                <th>Player</th>
+                <th>Total Win Rate</th>
+                <th>Guard Win Rate</th>
+                <th>Thief Win Rate</th>
+                <th>Games Played</th>
+                <th>Overall MCQ Accuracy</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stats, user in leaderboard_data %}
+            <tr>
+                <td class="rank">{{ loop.index }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ stats.total_win_rate }}%</td>
+                <td>{{ stats.win_rate_as_guard }}%</td>
+                <td>{{ stats.win_rate_as_thief }}%</td>
+                <td>{{ stats.total_games_played }}</td>
+                <td>{{ stats.total_answer_accuracy }}%</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" style="text-align: center;">No player data available yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">To the Castle</button></a>
+    </div>
+
+</body>
+</html>

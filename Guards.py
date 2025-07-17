@@ -618,12 +618,14 @@ training_questions = ['You receive an email from your bank asking you to "confir
                       'You find an unknown USB stick on your work desk\n What should you do?',
                       'Which URL is safest to enter sensitive information?']
 
-training_answers = [['Click the link and update details immediately','Forward it to your friends to warn them','Delete the email','Contact the bank through official channels to verify'],
-                    ['Password123','cupcake7','Th!5_i5_4_pWD!','QWERTY123'],
-                    ['Minimise all windows','Leave it open if you are quick','Turn off the monitor','Lock the screen or log out'],
-                    ['Give them the password to fix it quickly','Ask them to send an official email','Refuse and report the incident','Change your password after telling them'],
-                    ['Take it to IT for inspection','Plug it in to find the owner','Use it for extra storage','Leave it where it was'],
-                    ['http://secure-login.com','https://yourbank.com','https://y0ur64nk.com','https://www.freebankaccess.net/joiningbonus.exe']]
+training_answers = [
+    ['Immediately click the link and proceed to update your details', 'Forward the email to several contacts to circulate a warning', 'Move the email to your junk or trash folder', 'Independently contact the bank using their official, known contact information to verify the request'],
+    ['Password123', 'cupcake7', '`Th!5_i5_4_pWD!`', 'QWERTY123'],
+    ['Minimise all active windows on your screen', 'Leave your session open if you intend to return shortly', 'Simply turn off the monitor display', '**Lock your computer screen or fully log out of your session**'],
+    ['Provide them with your password to facilitate a quick resolution', 'Request that they send an official email to confirm their identity and request', 'Politely decline their request and report the incident through official channels', 'Change your password immediately after disclosing it to them'],
+    ['Submit it to your IT department for proper inspection and handling', 'Insert it into your computer to try and identify the owner', 'Utilise it as additional personal storage space', 'Leave it undisturbed where it was found'],
+    ['`http://secure-login.com`', '`https://yourbank.com`', '`https://y0ur64nk.com`', '`https://www.freebankaccess.net/joiningbonus.exe`']
+]
 
 training_q_response = ['Always verify suspicious requests directly with the organisation', 'A strong password includes symbols, numbers, and upper/lowercase characters',
                        'Locking prevents unauthorised access when you are away','Legitimate IT staff will never ask for your password',
@@ -636,17 +638,17 @@ mfa_questions = [
     'Why is using MFA much safer than just a password?',
     'When using MFA, what is an example of "something you have"?',
     'If you get an MFA message on your phone that you did NOT ask for, what should you do?',
-    'You get a new phone. What\'s the best way to handle your MFA apps on the old and new phones?',
+    'You get a new phone. What is the best way to handle your MFA apps on the old and new phones?',
     'What should you do if your phone, which you use for MFA, is lost or broken?'
 ]
 
 mfa_answers = [
-    ['Using only a username','Using a password and something else to prove it\'s you','Using a very long password','Only logging in from home'],
-    ['It makes your password impossible to guess','It requires more than one way to prove who you are, making it harder for hackers','It creates a backup of all your files','It makes your internet connection faster'],
-    ['Your fingerprint','Your birthday','A security code sent to your phone','Your favorite color'],
-    ['Approve the message quickly','Ignore the message and hope it goes away','Deny the message and tell your IT support or security team','Try to guess what caused the message'],
-    ['Keep using the old phone forever','Transfer your MFA apps to the new phone and set them up again','Turn off MFA on all your accounts','Throw away the old phone without checking anything'],
-    ['Stop using that online account forever','Contact the service\'s support or use a backup code if you have one','Buy a brand new phone number','Try to guess the security code until it works']
+    ['Requiring two distinct usernames for login', 'Demanding multiple verification methods beyond a password to confirm identity', 'Enforcing the use of exceptionally long and complex passwords', 'Restricting account access solely to pre-approved network connections'],
+    ['It automatically generates a password that is inherently unguessable', 'It necessitates the successful presentation of more than one independent authentication factor', 'It creates an automatic backup of all associated digital files', 'It initiates automatic session encryption upon login'],
+    ['Your unique biological characteristic (e.g., fingerprint)', 'Your date of birth', 'A one-time security code delivered to your mobile device', 'Your preferred colour setting'],
+    ['Expeditiously approve the authentication request', 'Disregard the unexpected notification', 'Decline the authentication request and promptly report the incident to your IT or security team', 'Attempt to deduce the reason for the unsolicited message'],
+    ['Continue to use the old mobile device indefinitely', 'Migrate your MFA authenticator applications to the new device and reconfigure them for the respective accounts', 'Temporarily disable MFA until the complete transition to the new phone is finalised', 'Dispose of the old mobile device without data migration'],
+    ['Cease using that online account permanently', 'Contact the service provider\'s support department or utilise pre-generated backup codes', 'Inform your team and establish a new temporary account', 'Repeatedly attempt to guess the security code until successful']
 ]
 
 mfa_q_response = [
@@ -662,7 +664,7 @@ mfa_answer_key = [1,1,2,2,1,1]
 
 ids_questions = [
     'Imagine your computer system suddenly showing many failed login attempts for a special "admin" account late at night. What might be happening?',
-    'If a "guest" user on a computer tries to open a hidden file that stores passwords, what\'s wrong with that activity?',
+    'If a "guest" user on a computer tries to open a file that stores passwords, what is wrong with that activity?',
     'Someone tries to log into an account, failing 5 times in just 10 seconds. What could this rapid failure suggest?',
     'Think of your computer as a house. What is it called when someone quickly tries to knock on all your "doors" (ports) to see which ones are open?',
     'If "Bob" (who is not "Alice") opens "Alice\'s private financial report" file, why might a security system flag this?',
@@ -670,12 +672,12 @@ ids_questions = [
 ]
 
 ids_answers = [
-    ['The computer is running slow','The admin forgot their password','Someone is trying to guess the admin password or break in','The internet is temporarily down'],
-    ['The file is too big','The guest user is trying to make friends','Guest users should not be accessing sensitive system files','The user is just trying to delete old files'],
-    ['The user is typing too fast','Someone is trying to guess the password over and over (a brute-force attack)','The keyboard is broken','The system is asking for a new password'],
-    ['A "port scan" to find open weaknesses','A "data backup"','A "network speed test"','A "software update"'],
-    ['Alice shared the file correctly','Bob is just curious','It\'s suspicious because Bob shouldn\'t access Alice\'s private file','The file is very old'],
-    ['The internet bill will be higher','The network is just being tested','Important company data might be stolen (Data Exfiltration)','A new printer is being installed']
+    ['There was a scheduled system maintenance', 'The admin account was accidentally locked', 'Someone is attempting a brute-force attack', 'A new security patch was deployed'],
+    ['The file might be corrupted', 'The guest user is exploring system files', 'Guest users lack authorisation for sensitive data', 'The system is undergoing an audit'],
+    ['The user is typing too fast', 'An automated attack is attempting to compromise the account', 'There is a network connectivity issue', 'The account has been temporarily suspended'],
+    ['A "port scan" to identify vulnerabilities', 'A "network performance test"', 'A "firewall configuration check"', 'A "service availability probe"'],
+    ['Alice granted Bob access previously', 'Bob is an authorised auditor', 'Unauthorised access to a private document', 'The file permissions are misconfigured'],
+    ['Increased network traffic due to updates', 'Legitimate cloud synchronisation is occurring', 'Potential data exfiltration', 'Testing of a new backup system']
 ]
 
 ids_q_response = [
@@ -699,12 +701,12 @@ firewall_questions = [
 ]
 
 firewall_answers = [
-    ['To make your computer run faster','To block unwanted network traffic','To organize your computer files','To create backup copies of your data'],
-    ['Between your home network and the internet','Inside your CPU','Decided by your ISP','Far away on a different server to protect your device'],
-    ['The program from starting','The program from saving files','The program from closing','The program from connecting to the internet'],
-    ['Downloading updates for the game','Making your computer quieter','Blocking the game\'s connection to the internet','Changing the game\'s graphics settings'],
-    ['They both do exactly the same job','An antivirus is for old computers, a firewall is for new ones','A firewall fixes viruses, an antivirus blocks websites','A firewall controls network traffic, an antivirus deals with malicious software on your computer'],
-    ['Traffic that stays inside your network','Traffic leaving your network to the internet','Traffic coming into your network','Traffic between two websites']
+    ['To optimise system performance', 'To regulate network communication', 'To manage software installations', 'To encrypt local files'],
+    ['Between your local network and the public internet', 'Integrated within your application software', 'On a remote cloud server', 'As part of your computer\'s display unit'],
+    ['The program from launching', 'The program from altering system settings', 'The program from accessing your local storage', 'The program from establishing external connections'],
+    ['To enable data transmission matching the rule', 'To prevent any network activity', 'To disable specific application features', 'To generate system logs'],
+    ['They serve identical security functions', 'One protects hardware, the other protects software', 'A firewall monitors network traffic; an antivirus detects and removes malware', 'A firewall enhances internet speed; an antivirus organises files'],
+    ['Data flowing within your local area network', 'Data originating from your network destined for external networks', 'Data entering your network from an external source', 'Data exchanged between different applications on the same device']
 ]
 
 firewall_q_response = [
@@ -728,12 +730,12 @@ rate_limiting_questions = [
 ]
 
 rate_limiting_answers = [
-    ['To make the website look nicer','To stop hackers from sending too many requests too quickly','To encrypt all information sent by users','To speed up how fast pages load'],
-    ['A virus spreading','A Brute Force attack','A big flood of traffic (DDoS attack)','Someone trying to steal passwords'],
-    ['All 150 actions are allowed','Only the first 100 actions are allowed, and the rest are blocked or delayed','The person gets a warning message','The person is immediately banned from the website'],
-    ['A firewall blocks specific bad users, while rate limiting controls how *much* activity is allowed','A firewall only works for incoming internet, rate limiting for outgoing','Rate limiting only protects against viruses','A firewall always encrypts data'],
-    ['Checking someone\'s bag before they enter a building','A traffic light letting only a certain number of cars go through each minute','Making a copy of important documents','Locking all doors at night'],
-    ['It makes the internet connection faster','By slowing down or blocking too many requests from one source or many sources','By showing special warnings to the hacker','By making sure the website is always online']
+    ['To enhance the website\'s visual appeal', 'To prevent excessive requests and resource exhaustion', 'To encrypt all user data by default', 'To accelerate page rendering speed'],
+    ['Malware propagation', 'A SQL injection attempt', 'A Distributed Denial of Service (DDoS) attack', 'Credential stuffing'],
+    ['All 150 actions are processed immediately', 'The initial 100 actions are permitted, and subsequent ones are restricted or deferred', 'The user receives an automated notification', 'The user account is permanently suspended'],
+    ['A firewall filters traffic based on defined rules, whereas rate limiting manages the volume of requests over time', 'A firewall operates exclusively on incoming internet traffic, while rate limiting handles outgoing traffic', 'Rate limiting solely guards against malware infections', 'A firewall is primarily for data encryption'],
+    ['A security check of luggage at an airport entrance', 'A controlled flow system, like a single-lane bridge with traffic lights', 'Duplicating critical documents for archiving', 'Securing all entry points to a building overnight'],
+    ['It optimises the internet connection bandwidth', 'By mitigating or blocking an overwhelming volume of requests from one or multiple sources', 'By displaying customised alerts to the perpetrator', 'By ensuring continuous website uptime through redundant servers']
 ]
 
 rate_limiting_q_response = [
@@ -757,12 +759,12 @@ e2ee_questions = [
 ]
 
 e2ee_answers = [
-    ['Preventing server overload','Speeding up data transmission','Ensuring only the sender and receiver can read the message','Allowing companies to monitor communication'],
-    ['E2EE encrypts the message all the way from you to the person you\'re sending it to, not just while it\'s traveling','There is no difference between the two','E2EE doesn\'t encrypt at all','E2EE only encrypts data during download'],
-    ['X/Twitter','Instagram','Reddit','WhatsApp'],
-    ['Storing only encrypted ZIP files','Allowing the provider to reset your password and recover your files','Using a VPN while uploading','Using two-factor authentication'],
-    ['Your home address','The exact content of your messages','Your password','When and to whom you sent a message'],
-    ['They compress the message to save space','They identify the server\'s location','They are like secret codes used to scramble and unscramble messages','They make your internet connection faster']
+    ['To minimise server latency', 'To accelerate data transfer rates', 'To guarantee message confidentiality between communicating parties', 'To facilitate content moderation by service providers'],
+    ['E2EE ensures data remains encrypted from the sender\'s device to the recipient\'s device, unlike transport encryption which only protects data in transit', 'There is no functional distinction between the two methods', 'E2EE does not involve any form of encryption', 'E2EE is exclusively for data decryption during retrieval'],
+    ['X (formerly Twitter)', 'Instagram', 'Reddit', 'WhatsApp'],
+    ['Storing data exclusively in encrypted archive formats', 'Possessing the capability to reset user passwords and restore encrypted data', 'Utilising a Virtual Private Network (VPN) during data upload', 'Implementing multi-factor authentication for account access'],
+    ['Your physical address details', 'The precise content of your communications', 'Your account access credentials', 'Metadata such as timestamps and recipient information'],
+    ['They compress message size to conserve bandwidth', 'They identify the geographical location of the server', 'They are cryptographic values essential for scrambling and unscrambling messages', 'They contribute to an improved internet connection speed']
 ]
 
 e2ee_q_response = [
@@ -786,12 +788,12 @@ vpn_questions = [
 ]
 
 vpn_answers = [
-    ['To make their internet much faster','To hide their online activity and keep their internet safe and private','To block all ads on every website','To play games better online'],
-    ['A way to store files securely','A hidden webpage for secret messages','A secure, encrypted connection between your device and the VPN server','A way to slow down internet traffic'],
-    ['It might sell your internet activity data to other companies','It will always give you very slow internet speeds','It uses very old security methods','It will make your computer crash often'],
-    ['Because public Wi-Fi is already very secure','Because VPNs can find the password for public Wi-Fi','Because VPNs stop hackers from secretly watching what you do on unsecured networks','Because public Wi-Fi helps the VPN connect faster'],
-    ['Encrypt your internet traffic','Help you access websites that are blocked in your country','Scan your computer for viruses and remove them','Hide your real internet address (IP address)'],
-    ['ClosedVPN','OpenVPN','SlowVPN','BasicVPN']
+    ['To enhance web page loading speed', 'To secure and anonymise online communication', 'To automatically block all advertisements', 'To improve online gaming latency'],
+    ['A method for secure file storage and sharing', 'A concealed web portal for private messaging', 'A secure, encrypted link between your device and a remote server', 'A mechanism to regulate internet traffic flow'],
+    ['It may compromise your data privacy by selling usage information', 'It consistently provides extremely slow internet access', 'It exclusively utilises outdated security protocols', 'It frequently causes system instability and crashes'],
+    ['Because public Wi-Fi typically offers inherent security features', 'Because VPNs can bypass public Wi-Fi password authentication', 'Because VPNs safeguard your data from eavesdropping on unencrypted public networks', 'Because public Wi-Fi boosts VPN connection speeds'],
+    ['To encrypt your network traffic', 'To bypass geographical content restrictions', 'To detect and eliminate malicious software from your device', 'To mask your actual IP address'],
+    ['SecureNet VPN', 'OpenVPN', 'RapidTunnel VPN', 'BasicLink VPN']
 ]
 
 vpn_q_response = [
@@ -815,12 +817,12 @@ acc_lockout_questions = [
 ]
 
 acc_lockout_answers = [
-    ['To make passwords expire faster','To automatically block access after too many wrong login tries','To delete old user accounts that are not used','To make users remember their passwords better'],
-    ['A phishing scam','A virus infection','A hacker trying to guess the password many times (Brute-force attack)','Someone secretly listening to your connection'],
-    ['The password must be changed every 5 weeks','The account is deleted after 5 days of not being used','The account will lock after 5 wrong password attempts','Users must stay logged in for at least 5 minutes a day'],
-    ['Changing your clothes every day','Getting locked out of your house after trying the wrong key too many times','Posting a letter to yourself','Turning off your Wi-Fi at night'],
-    ['How long your password must be','How long the account stays blocked after too many wrong tries','The time before your account is permanently deleted','The time it takes to type your password'],
-    ['People getting accidentally locked out of their own accounts','The internet becomes slower','Passwords become much stronger','Important information gets lost from the computer']
+    ['To enforce regular password changes', 'To automatically deny access after a specified number of failed login attempts', 'To purge inactive user accounts', 'To enhance password memorability for users'],
+    ['A phishing expedition', 'A system-wide malware infection', 'Repeated, automated password guessing (Brute-force attack)', 'Network traffic interception'],
+    ['The password must be updated every 5 weeks', 'The account is archived after 5 days of inactivity', 'The account will be temporarily suspended after 5 incorrect password entries', 'Users are required to maintain an active session for a minimum of 5 minutes daily'],
+    ['Daily wardrobe changes', 'Inability to enter your residence after several attempts with an incorrect key', 'Self-addressing a postal delivery', 'Disabling your wireless internet connection overnight'],
+    ['The minimum required password length', 'The duration an account remains inaccessible following excessive incorrect login attempts', 'The period before an account is permanently deactivated', 'The estimated time required to input your password'],
+    ['Legitimate users inadvertently losing access to their accounts', 'A reduction in overall internet speed', 'A significant increase in password complexity', 'The unintentional deletion of crucial data from the system']
 ]
 
 acc_lockout_q_response = [
@@ -844,12 +846,12 @@ lpa_questions = [
 ]
 
 lpa_answers = [
-    ['Giving users access to everything','Letting everyone share their passwords','Giving users only the access they absolutely need for their job','Allowing users to see only non-secret information'],
-    ['The "Availability" principle','The "Redundancy" principle','The "Least Privilege" principle','The "Need-to-Know" principle'],
-    ['It makes computers run faster','It makes it easier to install software','It limits the damage a hacker can do if they break into an account','It allows all users to see everything'],
-    ['Stay logged in as the powerful admin all the time','Delete their special admin login','Switch to a regular user account with fewer powers','Browse secret files using their admin powers'],
-    ['A way to speed up the internet','A type of virus scan','Checking for old backups','Access control auditing'],
-    ['When hackers steal admin powers','When users slowly gain more access rights than they truly need for their job','When old permissions are automatically removed','When administrators log out too quickly']
+    ['Granting universal access to all system resources', 'Promoting password sharing among colleagues', 'Providing users with the minimum necessary permissions to perform their duties', 'Restricting users to viewing only public information'],
+    ['The "Confidentiality" principle', 'The "Data Duplication" principle', 'The "Least Privilege" principle', 'The "Information Disclosure" principle'],
+    ['It optimises system processing speed', 'It simplifies software installation procedures', 'It minimises the potential impact of a security breach on an compromised account', 'It enables all users to view comprehensive data sets'],
+    ['Maintain continuous login as the administrative user', 'Deactivate their elevated administrative credentials', 'Transition to a standard user account with reduced privileges', 'Access confidential files using their administrative permissions'],
+    ['A method for improving internet bandwidth', 'A routine scan for malicious software', 'Verification of historical data backups', 'Regular review and verification of user access rights'],
+    ['When malicious actors acquire administrative permissions', 'When users gradually accumulate more access rights than their current role necessitates', 'When obsolete access permissions are automatically revoked', 'When system administrators log out prematurely']
 ]
 
 lpa_q_response = [
@@ -873,12 +875,12 @@ param_queries_questions = [
 ]
 
 param_queries_answers = [
-    ['Their phone number','Their email address','The password they type in','Text typed into a username box on a login form'],
-    ['A typo or typing mistake','An attempt to get in using an SQL injection trick','They forgot their password','A calculation error in the website\'s code'],
-    ['By encrypting the website\'s code','By keeping the special SQL commands and the user\'s typed text strictly separate','By making the website load faster','By blocking all SQL commands from users'],
-    ['Using special tools to clean up user input','Always checking if the user input is a number when it should be','Directly mixing what the user types with the database commands','Making sure all database commands are in lowercase'],
-    ['Only old languages like Fortran','Python, PHP, and Java','Only very specific database languages','All of the above (most modern languages)'],
-    ['Database backup files','SQL commands that are set up in advance to handle user input safely','Just regular SQL commands typed by a developer','Text files used for making websites look nice']
+    ['Their contact phone number', 'Their primary email address', 'The alphanumeric password they enter', 'Input provided in a username or search field on a web form'],
+    ['An unintentional data entry error', 'An attempt to exploit a database vulnerability using an SQL injection technique', 'A user\'s forgotten login credentials', 'An internal script processing malfunction'],
+    ['By encrypting the entire web application codebase', 'By strictly segregating the structured query language commands from user-supplied data inputs', 'By optimising the website\'s data loading performance', 'By disallowing all user-originated SQL commands'],
+    ['Employing input validation and sanitisation routines', 'Validating that user input conforms to expected numeric types', 'Concatenating user-supplied strings directly into database queries', 'Standardising all database command syntax to lowercase'],
+    ['Predominantly older programming languages such as Fortran', 'Common contemporary languages like Python, PHP, and Java', 'Only highly specialised database query languages', 'Most widely used modern programming languages support this feature'],
+    ['Database backup and recovery files', 'Pre-compiled SQL statements designed to securely integrate user data', 'Raw SQL commands manually composed by a developer', 'Cascading Style Sheet (CSS) files for web page styling']
 ]
 
 param_queries_q_response = [
@@ -894,20 +896,20 @@ param_queries_answer_key = [3,1,1,2,3,1]
 
 input_sanitisation_questions = [
     'What exactly is "Cross-Site Scripting" (XSS) in simple terms?',
-    'If a hacker types `<script>alert(\'Hacked!\')</script>` into a comment box on a website, what is this a clear sign of?',
-    'What does "input sanitisation" mean when you\'re dealing with what users type into a website?',
+    'If a hacker types things within a <script> tag into a comment box on a website causing abnormal behaviour, what is this a clear sign of?',
+    'What does "input sanitisation" mean when you are dealing with what users type into a website?',
     'Which part of a website is most likely to be open to an XSS attack if it\'s not careful?',
     'What is a really good way for website builders to stop XSS attacks?',
     'Can XSS attacks happen even on secure websites that use HTTPS (the one with the lock icon)?'
 ]
 
 input_sanitisation_answers = [
-    ['A way to backup browser history','A method to secretly put bad code into a website that runs in other users\' browsers','A technique to make web pages load faster','A firewall bypass method'],
-    ['A math problem for the website','A forgotten password attempt','A clear attempt at an XSS (Cross-Site Scripting) attack','A typing error'],
-    ['Converting text to a special code that only computers understand','Removing or cleaning up harmful characters and code from what users type','Changing all typed words to lowercase','Encrypting all information sent across webpages'],
-    ['Login forms','Website search bars and comment sections','Pages that only show pictures','The website\'s security certificates'],
-    ['Increase the computer\'s memory','Make the website\'s internet faster','Carefully check and clean (filter or encode) what users type before showing it on the website','Store passwords in multiple places'],
-    ['Only if the website is very old','Yes, if the website doesn\'t properly clean up user input','No, HTTPS always blocks all XSS attacks','Only if you use a VPN to access the website']
+    ['A technique for archiving browser navigation history', 'A vulnerability allowing malicious scripts to be injected into web pages and executed in other users\' browsers', 'A method designed to accelerate web page loading times', 'A protocol for bypassing network firewalls'],
+    ['A complex computational error within the website\'s logic', 'An attempt to circumvent login credentials', 'A clear indication of a Cross-Site Scripting (XSS) attack', 'A simple typographical error by the user'],
+    ['Converting textual data into an abstract binary format', 'The process of filtering or neutralising potentially harmful characters and code from user-submitted data', 'Transforming all entered text to lowercase characters', 'Encrypting all data transmitted between web pages'],
+    ['Authentication forms for user logins', 'Interactive elements such as search fields and user comment sections', 'Web pages exclusively displaying static image content', 'The digital certificates used for website authentication'],
+    ['Increasing the server\'s Random Access Memory (RAM)', 'Enhancing the website\'s internet connection speed', 'Rigorous validation and neutralisation (filtering or encoding) of user-generated content before display', 'Distributing password storage across multiple data centres'],
+    ['Only if the website is utilising an outdated security protocol', 'Yes, if the website fails to adequately process and render user input securely', 'No, as HTTPS inherently prevents all forms of XSS exploitation', 'Only when accessing the website via a Virtual Private Network (VPN)']
 ]
 
 input_sanitisation_q_response = [
@@ -931,12 +933,12 @@ net_segmentation_questions = [
 ]
 
 net_segmentation_answers = [
-    ['Encrypting all internet traffic','Dividing a computer network into smaller, separate sections','Creating extra backup copies of the network','Installing an antivirus program on every computer'],
-    ['It automatically disables inactive user accounts','It makes administration easier for IT staff','It helps stop bad software (malware) from spreading everywhere if one part is attacked','It prevents most unwanted emails (phishing)'],
-    ['Giving everyone keys to every door in a building','Separating rooms in a big house with locked doors and rules about who can enter each room','Always leaving all doors and windows open in a house','Taping off your Wi-Fi router when it\'s not being used'],
-    ['It boosts the internet speed for all devices','It lets you group devices logically into isolated mini-networks, even if they\'re physically close','It provides secure wireless connections','It stops internet access for certain users'],
-    ['A virus or other threat can spread easily and quickly across the *whole* network','Users will have too many passwords to remember','The internet connection will become very slow','Computer IP addresses will change too often'],
-    ['A Load balancer','A DNS server','A Hub or a basic Switch','A Firewall or Access Control List (ACL)']
+    ['The implementation of network-wide data encryption', 'The partitioning of a computer network into distinct, isolated sub-networks', 'The creation of redundant network infrastructure backups', 'The deployment of endpoint antivirus solutions on all devices'],
+    ['It facilitates the automated deactivation of dormant user accounts', 'It simplifies routine network administration tasks for IT personnel', 'It restricts the lateral movement of malware or threats in the event of a breach', 'It prevents the majority of unsolicited commercial emails (spam)'],
+    ['Granting universal access privileges to all building occupants', 'The architectural design of a large building with compartmentalised, access-controlled areas', 'Maintaining all entry points to a dwelling in an open state', 'Securing your wireless router with adhesive tape when not in use'],
+    ['It enhances the overall internet throughput for all connected devices', 'It allows for the logical grouping of devices into isolated broadcast domains, irrespective of their physical connectivity', 'It establishes secure wireless communication channels', 'It restricts internet access for specific user profiles'],
+    ['A malicious attack or compromise can rapidly propagate throughout the entire network infrastructure', 'Users will encounter an excessive number of passwords to manage', 'The overall internet connection speed will significantly decrease', 'Computer IP addresses will be subject to frequent changes'],
+    ['A device that distributes network traffic across multiple servers', 'A server that translates domain names into IP addresses', 'A simple networking device that connects multiple computers', 'A security device or rule-set (e.g., Firewall or ACL) governing inter-segment traffic']
 ]
 
 net_segmentation_q_response = [
@@ -960,12 +962,12 @@ https_questions = [
 ]
 
 https_answers = [
-    ['Encrypted communication between your browser and the website\'s server','Faster loading times for web pages','The ability to download free software','More colourful website designs'],
-    ['Script','Server','Speed','Secure'],
-    ['HTML','FTP (File Transfer Protocol)','SMTP (Simple Mail Transfer Protocol)','TLS/SSL (Transport Layer Security/Secure Sockets Layer)'],
-    ['A padlock icon appears in the browser\'s address bar','The website loads much faster than usual','It will have many pop-up warnings','The website\'s text will turn red'],
-    ['It helps search engines find the website faster','It automatically blocks all pop-up ads','It keeps your passwords and personal information scrambled (encrypted) as you send them','It allows the website to send you more emails'],
-    ['The website will still load normally but very slowly','Your web browser will show a warning message about the site not being secure','The website will automatically switch to HTTP connections','All your website cookies will be automatically deleted']
+    ['Enhanced website performance', 'Encrypted data transmission between client and server', 'The capability to download complimentary software', 'More aesthetically pleasing website layouts'],
+    ['Script', 'Server', 'Speed', 'Secure'],
+    ['HyperText Markup Language (HTML)', 'File Transfer Protocol (FTP)', 'Simple Mail Transfer Protocol (SMTP)', 'Transport Layer Security/Secure Sockets Layer (TLS/SSL)'],
+    ['A prominent padlock symbol is displayed in the browser\'s address bar', 'The website consistently loads at a significantly faster rate', 'Numerous unsolicited pop-up alerts are presented', 'The textual content of the website appears in red'],
+    ['It improves the website\'s visibility in search engine results', 'It automatically suppresses all intrusive pop-up advertisements', 'It ensures the confidentiality and integrity of sensitive information like credentials during transmission', 'It enables the website to send a greater volume of electronic mail'],
+    ['The website will continue to function but with considerably reduced performance', 'Your web browser will issue a security warning regarding the website\'s trustworthiness', 'The website will automatically revert to an unencrypted HTTP connection', 'All stored browser cookies for the website will be automatically purged']
 ]
 
 https_q_response = [
@@ -989,12 +991,12 @@ zta_questions = [
 ]
 
 zta_answers = [
-    ['It assumes everyone inside the network is automatically safe','It trusts all users by default, but checks their internet speed','It assumes no one should be trusted by default, even inside the company\'s network','It only blocks people from outside the company'],
-    ['Giving the master key to just one employee','Checking everyone\'s ID and what they want to do *every time* they try to enter *any* room','Letting everyone walk freely inside a building once they get past the front door','Trusting anyone who wears a uniform'],
-    ['Everyone automatically gets access to everything they might ever need','Access is given based on who they are, what device they are using, and what they are doing right now','Permission is given based on what they did last week','All resources are open to everyone, but their actions are recorded later'],
-    ['The user\'s account is immediately deleted','The user automatically gets more permissions','The system might ask for re-verification or block access','The system just records the behavior to look at later'],
-    ['It stops the need for usernames','It makes sure that proving who you are doesn\'t depend on just one thing (like only a password)','It automatically resets passwords','It prevents accounts from being locked out'],
-    ['The computer\'s IP address is the most important thing','Computers and phones must meet certain security rules to be allowed access','Zero Trust mainly focuses on securing the entire network, not individual devices','It\'s mostly about checking if the user is a human or a robot']
+    ['It automatically grants access to all internal network users', 'It relies on implicit trust for all users by default', 'It operates on the principle of "never trust, always verify," even within the network perimeter', 'It exclusively focuses on preventing external threats to the corporate network'],
+    ['Distributing a single master key to all employees', 'Rigorous identity and context verification for every access attempt to any resource', 'Allowing unrestricted movement within a facility once initial entry is granted', 'Granting access based solely on occupational attire'],
+    ['Every user is automatically granted access to all potentially required resources', 'Access is dynamically determined by user identity, device attributes, and current contextual factors', 'Permissions are assigned based on a user\'s historical activities', 'All resources are publicly accessible, with subsequent monitoring of actions'],
+    ['The user\'s account is immediately terminated from the system', 'The system automatically elevates the user\'s access privileges', 'The system may trigger re-authentication challenges or temporarily restrict access', 'The system merely logs the unusual behaviour for retrospective analysis'],
+    ['It eliminates the necessity for user credentials', 'It mandates multiple forms of verification to confirm user identity, reducing reliance on a single factor', 'It automates the process of password resets', 'It prevents user accounts from being subjected to lockout policies'],
+    ['The device\'s network address is the sole determinant for access', 'Devices must comply with predefined security standards to be granted access', 'Zero Trust primarily secures the overarching network infrastructure, not individual endpoints', 'It is predominantly concerned with distinguishing between human and automated access attempts']
 ]
 
 zta_q_response = [
@@ -1018,12 +1020,12 @@ offshore_backup_questions = [
 ]
 
 offshore_backup_answers = [
-    ['Storing data on computers that are underwater in the ocean','Storing data backups in a different country','Transferring files to an oil rig in the sea','Storing data on servers that are on ships'],
-    ['To avoid paying taxes in their home country','To make sure their business can keep working if a disaster happens where they are','Because they don\'t trust their own IT people','To save space on their own computers'],
-    ['The cost of electricity and storage might be higher','It might be harder to get the data back quickly','The privacy rules (laws) for data might be different in that other country','You might accidentally lose access to the data forever'],
-    ['Convert all the data files into PDF format','Encrypt the data so it\'s scrambled and unreadable to others','Store them in a basic ZIP file without a password','Send them as attachments in an email'],
-    ['"Offshore" specifically refers to the data\'s physical or legal location in another country, while "cloud" is just about storing it online','Offshore backups are always kept completely offline','Cloud backups only happen during non-working hours','Offshore backups automatically delete files after 30 days'],
-    ['Only back up information that is not sensitive','Regularly test that they can get their data back from the offshore location','Only use the cheapest country available for storage','Only write down the backup steps once every few years']
+    ['Storing data on submerged computer systems', 'Relocating data backups to a geographical location outside the primary operating country', 'Transmitting digital files to an offshore oil platform', 'Maintaining data on ship-borne servers'],
+    ['To gain tax advantages in an alternative jurisdiction', 'To ensure business continuity and disaster recovery resilience', 'Due to a lack of confidence in domestic IT infrastructure', 'To conserve local storage capacity on company computers'],
+    ['The operational costs associated with power consumption and storage infrastructure might be elevated', 'Expedited data retrieval in emergency scenarios might be challenging', 'Divergent data protection and privacy regulations in the foreign jurisdiction could apply', 'There is a risk of permanent data loss or inaccessibility'],
+    ['Convert all data files into a portable document format (PDF)', 'Implement robust encryption to render the data unintelligible to unauthorised parties', 'Store the data in an unencrypted archive file (e.g., a basic ZIP)', 'Transmit the data as attachments via electronic mail'],
+    ['"Offshore" denotes the data\'s physical or legal residency in a foreign nation, whereas "cloud" broadly refers to internet-based storage services', 'Offshore backups are invariably maintained in an entirely disconnected state', 'Cloud backup operations are exclusively conducted during non-business hours', 'Offshore backup policies mandate automatic file deletion after a 30-day period'],
+    ['Only back up non-sensitive or publicly available information', 'Periodically conduct restoration tests to verify data integrity and accessibility from the offshore site', 'Prioritise the lowest cost country for data storage without other considerations', 'Document backup procedures only once every few years']
 ]
 
 offshore_backup_q_response = [
@@ -1047,12 +1049,12 @@ waf_questions = [
 ]
 
 waf_answers = [
-    ['To stop internal employees from using the internet','To block unwanted emails','To filter and protect web applications from bad internet requests','To prevent computer hard drives from failing'],
-    ['A WAF only works offline','A WAF understands and protects specific parts of websites (like forms)','A WAF only filters USB devices connected to computers','A WAF only works with physical firewall boxes'],
-    ['Social engineering (tricking people)','Shoulder surfing (looking over someone\'s shoulder)','SQL injection and Cross-site scripting (XSS)','Tailgating (sneaking into a building)'],
-    ['Inside the user\'s web browser','Behind the main server that hosts the website','Between internet users and the web application they are trying to reach','Directly inside the website\'s main database'],
-    ['Learning/Monitor mode','Stealth Mode','Tunnel mode','Passive Mode'],
-    ['It will print the text directly on the website','It will ignore it and forward the request as is','It will try to run that command on the database','It will flag or block it because it looks suspicious']
+    ['To restrict internal employee internet access', 'To intercept unsolicited email communications', 'To secure web-facing applications by filtering malicious HTTP traffic', 'To prevent hardware failures in computer systems'],
+    ['A WAF functions exclusively in an offline environment', 'A WAF specifically analyses and protects web application layer protocols and content', 'A WAF is solely responsible for filtering data from USB-connected devices', 'A WAF only operates in conjunction with physical network firewalls'],
+    ['Deceptive social engineering tactics', 'Visual eavesdropping (shoulder surfing)', 'SQL injection and Cross-site scripting (XSS) vulnerabilities', 'Unauthorised physical entry (tailgating)'],
+    ['Within the end-user\'s web browser application', 'Immediately behind the origin web server hosting the application', 'Positioned between internet clients and the web application they are attempting to access', 'Directly integrated into the web application\'s primary database system'],
+    ['Observation or learning mode', 'Covert operation mode', 'Encrypted tunnel mode', 'Non-blocking analytical mode'],
+    ['It will display the text directly on the website interface', 'It will disregard the input and forward the request without modification', 'It will attempt to execute that string as a database command', 'It will identify and impede the request due to its suspicious nature']
 ]
 
 waf_q_response = [

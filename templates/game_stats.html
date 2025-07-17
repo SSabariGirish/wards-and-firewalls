@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Statistics</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/game-stats.css">
+    <link rel="stylesheet" href="static/css/game-over.css">
+</head>
+<body>
+    <div class="castle-top"></div>
+    <h1>Game Statistics</h1>
+
+    <div class="container">
+        <div class="player-stats">
+            <h2>Player 1: {{ guard_stats.user.username }} (Guard)</h2>
+            <table>
+                <tr><th>Statistic</th><th>Value</th></tr>
+                <tr><td>Total Games Played</td><td>{{ guard_stats.total_games_played }}</td></tr>
+                <tr><td>Games as Guard</td><td>{{ guard_stats.games_played_as_guard }}</td></tr>
+                <tr><td>Total Wins</td><td>{{ guard_stats.total_games_won }}</td></tr>
+                <tr><td>Wins as Guard</td><td>{{ guard_stats.total_games_won_as_guard }}</td></tr>
+                <tr><td>Total Win Rate</td><td>{{ guard_stats.total_win_rate }}%</td></tr>
+                <tr><td>Win Rate as Guard</td><td>{{ guard_stats.win_rate_as_guard }}%</td></tr>
+                <tr><td>Overall MCQ Accuracy</td><td>{{ guard_stats.total_answer_accuracy }}%</td></tr>
+                <tr><td>MCQ Accuracy in Last Game</td><td>{{ guard_stats.answer_accuracy_in_last_game }}%</td></tr>
+            </table>
+        </div>
+
+        <div class="player-stats">
+            <h2>Player 2: {{ thief_stats.user.username }} (Thief)</h2>
+            <table>
+                <tr><th>Statistic</th><th>Value</th></tr>
+                <tr><td>Total Games Played</td><td>{{ thief_stats.total_games_played }}</td></tr>
+                <tr><td>Games as Thief</td><td>{{ thief_stats.games_played_as_thief }}</td></tr>
+                <tr><td>Total Wins</td><td>{{ thief_stats.total_games_won }}</td></tr>
+                <tr><td>Wins as Thief</td><td>{{ thief_stats.total_games_won_as_thief }}</td></tr>
+                <tr><td>Total Win Rate</td><td>{{ thief_stats.total_win_rate }}%</td></tr>
+                <tr><td>Win Rate as Thief</td><td>{{ thief_stats.win_rate_as_thief }}%</td></tr>
+                <tr><td>Overall MCQ Accuracy</td><td>{{ thief_stats.total_answer_accuracy }}%</td></tr>
+                <tr><td>MCQ Accuracy in Last Game</td><td>{{ thief_stats.answer_accuracy_in_last_game }}%</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">Home Page</button></a>
+        <a href="{{ url_for('leaderboard') }}"><button class="shield-btn game-over-btn">See Leaderboard</button></a>
+    </div>
+
+</body>
+</html>
