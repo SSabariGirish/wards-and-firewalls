@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session 
 from functools import wraps
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy # type: ignore
 from werkzeug.security import generate_password_hash, check_password_hash
 import pygame
 import ast
@@ -35,7 +35,30 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), unique=True, nullable=False)
-    password_hash = db.Column(db.String(200), nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)  
+
+    stats = db.relationship('PlayerStats', backref='user', uselist=False)
+
+class PlayerStats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    total_games_played = db.Column(db.Integer, default=0)
+    games_played_as_guard = db.Column(db.Integer, default=0)
+    games_played_as_thief = db.Column(db.Integer, default=0)
+
+    total_games_won = db.Column(db.Integer, default=0)
+    total_games_won_as_guard = db.Column(db.Integer, default=0)
+    total_games_won_as_thief = db.Column(db.Integer, default=0)
+
+    total_win_rate = db.Column(db.Float, default=0.0)
+    win_rate_as_guard = db.Column(db.Float, default=0.0)
+    win_rate_as_thief = db.Column(db.Float, default=0.0)
+
+    total_answer_accuracy = db.Column(db.Float, default=0.0)
+    total_questions_attempted = db.Column(db.Integer, default=0)
+    total_right_answers = db.Column(db.Integer, default=0)
+    answer_accuracy_in_last_game = db.Column(db.Float, default=0.0)
 
 def players_required(f):
     @wraps(f)
@@ -52,6 +75,10 @@ thief_card_length = len(tf.thief_attack_explanation_real_life)
 thief_future = False
 guard_future = False
 
+guard_total_questions = 0
+guard_right_answers = 0
+thief_total_questions = 0
+thief_right_answers = 0
 
 def kingdom_income():
     income = [0, 5, 10, 15, 20, 25, 40, 60]
@@ -195,10 +222,81 @@ def min_cost_return(card_choice):
 
 def reset_game_state():
     global guard, thief, guard_turn_counter, thief_turn_counter
+    global guard_total_questions, guard_right_answers, thief_total_questions, thief_right_answers
+
     guard = gd.Guard()
     thief = tf.Thief()
     guard_turn_counter = 1
     thief_turn_counter = 1
+    guard_total_questions = 0
+    guard_right_answers = 0
+    thief_total_questions = 0
+    thief_right_answers = 0
+
+def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_correct, thief_questions, thief_correct):
+    """
+    Updates player stats in the database after a game concludes.
+    """
+    # Find the stats entries for both players.
+    # Because we create stats at registration, these should always exist.
+    guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
+    thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
+
+    if not guard_stats or not thief_stats:
+        print("Error: Could not find player stats for one or both players.")
+        return
+
+    # --- 1. Update Play Counts ---
+    guard_stats.total_games_played += 1
+    guard_stats.games_played_as_guard += 1
+    thief_stats.total_games_played += 1
+    thief_stats.games_played_as_thief += 1
+
+    # --- 2. Update Win Counts ---
+    if winner_role == 'guard':
+        guard_stats.total_games_won += 1
+        guard_stats.total_games_won_as_guard += 1
+    elif winner_role == 'thief':
+        thief_stats.total_games_won += 1
+        thief_stats.total_games_won_as_thief += 1
+
+    # --- 3. Update Question/Answer Accuracy ---
+    # Guard
+    guard_stats.total_questions_attempted += guard_questions
+    guard_stats.total_right_answers += guard_correct
+    if guard_questions > 0:
+        guard_stats.answer_accuracy_in_last_game = round((guard_correct / guard_questions) * 100)
+    else:
+        guard_stats.answer_accuracy_in_last_game = 0
+
+    # Thief
+    thief_stats.total_questions_attempted += thief_questions
+    thief_stats.total_right_answers += thief_correct
+    if thief_questions > 0:
+        thief_stats.answer_accuracy_in_last_game = round((thief_correct / thief_questions) * 100)
+    else:
+        thief_stats.answer_accuracy_in_last_game = 0
+
+    # --- 4. Recalculate All Rates (as integer percentages) ---
+    # Guard Rates
+    if guard_stats.total_games_played > 0:
+        guard_stats.total_win_rate = round((guard_stats.total_games_won / guard_stats.total_games_played) * 100)
+    if guard_stats.games_played_as_guard > 0:
+        guard_stats.win_rate_as_guard = round((guard_stats.total_games_won_as_guard / guard_stats.games_played_as_guard) * 100)
+    if guard_stats.total_questions_attempted > 0:
+        guard_stats.total_answer_accuracy = round((guard_stats.total_right_answers / guard_stats.total_questions_attempted) * 100)
+
+    # Thief Rates
+    if thief_stats.total_games_played > 0:
+        thief_stats.total_win_rate = round((thief_stats.total_games_won / thief_stats.total_games_played) * 100)
+    if thief_stats.games_played_as_thief > 0:
+        thief_stats.win_rate_as_thief = round((thief_stats.total_games_won_as_thief / thief_stats.games_played_as_thief) * 100)
+    if thief_stats.total_questions_attempted > 0:
+        thief_stats.total_answer_accuracy = round((thief_stats.total_right_answers / thief_stats.total_questions_attempted) * 100)
+
+    # --- 5. Commit all changes to the database ---
+    db.session.commit()
+    print("Player stats updated successfully.")
 
 @app.route("/")
 def home():
@@ -260,6 +358,9 @@ def register():
             password_hash=generate_password_hash(password, method='pbkdf2:sha256')
         )
         db.session.add(new_user)
+        new_stats = PlayerStats(user_id=new_user.id)
+        db.session.add(new_stats)
+        new_user.stats = new_stats
         db.session.commit()
 
         return render_template('register_success.html')
@@ -280,6 +381,8 @@ def instructions3():
 
 @app.route("/guard_turn")
 def guard_turn():
+    global guard_total_questions, guard_right_answers, thief_total_questions, thief_right_answers
+
 
     if 'player1_id' in session and 'player2_id' in session:
 
@@ -288,16 +391,32 @@ def guard_turn():
         pygame.mixer.music.play(-1)
 
         if guard.kingdom_gold < 0:
+            
+            guard_id = session.get('player1_id')
+            thief_id = session.get('player2_id')
+            
+            update_game_stats(guard_id, thief_id, 'thief', guard_total_questions, guard_right_answers, 
+                              thief_total_questions, thief_right_answers)
+            
             pygame.mixer.music.stop()
             pygame.mixer.music.load("static/audio/DragonCastle.mp3")
             pygame.mixer.music.play(start=9.0)
+
             reset_game_state()
             return render_template("guard_game_over.html")
         
         elif guard_turn_counter > 20:
+            
+            guard_id = session.get('player1_id')
+            thief_id = session.get('player2_id')
+
+            update_game_stats(guard_id, thief_id, 'guard', guard_total_questions, guard_right_answers,
+                              thief_total_questions, thief_right_answers)
+            
             pygame.mixer.music.stop()
             pygame.mixer.music.load("static/audio/ForTomorrow.mp3")
             pygame.mixer.music.play(start=38.0)   
+            
             reset_game_state() 
             return render_template("thief_game_over.html")
     
@@ -352,6 +471,8 @@ def guard_plays():
 
 @app.route("/guard_play_training", methods=["POST"])
 def guard_play_training():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer'] 
@@ -368,6 +489,7 @@ def guard_play_training():
         usr_msg = 'Scribe Training successfully Completed!'
         final_msg = 'Excellent!\nThe Royal Scribe and his assistants have educated the noblemen and guards about thieves all around the Kingdom\nThese guards notice all suspicious townsfolk and alert the guards'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.scribe_training()
@@ -384,6 +506,8 @@ def guard_play_training():
 
 @app.route("/guard_play_mfa", methods=["POST"])
 def guard_play_mfa():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -401,6 +525,7 @@ def guard_play_mfa():
         usr_msg = 'Twin Seal Protocol successfully Established!'
         final_msg = 'Excellent!\nThe Commander of the Castle has initiated a secret second seal protocol\n All guards and noblemen are let in only on presenting both seals'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.twin_sigils()
@@ -417,6 +542,8 @@ def guard_play_mfa():
 
 @app.route("/guard_play_ids", methods=["POST"])
 def guard_play_ids():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -435,6 +562,7 @@ def guard_play_ids():
         final_msg = 'Excellent!\nThe King has magically activated the magical Gargoyle statues\nThese statues notice all suspicious townsfolk and alert the guards'
         guard.exfiltration_multiplier = 1
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.gargoyles()
@@ -451,6 +579,8 @@ def guard_play_ids():
 
 @app.route("/guard_play_firewall", methods=["POST"])
 def guard_play_firewall():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -469,6 +599,7 @@ def guard_play_firewall():
         final_msg = 'Excellent!\nYou have brought in a Seer to create magical walls of flame that protect the Castle from unwanted threats'
         guard.cost_multiplier = 1
         guard.exfiltration_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.battlements()
@@ -485,6 +616,8 @@ def guard_play_firewall():
 
 @app.route("/guard_play_rate_limiting", methods=["POST"])
 def guard_play_rate_limiting():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -502,6 +635,7 @@ def guard_play_rate_limiting():
         usr_msg = 'The Town Crier is successfully Hired!'
         final_msg = 'Excellent!\nYou have sought the help of the Town Crier to aid the Castle Guards\n People and Salesmen will now form a proper line and await their turn to enter the Castle'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.crier()
@@ -518,6 +652,8 @@ def guard_play_rate_limiting():
 
 @app.route("/guard_play_e2ee", methods=["POST"])
 def guard_play_e2ee():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -535,6 +671,7 @@ def guard_play_e2ee():
         usr_msg = 'The Royal Cipher Established Successfully!'
         final_msg = 'Excellent!\nYour messages to the neighbouring Fiefdoms are now safe\n Even your messengers won\'t be able to decipher them'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.cipher()
@@ -551,6 +688,8 @@ def guard_play_e2ee():
 
 @app.route("/guard_play_vpn", methods=["POST"])
 def guard_play_vpn():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -568,6 +707,7 @@ def guard_play_vpn():
         usr_msg = 'The Sewer Tunnels are Established Successfully!'
         final_msg = 'Excellent!\nYou have dug a secret path through the sewers for messengers and spies to reach the Castle\n The bathhouses won\'t be too happy about this, but the Castle is now safer to approach'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.sewer()
@@ -584,6 +724,8 @@ def guard_play_vpn():
 
 @app.route("/guard_play_acc_lockout", methods=["POST"])
 def guard_play_acc_lockout():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -601,6 +743,7 @@ def guard_play_acc_lockout():
         usr_msg = 'The Iron Gate has been successfully Activated!'
         final_msg = 'Excellent!\nYou have installed an iron gate that shields the Castle Walls\n Now, miscreants won\'t be able to bombard the gate and enter the castle'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.iron_gate()
@@ -617,6 +760,8 @@ def guard_play_acc_lockout():
 
 @app.route("/guard_play_lpa", methods=["POST"])
 def guard_play_lpa():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -634,6 +779,7 @@ def guard_play_lpa():
         usr_msg = 'Code of The Squire has been successfully Established!'
         final_msg = 'Excellent!\nYou have established a code that ensures that a person cannot access places that they do not need access to'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.squire()
@@ -650,6 +796,8 @@ def guard_play_lpa():
 
 @app.route("/guard_play_param_queries", methods=["POST"])
 def guard_play_param_queries():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -667,6 +815,7 @@ def guard_play_param_queries():
         usr_msg = 'The Sylvan Oracle Snare has been successfully Activated!'
         final_msg = 'Excellent!The Wood Elves decided to help you protect the Oracle\n Their Sylvan magic protects the Oracle from malicious spells'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.snare()
@@ -683,6 +832,8 @@ def guard_play_param_queries():
 
 @app.route("/guard_play_input_sanitisation", methods=["POST"])
 def guard_play_input_sanitisation():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -700,6 +851,7 @@ def guard_play_input_sanitisation():
         usr_msg = 'Ink Purification Ritual has been successfully Established!'
         final_msg = 'Excellent!The Scribes conduct a ritual cleansing the Royal Scrolls\n Malicious spells are now next to useless when applied on these scrolls'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.ink()
@@ -716,6 +868,8 @@ def guard_play_input_sanitisation():
 
 @app.route("/guard_play_net_segmentation", methods=["POST"])
 def guard_play_net_segmentation():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -733,6 +887,7 @@ def guard_play_net_segmentation():
         usr_msg = 'The Walled Districts have been successfully Established!'
         final_msg = 'Excellent!\nThe Town and Castle are now separated into smaller Districts with their own Bailiffs for better governance'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.walls()
@@ -749,6 +904,8 @@ def guard_play_net_segmentation():
 
 @app.route("/guard_play_https", methods=["POST"])
 def guard_play_https():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -766,6 +923,7 @@ def guard_play_https():
         usr_msg = 'The Silver Vanguard has been successfully Established!'
         final_msg = 'Excellent!\nThe Messengers are now protected by The Silver Vanguard\n No harm may befall the messengers'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.vanguard()
@@ -782,6 +940,8 @@ def guard_play_https():
 
 @app.route("/guard_play_zta", methods=["POST"])
 def guard_play_zta():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -801,6 +961,7 @@ def guard_play_zta():
         guard.doctrine()
         guard.cost_multiplier = 1
         guard.exfiltration_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.doctrine()
@@ -817,6 +978,8 @@ def guard_play_zta():
 
 @app.route("/guard_play_offshore_backup", methods=["POST"])
 def guard_play_offshore_backup():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -834,6 +997,7 @@ def guard_play_offshore_backup():
         usr_msg = 'The Hidden Borough has been successfully Established!'
         final_msg = 'Excellent!\nThere is now a secret borough hidden in the woods\n It has grains, weapons and medicine to keep the Castle afloat during a crisis\n'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
         final_msg = final_msg.replace('\n', '<br>')
         msg_list = final_msg.split('<br>')
         guard.borough()
@@ -850,6 +1014,8 @@ def guard_play_offshore_backup():
 
 @app.route("/guard_play_waf", methods=["POST"])
 def guard_play_waf():
+    global guard_total_questions, guard_right_answers
+    guard_total_questions += 1
     right_answer = request.form['right_answer']
     remark = request.form['remark']
     user_answer = request.form['answer']
@@ -867,6 +1033,7 @@ def guard_play_waf():
         usr_msg = 'The Dwarven Bastion have been successfully Established!'
         final_msg = 'Excellent!\nThe strength of the Earth and the strength of the Dwarves are yours\n The inner Castle is now safer against internal threats'
         guard.cost_multiplier = 1
+        guard_right_answers += 1
 
         if guard.exfiltration_multiplier == 1.5:
             guard.exfiltration_multiplier == 1.25
@@ -1192,7 +1359,6 @@ def thief_plays():
 def thief_play_result():
     
     global thief_turn_counter
-    #Getting the number of the card to be played
     card_choice = int(request.form['number'])
     upgrade_cost = thief.card_cost[card_choice]                                                                                            
     guards_defenses = []
@@ -1787,8 +1953,13 @@ def thief_mcq_result():
     final_msg = ''
     msg_list = []
     heading = True
+    global thief_total_questions, thief_right_answers
+    thief_total_questions += 1
+    
 
     if right_answer == user_answer:
+
+        thief_right_answers += 1
 
         if card_name == 'Snake Oil Salesman':
             usr_msg = 'The Salesman has Succeeded!'

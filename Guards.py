@@ -347,7 +347,7 @@ class Guard:
           deteriorated.append('The Iron Gate has deteriorated!\n') if self.has_acc_lockout == 1 else None
           deteriorated.append('The Code of the Squire has been forgotten due to a recent scuffle!\n') if self.has_lpa == 1 else None
           deteriorated.append('The Sylvan Oracle Snare has run out of mana!\n') if self.has_param_queries == 1 else None
-          deteriorated.append('The Ink Purification Ritual has run out of funds!\n') if self.has_input_sanitisation == 1 else None
+          deteriorated.append('The Ink Purification Ritual has run out of mana!\n') if self.has_input_sanitisation == 1 else None
           deteriorated.append('The Walls of Districts were broken in a recent attack!\n') if self.has_net_segmentation == 1 else None
           deteriorated.append('The Silver Vanguard have new demands and refuse to work until they are met!\n') if self.has_https == 1 else None
           deteriorated.append('The Ironbound Doctrine was lost in a fire!\n') if self.has_zta == 1 else None
