@@ -31,7 +31,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-#Database
+#Database Models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), unique=True, nullable=False)
@@ -234,11 +234,7 @@ def reset_game_state():
     thief_right_answers = 0
 
 def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_correct, thief_questions, thief_correct):
-    """
-    Updates player stats in the database after a game concludes.
-    """
-    # Find the stats entries for both players.
-    # Because we create stats at registration, these should always exist.
+    
     guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
 
@@ -246,13 +242,11 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
         print("Error: Could not find player stats for one or both players.")
         return
 
-    # --- 1. Update Play Counts ---
     guard_stats.total_games_played += 1
     guard_stats.games_played_as_guard += 1
     thief_stats.total_games_played += 1
     thief_stats.games_played_as_thief += 1
 
-    # --- 2. Update Win Counts ---
     if winner_role == 'guard':
         guard_stats.total_games_won += 1
         guard_stats.total_games_won_as_guard += 1
@@ -260,8 +254,6 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
         thief_stats.total_games_won += 1
         thief_stats.total_games_won_as_thief += 1
 
-    # --- 3. Update Question/Answer Accuracy ---
-    # Guard
     guard_stats.total_questions_attempted += guard_questions
     guard_stats.total_right_answers += guard_correct
     if guard_questions > 0:
@@ -269,7 +261,6 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
     else:
         guard_stats.answer_accuracy_in_last_game = 0
 
-    # Thief
     thief_stats.total_questions_attempted += thief_questions
     thief_stats.total_right_answers += thief_correct
     if thief_questions > 0:
@@ -277,8 +268,6 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
     else:
         thief_stats.answer_accuracy_in_last_game = 0
 
-    # --- 4. Recalculate All Rates (as integer percentages) ---
-    # Guard Rates
     if guard_stats.total_games_played > 0:
         guard_stats.total_win_rate = round((guard_stats.total_games_won / guard_stats.total_games_played) * 100)
     if guard_stats.games_played_as_guard > 0:
@@ -286,7 +275,6 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
     if guard_stats.total_questions_attempted > 0:
         guard_stats.total_answer_accuracy = round((guard_stats.total_right_answers / guard_stats.total_questions_attempted) * 100)
 
-    # Thief Rates
     if thief_stats.total_games_played > 0:
         thief_stats.total_win_rate = round((thief_stats.total_games_won / thief_stats.total_games_played) * 100)
     if thief_stats.games_played_as_thief > 0:
@@ -294,7 +282,6 @@ def update_game_stats(guard_id, thief_id, winner_role, guard_questions, guard_co
     if thief_stats.total_questions_attempted > 0:
         thief_stats.total_answer_accuracy = round((thief_stats.total_right_answers / thief_stats.total_questions_attempted) * 100)
 
-    # --- 5. Commit all changes to the database ---
     db.session.commit()
     print("Player stats updated successfully.")
 
@@ -1840,7 +1827,6 @@ def roll_d20():
             res_msg = f'Success!! The rats have wrecked havoc in the Kingdom! \nIn the chaos, you manage to steal {math.floor(55 * guard.exfiltration_multiplier)} Gold from the Castle \nAdditionally, the King is forced to pay {math.floor(80 * guard.exfiltration_multiplier)} Gold to hire mages and exterminators to cleanse the town off these rats \nThe Kingdom earns 10% of the intended Gold in the next turn!'
             attack_success = True
              
-    #res_msg = res_msg.replace('\n','<br>')
     res_msg = res_msg.split('\n')  
     thief.deteriorate()
 
@@ -2373,15 +2359,17 @@ def tutorial_page(page_num):
 @app.route('/game_stats')
 @players_required
 def game_stats():
+    global guard_total_questions, guard_right_answers, thief_total_questions, thief_right_answers
+
     guard_id = session.get('player1_id')
     thief_id = session.get('player2_id')
 
     guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
 
-    return render_template('game_stats.html', guard_stats=guard_stats, thief_stats=thief_stats)
-
-# In app.py, add this new route
+    return render_template('game_stats.html', guard_stats=guard_stats, thief_stats=thief_stats,
+                           guard_total_questions=guard_total_questions, guard_right_answers=guard_right_answers,
+                           thief_total_questions=thief_total_questions, thief_right_answers=thief_right_answers)
 
 @app.route('/leaderboard')
 def leaderboard():

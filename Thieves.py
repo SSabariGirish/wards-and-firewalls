@@ -772,21 +772,23 @@ phishing_questions = ['An attacker wants their phishing email to look credible. 
                       'What makes spear phishing more effective than mass phishing?',
                       'Which method is NOT commonly used for social engineering?']
 
-phishing_answers = [['Use Arial font to look friendly','Mimic the tone and branding of a real company','Use all caps in the subject line','Add a few spelling mistakes to give a sense of urgency'],
-                    ['Saturday at midnight','During a public holiday','Monday morning at 9 AM','Friday evening at 5 PM'],
-                    ['A new HR employee with access to onboarding portals','The janitor\'s shared desktop','A CEO\'s spouse','A system already running Linux'],
-                    ['RE: Weekend Updates','FYI - Updated Policies','Setting Up a Meeting','Important: Action Required - Password Expiring Today'],
-                    ['Asking how their weekend was','Tell them they have won a gift card','Using a robotic voice','Referring to internal systems or ticket numbers'],
-                    ['Piggybacking','Pretexting','Shoulder surfing','Tailgating'],
-                    ['Attach malware as a .exe file','Use alternating text case to bypass detection','Include a .pdf file with a link inside','Send from a malicious domain'],
-                    ['Curiosity','Boredom','Pain','Joy'],
-                    ['Cheaper','Involves humour','Goes viral easily','Customised to the target\'s details'],
-                    ['Packet Sniffing','USB drop','SMS phishing (smishing)','Voice phishing (vishing)']]
+phishing_answers = [
+    ['Stick to a basic font like Arial to seem friendly', 'Copy the real company\'s look, feel, and even how they talk', 'SHOUT in the subject line using all caps', 'Throw in a few typos to make it seem more urgent'],
+    ['Late Saturday night', 'During a public holiday', 'Monday morning at 9 AM', 'Friday evening at 5 PM'],
+    ['A fresh HR hire who touches lots of new employee data', 'The janitor\'s shared computer in the breakroom', 'The CEO\'s spouse who doesn\'t use company systems', 'A server that\'s already running Linux'],
+    ['"RE: Your Latest Weekend Updates"', '"Heads Up - Policy Changes"', '"Quick Meeting Request"', '"Urgent: Action Needed - Password Expiring Today!"'],
+    ['Chatting about their weekend plans', 'Telling them they\'ve won a prize', 'Using a robot voice', 'Mentioning internal system names or ticket numbers to sound legit'],
+    ['Sneaking in right behind someone else', 'Making up a fake identity or story to get what they want', 'Peeking over someone\'s shoulder to see their screen', 'Getting into a building by just walking in with a crowd'],
+    ['Sending malware as a `.exe` file', 'Jumbling up letter cases (like "FrEe StUfF") to fool filters', 'Hiding nasty links inside common files like a PDF', 'Using a clearly bad website address to send the email'],
+    ['Curiosity', 'Boredom', 'Pain', 'Joy'],
+    ['It is cheaper to do', 'It is funnier', 'It goes viral easily', 'It is tailored with personal info to make it super believable'],
+    ['Packet Sniffing', 'Dropping infected USB sticks around the office', 'Sending fake text messages (smishing)', 'Calling people up pretending to be someone else (vishing)']
+]
 
 phishing_q_response = ['Mimicking tone and branding increases the chance the target will trust the message','People are catching up on email Monday mornings, making them more likely to skim and click links',
                        'HR employees often receive attachments and interact with new people—prime targets for phishing','Urgency + relevance (passwords) increase click rates — a known attacker tactic',
                        'Effective attackers learn internal jargon to make their pretext believable','Pretexting means creating a fake identity or reason for access (e.g., posing as maintenance)',
-                       'Embedding links in PDFs is harder to scan and often bypasses email filters','Links like “Here’s a photo of you!” or “Suspicious login detected” use curiosity to bait clicks',
+                       'Embedding links in PDFs is harder to scan and often bypasses email filters','Links like “Here\'s a photo of you!” or “Suspicious login detected” use curiosity to bait clicks',
                        'Tailoring attacks to individuals (e.g., using their boss\' name or job info) increases credibility','Packet sniffing is a technical method, not a human-manipulation (social engineering) technique']
 
 phishing_answer_key = [1,2,0,3,3,1,2,0,3,0]
@@ -795,18 +797,18 @@ backdoor_questions = [
     'Imagine someone sneaks into a house and leaves a hidden key for later. In computer terms, what is that hidden way back in called?',
     'If an attacker wants to hide their special "door" into your computer, what kind of door would they pick?',
     'What is a simple tool an attacker might use to control your computer from far away?',
-    'How can an attacker make their secret connection look like normal internet traffic so it\'s not easily noticed?',
+    'How can an attacker make their secret connection look inconspicuous?',
     'To make sure their secret "door" stays open even if the computer restarts, what should an attacker do?',
     'Why might an attacker want your computer to "call them" instead of them trying to "call into" your computer?',
 ]
 
 backdoor_answers = [
-    ['A strong firewall','A regular password','An antivirus update','A secret backdoor'],
-    ['A door that opens loudly','A hidden door that uses a common path','A door that sends an alarm','A front door with a big sign'],
-    ['An email client','A chat program','A word processor','A backdoor'],
-    ['Make it look like you are just browsing the internet','Turn off the internet connection','Send very obvious messages','Send lots of spam emails'],
-    ['Make it start automatically when the computer turns on','Hide it in a picture file','Save it to a USB stick','Put it in a temporary folder'],
-    ['It needs you to click on something','It often goes around typical security walls','It\'s easier to type','It makes more noise'],
+    ['A network traffic analysis tool', 'A standard admin password', 'A routine system update', 'A Network Backdoor'],
+    ['A high-speed connection to the network', 'A hidden entry that looks like normal web traffic', 'A door that yells at security teams', 'The type of door does not matter'],
+    ['Burp Suite', 'Nessus', 'Morhen', 'Netcat'],
+    ['By making it look like you are just browsing the web', 'By creating a super-fast, dedicated link', 'By sending data through strange, unused ports', 'By hiding it in everyday system reports'],
+    ['By setting it to run itself when the computer starts', 'By burying its code inside an encrypted zip file', 'By needing someone to manually turn it on after every restart', 'By splitting its parts across different hard drive areas'],
+    ['It means they will always have to prove who they are', 'It often gets past firewalls that usually block incoming connections', 'It is easier for them to type commands', 'It gives them faster data transfer on a wide network'],
 ]
 
 backdoor_q_response = [
@@ -815,7 +817,7 @@ backdoor_q_response = [
     'Netcat is a very basic but powerful tool that hackers can use to talk to computers remotely, like a simple walkie-talkie for computers',
     'By making the backdoor traffic look like normal web browsing (using common ports like 80 or 443), attackers can blend in and avoid suspicion',
     'To make sure a backdoor works even after a computer is turned off and on again, attackers set it up to start automatically when the computer boots up',
-    'An attacker might prefer a reverse shell because it can often sneak past firewalls that usually block incoming connections, as your computer is reaching out to them',
+    'This is a reverse shell, and an attacker might prefer one because it can often sneak past firewalls that usually block unverified incoming connections',
 ]
 
 backdoor_answer_key = [3,1,3,0,0,1]
@@ -823,18 +825,19 @@ backdoor_answer_key = [3,1,3,0,0,1]
 dos_questions = [
     'What is the main goal of a DoS attack?',
     'Imagine many zombie-like computers working together to attack a website. What is this group called?',
-    'Which common internet service, like looking up website names, can be tricked to make a DoS attack bigger?',
+    'Which common internet service (like looking up website names) can be exploited to amplify a DoS attack?',
     'How do attackers try to hide who they are when doing a DoS attack?',
     'When would a DoS attack cause the most problems for a website?',
-    'Why might someone use a DoS attack as a distraction, like a magic trick?']
+    'Why might someone use a DoS attack as a distraction?']
 
 dos_answers = [
-    ['To upload a malware','To steal passwords','To make a website or service crash and stop working','To send annoying pop-ups'],
-    ['A single hacker','Undead soldiers','A botnet','A computer club'],
-    ['Email sending (SMTP)','File sharing (FTP)','Website Browse (HTTPS)','Domain Name System (DNS)'],
-    ['By using their real name','By changing their computer\'s visible address','By sending only small amounts of data','By using very strong passwords'],
-    ['Late at night when no one is using it','During its busiest time, like a big sale','Early morning on a weekend','Only for a few seconds'],
-    ['To make the website more popular','To make security guards focus on the attack while they do something else','To install new software','To get free internet access']]
+    ['To quietly install malicious software', 'To quickly gain access to user accounts', 'To overwhelm a system, making it unavailable to users', 'To send unsolicited promotional messages'],
+    ['Freakers', 'Dead-zone', 'Botnet', 'Slaves'],
+    ['Simple Mail Transfer Protocol (SMTP)', 'File Transfer Protocol (FTP)', 'Hypertext Transfer Protocol Secure (HTTPS)', 'Domain Name System (DNS)'],
+    ['By attacking from another country', 'By disguising the origin of their network traffic', 'By transmitting only minimal data payloads', 'By employing advanced cryptographic techniques'],
+    ['9 AM on a Monday Morning', 'During periods of high demand or critical operations', 'Early on a public holiday morning', '5 PM on a Friday'],
+    ['To fluctuate the stock market and cash out', 'To divert security attention away from a secondary intrusion attempt', 'To prevent the deployment of new system updates', 'To gain unauthorised network access']
+]
 
 dos_q_response = [
     'The primary goal of a DoS attack is to overwhelm a target with too much traffic, making it unavailable to legitimate users',
@@ -859,17 +862,18 @@ ransomware_questions = [
     "Why might a ransomware attacker decide NOT to attack a hospital?"
 ]
 ransomware_answers = [
-    ['Delete them completely','Lock them so you can\'t open them unless you pay','Make them faster','Change their colors'],
-    ['Money','A new keyboard','More computer memory','A thank you note'],
-    ['By turning on your computer','By clicking on a bad link or opening a strange email attachment','Through a strong password','By downloading a movie legally'],
-    ['Game saves only','Web browser history','Important documents, photos, and databases','Pictures and videos of cats'],
-    ['Because it\'s easy to trace back to them','Because it\'s very fast','Because it\'s harder to track and keeps them anonymous','Because it\'s cheap to buy'],
-    ['Panicked and urgent to pay','Happy and relaxed','Confused about the time','Like you have plenty of time'],
-    ['A group of friendly computers helping you','A new type of antivirus software','A network of hijacked computers controlled by the attacker','A single, very powerful computer'],
-    ['Make regular backup copies of your important files','Never turn off your computer','Always keep your internet disconnected','Print everything out on paper'],
-    ['Attacking two different computers','Encrypting files AND threatening to release your private data','Encrypting files twice as strong','Asking for money twice'],
-    ['Hospitals are easy targets','Hospitals always pay quickly','Attacking hospitals could cause a lot of public anger and trouble for the attacker','They don\'t have valuable information']
+    ['To permanently erase all your data', 'To encrypt your files, making them inaccessible without a payment', 'To worsen your computer\'s processing speed', 'To delete your network configuration settings'],
+    ['Money', 'A hardware upgrade demand', 'An increase in system memory allocation', 'A formal and public acknowledgement of their actions'],
+    ['By the act of physically powering on your device', 'By interacting with a malicious link or opening an infected email attachment', 'By cracking a complex password', 'By legitimately downloading licensed software'],
+    ['Only saved game progress files', 'Web browser history logs', 'Crucial documents, personal photos, and organisational databases', 'Images and video clips'],
+    ['Because of the confirmed surge in cryptocurrency value', 'Because it facilitates extremely rapid transfers', 'Because it offers enhanced anonymity and traceability challenges', 'Because its acquisition cost is negligible'],
+    ['A feeling of intense pressure and immediate necessity to comply', 'A sense of contentment', 'Confusion regarding the remaining timeframe', 'An impression of ample time available for consideration'],
+    ['A collective of beneficial computing devices', 'A well developed malware spreading software', 'A network of compromised computers under attacker control', 'A single, exceptionally powerful computational unit'],
+    ['Regularly creating secure offshore copies of your essential data', 'Ensuring your computer remains powered on continuously', 'Maintaining a permanent disconnection from the internet', 'Converting all digital files into printed hard copies'],
+    ['Targeting two separate computing devices simultaneously', 'Both encrypting data AND threatening to publicly release stolen sensitive information', 'Applying encryption with double the algorithmic strength', 'Demanding two separate ransom payments'],
+    ['Hospitals present inherently easy targets', 'Hospitals are known for immediate ransom payments', 'Attacking hospitals carries significant reputational risk and increased law enforcement scrutiny', 'The information held by hospitals lacks monetary value']
 ]
+
 ransomware_q_response = [
     "Ransomware's main goal is to lock or encrypt your files so you can't use them, forcing you to pay to get them back",
     "Criminals use ransomware to demand money (a 'ransom') in exchange for unlocking your files",
@@ -898,16 +902,16 @@ mitm_questions = [
 ]
 
 mitm_answers = [
-    ['Sending you too many emails','A secret listener between you and what you\'re talking to','Blocking your social media','Making your computer run faster'],
-    ['Your work Wi-Fi that needs a special login','A public Wi-Fi that asks for no password','A Wi-Fi network that only lets you visit one website','Your home Wi-Fi with a strong password'],
-    ['Send false network messages to trick your computer','Turn off your internet for a minute','Pretend to be your computer\'s friend','Send you a text message'],
-    ['To make your computer slower','To share their files with you','To help you fix your computer','To redirect your internet traffic through their computer'],
-    ['The rule for finding devices on a local network (ARP)','The rule for sending big files (FTP)','The rule for secure websites (HTTPS)','The rule for sending emails (SMTP)'],
-    ['It makes your connection private and scrambled','It makes your keyboard light up','It warns you about bad weather','It makes the website load slower'],
-    ['Make your computer restart quickly','Try to make your connection less secure (like from HTTPS to HTTP)','Send you a pop-up ad','Tell you to update your web browser'],
-    ['To find lost phones','To give everyone free internet','To secretly spy on people who connect to it','To make their own internet faster'],
-    ['A tool that checks their computer\'s battery life','A simple program that shows network messages','A game on their phone','A word processor'],
-    ['The amount of space on your hard drive','Your favorite song downloads','Your login names and passwords','The time of day']
+    ['Sending you too many unwanted emails', 'A hidden eavesdropper positioned between two communicating parties', 'Blocking your access to certain online platforms', 'Making your computer operate at a lower speed'],
+    ['Your corporate Wi-Fi requiring multi-factor authentication', 'A public Wi-Fi network without a password requirement', 'A restricted Wi-Fi network allowing access to only a single website', 'Your home Wi-Fi secured with a complex password'],
+    ['By sending deceptive network broadcasts to misdirect your device', 'By temporarily disconnecting your internet service', 'By impersonating your computer\'s trusted peer', 'By dispatching an SMS message to you'],
+    ['To intentionally slow down your computer\'s performance', 'To facilitate the sharing of large files with you', 'To remotely assist with computer troubleshooting', 'To route your internet traffic through their system for inspection'],
+    ['Address Resolution Protocol (ARP)', 'File Transfer Protocol (FTP)', 'Hypertext Transfer Protocol Secure (HTTPS)', 'Simple Mail Transfer Protocol (SMTP)'],
+    ['It encrypts your connection, making data unreadable to unauthorised parties', 'It causes your keyboard\'s backlight to activate', 'It provides alerts about adverse weather conditions', 'It leads to a reduction in website loading times'],
+    ['Force your computer to perform a quick reboot', 'Attempt to downgrade your connection to an insecure (HTTP) version', 'Display an intrusive advertising pop-up', 'Prompt you to download a web browser update'],
+    ['To aid in locating lost mobile devices', 'To initiate a peer-to-peer network', 'To inconspicuously monitor users\' online activities', 'To boost the performance of their own internet connection'],
+    ['A utility for monitoring computer battery levels', 'A software application that captures and displays network messages', 'A casual mobile game application', 'A basic document creation programme'],
+    ['The available storage capacity on your hard drive', 'Your file download history', 'Your login credentials, such as usernames and passwords', 'List of installed software']
 ]
 
 mitm_q_response = [
@@ -930,7 +934,7 @@ brute_force_questions = [
     "If a website asks for your password, and an attacker keeps trying many guesses, what kind of attack is that?",
     "Which kind of password is easiest for a brute force attack to guess?",
     "What makes a password strong against brute force attacks?",
-    "What kind of computer tool might an attacker use to automatically guess many passwords?",
+    "What kind of computer tool might an attacker use to peform a brute-force attack?",
     "What can a website do to stop someone from making too many password guesses?",
     "What is a 'dictionary attack' for guessing passwords?",
     "Why would an attacker use a list of common words or passwords instead of just random letters?",
@@ -939,16 +943,16 @@ brute_force_questions = [
 ]
 
 brute_force_answers = [
-    ['Make your computer slow','Find your correct password by trying many guesses','Send you annoying emails','Make your screen blink'],
-    ['A brute force attack','A secret message attack','A friendly hack','A network boost'],
-    ['A short password like "123456"','Your dog\'s name','A very long password with mixed letters, numbers, and symbols','A password that changes every hour'],
-    ['Using only common words','Being very long and having different types of characters (like symbols and numbers)','Being very short','Being your birthday'],
-    ['A painting program','A music player','A program that guesses passwords very fast','A video game'],
-    ['Give them more guesses','Lock their account or make them wait after too many wrong guesses','Send them a funny picture','Tell them a secret password'],
-    ['Using a list of common words or passwords to guess','Trying every possible number combination','Sending a virus to your computer','Turning off your internet connection'],
-    ['Because it\'s more likely to guess a real password quickly','Because it\'s against the rules to guess randomly','Because it makes the computer faster','Because it sends less data'],
-    ['Guess passwords very slowly and from different locations','Tell the website what they are doing','Only guess during the daytime','Send only one guess per day'],
-    ['Creating many new fake accounts','Using stolen username and password pairs from other websites to log in','Giving someone your login details on purpose','Filling out a form very fast']
+    ['To slow your computer down', 'To find your password by trying many guesses', 'To send you annoying emails', 'To make your screen flash'],
+    ['A brute force attack', 'A secret message trick', 'A friendly computer help', 'A network speed boost'],
+    ['A short, simple one like "123456"', 'Your dog\'s name', 'A long one with mixed letters, numbers, and symbols', 'One that changes every hour'],
+    ['Using only common words', 'Being long and having different types of characters', 'Being very short', 'Being your birthday'],
+    ['A network intrusion tool', 'A music player', 'A fast password-guessing program', 'A video game'],
+    ['Give them more tries', 'Lock their account or make them wait after too many wrong guesses', 'Send them warnings', 'Tell them a fake password'],
+    ['Using a list of common words or passwords to guess', 'Trying every possible number', 'Sending a virus to your computer', 'Turning off your internet'],
+    ['Because it\'s more likely to guess a real password quickly', 'Because guessing randomly is against the rules', 'Because it makes the computer faster', 'Because it sends less data'],
+    ['Guess passwords slowly from different places', 'Tell the website what they\'re doing', 'Only guess during the day', 'Only send one guess per day'],
+    ['Creating many new fake accounts', 'Using stolen logins from other websites to sign in on another website', 'Giving someone your login details on purpose', 'Filling out a form very fast']
 ]
 
 brute_force_q_response = [
@@ -972,7 +976,7 @@ priv_esc_questions = [
     "Why would a hacker look for old software that hasn't been updated on a computer?",
     "A hacker gets access to a regular user's account. What's the next big thing they might try to find to get more power?",
     "Which special account usually has full control over a computer system?",
-    "In systems like Linux, what's a common trick to get higher power by finding badly set up programs?",
+    "In systems like Linux, what's a common trick to get higher access by finding badly set up programs?",
     "Why might a hacker care about certain programs that have a special 'sticky bit' (like SUID) turned on?",
     "What kind of tool can help a hacker find ways to get more power on a computer?",
     "In Windows computers, which well-known tool is often used to help a hacker gain administrator rights?",
@@ -980,16 +984,16 @@ priv_esc_questions = [
 ]
 
 priv_esc_answers = [
-    ['To make the computer run slower','To gain higher access than they started with','To delete harmless files','To change the computer\'s wallpaper'],
-    ['Moving files between folders','A normal user becoming an administrator','Sharing a printer','Connecting to a different Wi-Fi network'],
-    ['Because old software is usually faster','Because old software might have known weak spots they can use','Because it looks nicer','Because it helps the computer cool down'],
-    ['Their favorite music playlist','Saved logins or password clues','Their last search history','The name of their desktop background'],
-    ['The "Guest" account','Any regular user account','A temporary login','The "Administrator" or "Root" account'],
-    ['Turning on the screen saver','Finding programs that run with too much power','Changing the clock time','Restarting the computer often'],
-    ['Because they always crash the computer','Because they might let a normal user do powerful things they shouldn\'t','Because they make the internet faster','Because they help clean up old files'],
-    ['A common web browser','A tool that checks for ways to get more power (like Linux Exploit Suggester)','A simple calculator','A drawing program'],
-    ['Microsoft Word','Metasploit','Adobe Reader','A basic chat application'],
-    ['Because it\'s required to access more important parts of the system or do big damage','Because it makes the attack less noticeable','Because it deletes evidence automatically','Because it makes the computer immune to antivirus software']
+    ['To make the computer slower', 'To get higher access than they started with', 'To delete harmless files', 'To change the computer\'s settings'],
+    ['Moving files around', 'A normal user becoming an administrator', 'Sharing a printer', 'Changing Wi-Fi networks'],
+    ['Because old software is faster', 'Because old software might have known weak spots', 'Because it looks nicer', 'Because it helps the computer cool down'],
+    ['Their music playlist', 'Saved logins or password hints', 'Their recent web searches', 'The desktop background name'],
+    ['The "Guest" account', 'Any regular user account', 'A temporary login', 'The "Administrator" or "Root" account'],
+    ['Turning on the screen saver', 'Finding programs that run with too much power', 'Changing the clock time', 'Restarting the computer often'],
+    ['Because they always crash the computer', 'Because they might let a normal user do powerful things', 'Because they make the internet faster', 'Because they help clean old files'],
+    ['A common web browser', 'A tool that finds ways to get more power', 'A simple calculator', 'A drawing program'],
+    ['Microsoft Word', 'Metasploit', 'Adobe Reader', 'Burp Suite'],
+    ['Because it is needed to access important system parts or cause big damage', 'Because it makes the attack less obvious', 'Because it deletes evidence automatically', 'Because it makes the computer safe from viruses']
 ]
 
 priv_esc_q_response = [
@@ -998,7 +1002,7 @@ priv_esc_q_response = [
     "Attackers look for old or unpatched software because it often has known weaknesses (vulnerabilities) that they can use to break in or get more control",
     "After getting into a user account, hackers look for saved logins or password clues that might let them become an administrator or access other important parts of the system",
     "The 'Administrator' (on Windows) or 'Root' (on Linux) account has full control over almost everything on the computer, which is what hackers want",
-    "In Linux, hackers often try to get higher power by finding programs that are badly set up to run with too much power (like misconfigured SUID binaries) that a normal user can abuse",
+    "In Linux, hackers often try to get higher access by finding programs that are badly set up to run with too much power (like misconfigured SUID binaries) that a normal user can abuse",
     "Attackers care about programs with a special 'sticky bit' (like SUID) because if they are misconfigured, a regular user might be able to run them with powerful administrator rights, even if they shouldn't",
     "Tools like Linux Exploit Suggester are designed to scan a computer and point out known ways a hacker might be able to get more powerful access",
     "Metasploit is a very common tool in Windows that helps hackers automatically use known tricks to gain administrator rights on a computer",
@@ -1021,16 +1025,16 @@ sql_injection_questions = [
 ]
 
 sql_injection_answers = [
-    ['To secretly access or control the website\'s database','To make the website faster','To change the website\'s colors','To send spam emails'],
-    ['To help the website remember them','To trick the login and get in without a password','To make the website load slower','To confuse the website\'s computer'],
-    ['Not checking what users type into forms very carefully','Using too many pictures','Having too many links','Using old versions of web browsers'],
-    ['Because it helps the website run faster','Because it fixes the website\'s problems','Because it tells the hacker useful secrets about the database','Because it makes the website look bad'],
-    ['When the hacker cannot see direct results but can figure things out by how the website acts','When the hacker guesses passwords very quickly','When the hacker can see all the database information directly','When the hacker uses a special type of virus'],
-    ['A simple blog post page','A page where you can fill out forms and search for things','A page with lots of pictures','A page that only shows the weather'],
-    ['They can make the website play music','They can change the website\'s colors','They can combine their own questions with the website\'s to steal more data','They can delete pictures from the website'],
-    ['It makes the website easier to use','It blocks bad characters from changing the database\'s commands','It adds firewalls to the website','It cleans up the database'],
-    ['They make the database run faster','They show more advertisements','They treat everything a user types as simple text, not commands','They hide the website\'s real address'],
-    ['How many times someone visited the website','Secret user information like passwords or private data','The website\'s design files','The weather forecast']
+    ['To quietly update features', 'To access or control the website\'s database', 'To change website colours', 'To send unwanted emails'],
+    ['To remember them better', 'To bypass login without a password', 'To slow down the website', 'To confuse the computer'],
+    ['Not checking user input carefully', 'Overuse of memory', 'Having too many links', 'Using old web browsers'],
+    ['It helps the website run faster', 'It fixes problems', 'It tells the hacker database secrets', 'It makes the website look bad'],
+    ['Hacker sees no direct results but infers from website behaviour', 'Hacker guesses passwords quickly', 'Hacker sees all database info directly', 'Hacker uses a special virus'],
+    ['A simple blog post', 'A page with forms or search bars', 'A page with many pictures', 'A page showing weather only'],
+    ['They can make the website play music', 'They can change website colours', 'They can combine queries to steal more data', 'They can delete pictures from the website'],
+    ['It makes the website easy to use', 'It blocks bad characters from altering commands', 'It adds firewalls', 'It cleans the database'],
+    ['They make the database faster', 'They show more ads', 'They treat user input as plain text, not commands', 'They hide the website\'s address'],
+    ['How many times someone visited', 'Secret user info like passwords or private data', 'The website\'s design files', 'The weather forecast']
 ]
 
 sql_injection_q_response = [
@@ -1062,16 +1066,16 @@ xss_questions = [
 ]
 
 xss_answers = [
-    ['Xerox Security System','Cross-Site Scripting','Extra Safe Security','Excellent Server Safety'],
-    ['To run malicious code in a user\'s web browser','To make the website faster','To change the website\'s look for everyone','To delete files from the server'],
-    ['The user\'s web browser and the pages they see','The database server','The website\'s firewall','The network router'],
-    ['Just random numbers','Harmful code (like JavaScript)','A long paragraph of text','A simple image file'],
-    ['Make their internet slow','Change their computer\'s desktop background','Take over their web browser or steal their information','Give them a virus on their hard drive'],
-    ['Because the malicious code runs in the user\'s own web browser','Because it uses a special program on the hacker\'s computer','Because it attacks the server computer','Because it only works on very old computers'],
-    ['The hacker sends a virus through email','The malicious code is reflected back to the user from the website and runs','The malicious code is permanently saved on the website','The website changes its own code'],
-    ['The malicious code is hidden in a picture','The hacker only uses it on their own computer','The malicious code is saved on the website and seen by many users later','The malicious code is only seen once and then disappears'],
-    ['By telling users to use different web browsers','By making the website black and white','By carefully checking and cleaning any input users type into forms','By never using comments sections'],
-    ['Because cookies make pictures load better','Because cookies help websites run faster','Because cookies contain sensitive information like login sessions','Because cookies tell the hacker your location']
+    ['Xerox Security System', 'Cross-Site Scripting', 'Extra Safe Security', 'Excellent Server Safety'],
+    ['To run bad code in a user\'s browser', 'To speed up the website', 'To change the site\'s look for everyone', 'To delete files from the server'],
+    ['The user\'s browser and their viewed pages', 'The main database server', 'The website\'s firewall', 'The network router'],
+    ['Just random numbers', 'Harmful code (like JavaScript)', 'A long block of text', 'A simple picture file'],
+    ['Slow their internet', 'Change their computer\'s background', 'Take over their browser or steal info', 'Give them a virus on their hard drive'],
+    ['Because the bad code runs in the user\'s browser', 'Because it uses a special hacker program', 'Because it attacks the server', 'Because it only works on old computers'],
+    ['Hacker sends a virus via email', 'Bad code is sent back to the user\'s browser and runs', 'Bad code is saved permanently on the website', 'The website changes its own code'],
+    ['Bad code is hidden in a picture', 'Hacker only uses it on their own computer', 'Bad code is saved on the site and seen by many users later', 'Bad code is only seen once'],
+    ['By telling users to use different browsers', 'By making the website black and white', 'By checking and cleaning user input carefully', 'By never using comment sections'],
+    ['Because cookies make pictures load better', 'Because cookies help websites run faster', 'Because cookies hold sensitive login info', 'Because cookies tell the hacker your location']
 ]
 
 xss_q_response = [
@@ -1094,7 +1098,7 @@ session_hijack_questions = [
     "Which piece of information does a hacker steal to hijack your session?",
     "Why are these special IDs (session IDs) such a big target for hackers?",
     "How might a hacker use a public Wi-Fi network (like in a coffee shop) to hijack your session?",
-    "What kind of attack involves a hacker secretly intercepting your active internet connection?",
+    "What kind of attack is often used in tandem with session hijacking?",
     "Why does using 'HTTPS' (the lock icon in your browser) help protect against session hijacking?",
     "What is 'session fixation'?",
     "After successfully stealing your session, what can a hacker typically do?",
@@ -1103,16 +1107,16 @@ session_hijack_questions = [
 ]
 
 session_hijack_answers = [
-    ['To make your internet connection faster','To secretly take over your active login on a website','To send you too many pop-up ads','To make your computer crash'],
-    ['Your email address','Your unique session ID (like a temporary pass)','Your computer\'s name','The website\'s color settings'],
-    ['They help the website load pictures faster','Because with a session ID, a hacker can pretend to be you without your password','They tell the website what language you prefer','They are used to play music on the website'],
-    ['By sending you a text message','By secretly listening to the unencrypted internet traffic to steal your session ID','By installing new software on your phone','By making the Wi-Fi signal weaker'],
-    ['A Denial of Service (DoS) attack','A virus attack','A Man-in-the-Middle (MITM) attack','A phishing scam'],
-    ['It makes the website text bigger','It hides your mouse cursor','It encrypts your internet traffic, so others can\'t easily see your session ID','It prevents you from downloading files'],
-    ['When a hacker gives you a specific session ID, and then uses it to log in as you after you use it','When you forget your password and need to reset it','When the website automatically logs you out','When your internet connection keeps breaking'],
-    ['Access your email account only','Change your desktop background','Access your account and do things as if they were you','Give you a special award'],
-    ['Because shorter IDs are easier to remember','Because random IDs make it hard for hackers to guess your active login','Because it makes the website look more professional','Because it helps the website run on older computers'],
-    ['If cookies are not properly secured, hackers can steal the session ID inside them','Secure cookies block pop-up ads','Insecure cookies automatically delete your browser history','Cookies prevent websites from working correctly']
+    ['To speed up your internet', 'To secretly take over your active website login', 'To annoy you with many pop-up ads', 'To crash your computer'],
+    ['Your email address', 'Your unique session ID', 'Your computer\'s name', 'The website\'s colour settings'],
+    ['They help websites load pictures faster', 'Because with a session ID, a hacker can pretend to be you without your password', 'They tell the website your preferred language', 'They\'re used to play music on the website'],
+    ['By sending you a text', 'By secretly listening to unencrypted Wi-Fi traffic to steal your session ID', 'By installing new software on your phone', 'By making the Wi-Fi signal weaker'],
+    ['A Denial of Service (DoS) attack', 'A virus attack', 'A Man-in-the-Middle (MITM) attack', 'An SQL Injection attack'],
+    ['It makes website text bigger', 'It hides your mouse cursor', 'It encrypts your internet traffic, hiding your session ID', 'It stops you from downloading files'],
+    ['When a hacker gives you a specific session ID, then uses it to log in as you after you use it', 'When you forget your password and need to reset it', 'When the website automatically logs you out', 'When your internet connection keeps breaking'],
+    ['Access your email only', 'Change your desktop background', 'Access your account and act as if they were you', 'Give you a special award'],
+    ['Because shorter IDs are easier to remember', 'Because random IDs make it hard for hackers to guess your active login', 'Because it makes the website look professional', 'Because it helps old computers run websites'],
+    ['If cookies aren\'t secure, hackers can steal the session ID inside them', 'Secure cookies block pop-up ads', 'Insecure cookies automatically delete browser history', 'Cookies stop websites from working properly']
 ]
 
 session_hijack_q_response = [
@@ -1144,16 +1148,16 @@ supply_chain_questions = [
 ]
 
 supply_chain_answers = [
-    ['To make a network very busy','To test how quickly a company responds to attacks','To secretly get into big companies by attacking smaller, trusted partners','To launch a simple denial of service attack'],
-    ['Because small companies use older computers','Because small companies often have weaker security, making them an easier way in','Because small companies have more publicly available information','Because small companies have faster internet connections'],
-    ['Physically breaking into a company\'s office','Sending a lot of spam emails to employees','Putting secret bad code into a trusted software update','Changing the company\'s website colors'],
-    ['They only happen late at night','They always make a computer crash right away','They secretly use things you already trust, like software updates','They only affect very old computers'],
-    ['A secret message','A Trojan horse update','A compromise before distribution','An insider leak'],
-    ['The computer\'s serial number','Small text fonts on websites','Free software parts (like open-source libraries) that many apps use','Smartphone apps you download from stores'],
-    ['To make the software download faster','To add annoying advertisements','To infect every single application that uses that hidden bad code','To make the free software more popular'],
-    ['They make the computer screen turn blue','The bad parts look like normal, trusted software and are digitally signed','They slow down how you use the computer','They make the internet connection very slow'],
-    ['Attacking a website that many employees of a target company often visit to infect them','Sending fake job offers to employees','Flooding a vendor\'s server with too many requests','Stealing a CEO\'s personal laptop'],
-    ['They can get control over many devices because those updates are trusted','They can only make the software run slower','They can only change the desktop background','They can only block access to social media']
+    ['To flood a network', 'To test crisis response', 'To breach big firms via trusted partners', 'To launch a denial of service attack'],
+    ['Because small firms use old tech', 'Because smaller companies often have weaker security', 'Because small firms share more public data', 'Because they have faster internet'],
+    ['Physically breaking in', 'Sending many spam emails', 'Inserting bad code into trusted software updates', 'Changing website colours'],
+    ['They only happen at night', 'They crash computers immediately', 'They secretly use trusted components like software updates', 'They only affect very old computers'],
+    ['A giftbox attack', 'A Trojan horse update', 'A pre-distribution compromise', 'An inside leak'],
+    ['Computer serial numbers', 'Small text fonts', 'Common free software components (libraries)', 'Smartphone apps from stores'],
+    ['To make downloads slower', 'To add adverts', 'To infect every app using that code', 'To affect reputation'],
+    ['They cause blue screen errors', 'The bad parts mimic normal, signed software', 'They slow computer use', 'They degrade internet speed'],
+    ['Attacking a website frequently visited by target employees to infect them', 'Sending fake job offers', 'Overloading a vendor\'s server', 'Stealing a CEO\'s laptop'],
+    ['They gain control over many devices as updates are trusted', 'They can only slow software', 'They can only change backgrounds', 'They can only block social media']
 ]
 
 supply_chain_q_response = [
@@ -1185,16 +1189,16 @@ worm_questions = [
 ]
 
 worm_answers = [
-    ['They need someone to click on them','They require special permission to run','They can copy themselves to other computers without help from a user','They can only spread to one computer at a time'],
-    ['A virus can spread without a host file, but a worm needs one','A worm can copy itself without needing to attach to another program','A worm is much bigger in size than a virus','A virus is always easier to detect than a worm'],
-    ['Because worms are less powerful','Because worms only affect mobile devices','Because worms can travel between computers on their own','Because Trojan horses are never detected'],
-    ['By sending text messages to other computers','By physically connecting a USB drive to every computer','By using weak spots (vulnerabilities) in network connections','By only spreading through social media posts'],
-    ['A common file sharing rule (SMB)','A secure website rule (TLS)','An email sending rule (SMTP)','A secure remote access rule (SSH)'],
-    ['Email content is always blocked by firewalls','Email is always encrypted so it\'s safe','People often open attachments or click links in emails without thinking','Email cannot be scanned for threats'],
-    ['To make the computer run faster','To delete system logs','To steal information or install other bad software','To increase its own spreading speed'],
-    ['By sending constant alerts to the user','By making the computer reboot often','By using small, hidden data packets and encryption to look normal','By changing the desktop wallpaper to a bright color'],
-    ['To find vulnerable computers quickly, anywhere on the internet','To crash internet routers','To pretend to be a different type of attack','To hide its real location from security teams'],
-    ['Having too many web browser extensions','Having a simple, flat network where all computers can easily talk to each other','Having strong passwords on every computer','Having disabled pop-up blockers']
+    ['They need user clicks to spread', 'They require special system permissions', 'They can replicate to other computers unassisted', 'They only affect one computer at a time'],
+    ['A virus can spread without a host, a worm needs one', 'A worm can self-replicate without attaching to a program', 'A worm is significantly larger than a virus', 'A virus is always easier to spot'],
+    ['Because worms are less potent', 'Because worms only target mobile devices', 'Because worms can spread autonomously across networks', 'Because Trojan horses are never detected'],
+    ['By sending SMS messages to other devices', 'By physically connecting a USB drive to each computer', 'By exploiting vulnerabilities in network connections', 'By only spreading via social media updates'],
+    ['Server Message Block (SMB)', 'Transport Layer Security (TLS)', 'Simple Mail Transfer Protocol (SMTP)', 'Secure Shell (SSH)'],
+    ['Email content is always blocked by firewalls', 'Email is inherently encrypted, ensuring safety', 'People often open email attachments or click links carelessly', 'Email cannot be scanned for threats'],
+    ['To make the computer faster', 'To erase system logs', 'To steal data or install other malware', 'To boost its own propagation speed'],
+    ['By sending constant alerts to the user', 'By forcing frequent computer reboots', 'By using small, hidden packets and encryption to appear normal', 'By changing the desktop wallpaper to a bright colour'],
+    ['To quickly find vulnerable devices globally', 'To disrupt internet routers', 'To impersonate a different attack type', 'To conceal its own location from security teams'],
+    ['Having too many web browser extensions', 'Having a simple, flat network allowing easy internal communication', 'Having strong passwords on every computer', 'Having disabled pop-up blockers']
 ]
 
 worm_q_response = [

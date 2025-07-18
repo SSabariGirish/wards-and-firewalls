@@ -23,6 +23,7 @@
                 <tr><td>Total Win Rate</td><td>{{ guard_stats.total_win_rate }}%</td></tr>
                 <tr><td>Win Rate as Guard</td><td>{{ guard_stats.win_rate_as_guard }}%</td></tr>
                 <tr><td>Overall MCQ Accuracy</td><td>{{ guard_stats.total_answer_accuracy }}%</td></tr>
+                <tr><td>MCQs Answered this Game</td><td>{{ guard_right_answers }} / {{ guard_total_questions }}</td></tr>
                 <tr><td>MCQ Accuracy in Last Game</td><td>{{ guard_stats.answer_accuracy_in_last_game }}%</td></tr>
             </table>
         </div>
@@ -38,6 +39,7 @@
                 <tr><td>Total Win Rate</td><td>{{ thief_stats.total_win_rate }}%</td></tr>
                 <tr><td>Win Rate as Thief</td><td>{{ thief_stats.win_rate_as_thief }}%</td></tr>
                 <tr><td>Overall MCQ Accuracy</td><td>{{ thief_stats.total_answer_accuracy }}%</td></tr>
+                <tr><td>MCQs Answered this Game</td><td>{{ thief_right_answers }} / {{ thief_total_questions }}</td></tr>
                 <tr><td>MCQ Accuracy in Last Game</td><td>{{ thief_stats.answer_accuracy_in_last_game }}%</td></tr>
             </table>
         </div>
