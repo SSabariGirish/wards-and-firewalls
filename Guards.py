@@ -620,11 +620,11 @@ training_questions = ['You receive an email from your bank asking you to "confir
 
 training_answers = [
     ['Immediately click the link and proceed to update your details', 'Forward the email to several contacts to circulate a warning', 'Move the email to your junk or trash folder', 'Independently contact the bank using their official, known contact information to verify the request'],
-    ['Password123', 'cupcake7', '`Th!5_i5_4_pWD!`', 'QWERTY123'],
-    ['Minimise all active windows on your screen', 'Leave your session open if you intend to return shortly', 'Simply turn off the monitor display', '**Lock your computer screen or fully log out of your session**'],
+    ['Password123', 'cupcake7', 'Th!5_i5_4_pWD!', 'QWERTY123'],
+    ['Minimise all active windows on your screen', 'Leave your session open if you intend to return shortly', 'Simply turn off the monitor display', 'Lock your computer screen or fully log out of your session'],
     ['Provide them with your password to facilitate a quick resolution', 'Request that they send an official email to confirm their identity and request', 'Politely decline their request and report the incident through official channels', 'Change your password immediately after disclosing it to them'],
     ['Submit it to your IT department for proper inspection and handling', 'Insert it into your computer to try and identify the owner', 'Utilise it as additional personal storage space', 'Leave it undisturbed where it was found'],
-    ['`http://secure-login.com`', '`https://yourbank.com`', '`https://y0ur64nk.com`', '`https://www.freebankaccess.net/joiningbonus.exe`']
+    ['http://secure-login.com', 'https://yourbank.com', 'https://y0ur64nk.com', 'https://www.freebankaccess.net/joiningbonus.exe']
 ]
 
 training_q_response = ['Always verify suspicious requests directly with the organisation', 'A strong password includes symbols, numbers, and upper/lowercase characters',
@@ -914,7 +914,7 @@ input_sanitisation_answers = [
 
 input_sanitisation_q_response = [
     "XSS (Cross-Site Scripting) is a method where hackers secretly put bad code (scripts) into a website that then runs in other users' web browsers when they visit that page",
-    "Typing `<script>alert(\'Hacked!\')</script>` into a comment box is a clear sign of an XSS (Cross-Site Scripting) attack attempt, as it tries to make your browser run the hacker's code",
+    "Typing the <script> tag into a comment box is a clear sign of an XSS (Cross-Site Scripting) attack attempt, as it tries to make your browser run the hacker's code",
     "Input sanitisation means removing or cleaning up harmful characters and code from what users type into a website, so their input can't be used for attacks",
     "Website search bars and comment sections are most likely open to XSS because they take what a user types and often show it directly back on the page, which can be exploited if not careful",
     "A really good way to stop XSS attacks is to carefully check and clean (filter or encode) what users type into forms before that information is displayed on the website",
