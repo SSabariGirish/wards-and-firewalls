@@ -7,6 +7,8 @@ import ast
 import random
 import math
 import os
+import pandas as pd # type: ignore
+import altair as alt # type: ignore
 import Thieves as tf
 import Guards as gd
 
@@ -61,6 +63,36 @@ class PlayerStats(db.Model):
     game_right_answers = db.Column(db.Integer, default=0)
     game_total_questions = db.Column(db.Integer, default=0)
     answer_accuracy_in_last_game = db.Column(db.Float, default=0.0)
+
+class GameSession(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    
+    # Link to players involved
+    guard_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    thief_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    # Game outcome
+    winner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
+    winning_role = db.Column(db.String(10)) # 'guard' or 'thief'
+    
+    # Game-specific stats (you'll need to pass these from your game state)
+    final_turn_number = db.Column(db.Integer) # guard_turn_counter when game ends
+
+    guard_mcq_total_questions = db.Column(db.Integer)
+    guard_mcq_right_answers = db.Column(db.Integer)
+    guard_mcq_accuracy = db.Column(db.Float)
+
+    thief_mcq_total_questions = db.Column(db.Integer)
+    thief_mcq_right_answers = db.Column(db.Integer)
+    thief_mcq_accuracy = db.Column(db.Float)
+
+    # Timestamps for tracking progression
+    timestamp = db.Column(db.DateTime, default=db.func.now())
+
+    # Relationships (optional, but useful for querying)
+    guard_player = db.relationship('User', foreign_keys=[guard_user_id], backref='guard_games')
+    thief_player = db.relationship('User', foreign_keys=[thief_user_id], backref='thief_games')
+    game_winner = db.relationship('User', foreign_keys=[winner_id], backref='won_games')
 
 def players_required(f):
     @wraps(f)
@@ -271,6 +303,22 @@ def update_game_stats(guard_id, thief_id, winner_role):
     else:
         thief_stats.answer_accuracy_in_last_game = 0
 
+    new_game_session = GameSession(
+        guard_user_id = guard_id,
+        thief_user_id = thief_id,
+        winner_id = guard_id if winner_role == 'guard' else (thief_id if winner_role == 'thief'else None),
+        winning_role = winner_role,
+        final_turn_number=guard_turn_counter,
+        guard_mcq_total_questions = guard_stats.game_total_questions,
+        guard_mcq_right_answers=guard_stats.game_right_answers,
+        guard_mcq_accuracy = guard_stats.answer_accuracy_in_last_game,
+        thief_mcq_total_questions = thief_stats.game_total_questions,
+        thief_mcq_right_answers = thief_stats.game_right_answers,
+        thief_mcq_accuracy = thief_stats.answer_accuracy_in_last_game
+    )
+
+    db.session.add(new_game_session)
+
     guard_total_answers = guard_stats.game_total_questions
     guard_right_answers = guard_stats.game_right_answers
     thief_total_answers = thief_stats.game_total_questions
@@ -296,6 +344,83 @@ def update_game_stats(guard_id, thief_id, winner_role):
         thief_stats.total_answer_accuracy = round((thief_stats.total_right_answers / thief_stats.total_questions_attempted) * 100)
 
     db.session.commit()
+
+def create_mcq_accuracy_chart(player_name, game_sessions, role_type):
+    """
+    Generates an Altair bar chart for MCQ accuracy over the last games.
+    :param player_name: 'Guard' or 'Thief' for chart title.
+    :param game_sessions: List of GameSession objects.
+    :param role_type: 'guard' or 'thief' to access the correct accuracy field.
+    :return: Altair chart JSON as a string, or None if no data.
+    """
+    data = []
+    # Loop through games in reverse order to represent most recent as Game 1
+    for i, game in enumerate(reversed(game_sessions)):
+        accuracy = 0.0
+        total_questions = 0
+        if role_type == 'guard':
+            accuracy = game.guard_mcq_accuracy
+            total_questions = game.guard_mcq_total_questions
+        else: # thief
+            accuracy = game.thief_mcq_accuracy
+            total_questions = game.thief_mcq_total_questions
+        
+        # Only include games where questions were actually attempted
+        if total_questions is not None and total_questions > 0:
+            data.append({'Game Number': i + 1, 'Accuracy': accuracy})
+    
+    df = pd.DataFrame(data)
+    
+    if df.empty:
+        return None # No data to plot
+
+    chart = alt.Chart(df).mark_bar().encode(
+        x=alt.X('Game Number:O', axis=alt.Axis(title='Game (1 = Most Recent)')),
+        y=alt.Y('Accuracy:Q', axis=alt.Axis(title='MCQ Accuracy (%)', format='.1f', tickCount=5), scale=alt.Scale(domain=[0, 100])),
+        tooltip=['Game Number', alt.Tooltip('Accuracy', format='.1f')]
+    ).properties(
+        title=f'{player_name} MCQ Accuracy in Last {len(df)} Games'
+    ).interactive()
+
+    return chart.to_json()
+
+def create_game_outcome_chart(player_name, player_user_id, game_sessions, role_type):
+    """
+    Generates an Altair bar chart for game outcomes (Win/Loss).
+    :param player_name: 'Guard' or 'Thief' for chart title.
+    :param player_user_id: The user_id of the player whose outcomes are being charted.
+    :param game_sessions: List of GameSession objects.
+    :param role_type: 'guard' or 'thief' (used for context, but winner_id is key).
+    :return: Altair chart JSON as a string, or None if no data.
+    """
+    outcomes = []
+    for game in game_sessions:
+        if game.winner_id is None: # Handle draws if applicable in your game logic
+            outcomes.append('Draw')
+        elif game.winner_id == player_user_id:
+            outcomes.append('Win')
+        else:
+            outcomes.append('Loss')
+    
+    if not outcomes:
+        return None # No data to plot
+
+    outcome_counts = pd.Series(outcomes).value_counts().reset_index()
+    outcome_counts.columns = ['Outcome', 'Count']
+
+    # Define the order for outcomes for consistent display
+    outcome_order = ['Win', 'Loss', 'Draw'] # Add 'Draw' if you support it
+
+    chart = alt.Chart(outcome_counts).mark_bar().encode(
+        x=alt.X('Outcome:N', sort=outcome_order, axis=alt.Axis(title='Game Outcome')),
+        y=alt.Y('Count:Q', axis=alt.Axis(title='Number of Games')),
+        tooltip=['Outcome', 'Count'],
+        color=alt.Color('Outcome:N', scale=alt.Scale(domain=['Win', 'Loss', 'Draw'], range=['green', 'red', 'gray']))
+    ).properties(
+        title=f'{player_name} Outcomes in Last {len(game_sessions)} Games'
+    )
+
+    return chart.to_json()
 
 @app.route("/")
 def home():
@@ -2106,7 +2231,6 @@ def thief_mcq_result():
     thief_stats.game_total_questions += 1
     db.session.commit()
 
-    thief_total_questions += 1
     
 
     if right_answer == user_answer:
@@ -2527,21 +2651,55 @@ def tutorial_page(page_num):
 @players_required
 def game_stats():
     global guard_total_answers, guard_right_answers, thief_total_answers, thief_right_answers
+
     guard_id = session.get('player1_id')
     thief_id = session.get('player2_id')    
 
     guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
 
-    # guard_total_questions_tg = guard_stats.game_total_questions
-    # guard_right_answers_tg = guard_stats.game_right_answers
-    # thief_total_questions_tg = thief_stats.game_total_questions
-    # thief_right_answers_tg = thief_stats.game_right_answers
+    if not guard_stats or not thief_stats:
+        flash("Error: Player stats not found for current session.")
+        return redirect(url_for('login'))
+    
+    guard_last_10_games_as_guard = GameSession.query.filter_by(guard_user_id=guard_id)\
+                                     .order_by(GameSession.timestamp.desc())\
+                                     .limit(10)\
+                                     .all()
 
+    thief_last_10_games_as_thief = GameSession.query.filter_by(thief_user_id=thief_id)\
+                                     .order_by(GameSession.timestamp.desc())\
+                                     .limit(10)\
+                                     .all()
 
-    return render_template('game_stats.html', guard_stats=guard_stats, thief_stats=thief_stats,
-                           guard_total_questions=guard_total_answers, guard_right_answers=guard_right_answers,
-                           thief_total_questions=thief_total_answers, thief_right_answers=thief_right_answers)
+    guard_mcq_chart_json = create_mcq_accuracy_chart("Guard", guard_last_10_games_as_guard, 'guard')
+    thief_mcq_chart_json = create_mcq_accuracy_chart("Thief", thief_last_10_games_as_thief, 'thief')
+    
+    guard_outcome_chart_json = create_game_outcome_chart("Guard", guard_id, guard_last_10_games_as_guard, 'guard')
+    thief_outcome_chart_json = create_game_outcome_chart("Thief", thief_id, thief_last_10_games_as_thief, 'thief')
+
+     # --- ADD THESE PRINT STATEMENTS ---
+    print("\n--- Guard MCQ Chart JSON (from app.py) ---")
+    print(guard_mcq_chart_json)
+    print("\n--- Thief MCQ Chart JSON (from app.py) ---")
+    print(thief_mcq_chart_json)
+    print("\n--- Guard Outcome Chart JSON (from app.py) ---")
+    print(guard_outcome_chart_json)
+    print("\n--- Thief Outcome Chart JSON (from app.py) ---")
+    print(thief_outcome_chart_json)
+    print("\n--------------------------------------------\n")
+
+    return render_template('game_stats.html', 
+                           guard_stats=guard_stats, 
+                           thief_stats=thief_stats,
+                           guard_total_questions=guard_total_answers, 
+                           guard_right_answers=guard_right_answers,
+                           thief_total_questions=thief_total_answers, 
+                           thief_right_answers=thief_right_answers,
+                           guard_mcq_chart=guard_mcq_chart_json,
+                           thief_mcq_chart=thief_mcq_chart_json,
+                           guard_outcome_chart=guard_outcome_chart_json,
+                           thief_outcome_chart=thief_outcome_chart_json)
 
 @app.route('/leaderboard')
 def leaderboard():

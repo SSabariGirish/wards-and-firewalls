@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/game-stats.css">
     <link rel="stylesheet" href="static/css/game-over.css">
+    <link rel="stylesheet" href="static/css/chart-medieval.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
     <div class="castle-top"></div>
@@ -44,11 +48,132 @@
             </table>
         </div>
     </div>
+
+    <div class="charts-container">
+        <h3>Your Performance in The Last 10 Games</h3>
+        <div class="chart-grid">
+            <div class="chart-section">
+                <h4>{{ guard_stats.user.username }} -> Last 10 Games' MCQ Accuracy as Guard </h4>
+                <div id="guard_mcq_chart"></div>
+            </div>
+            <div class="chart-section">
+                <h4>{{ thief_stats.user.username }} -> Last 10 Games' MCQ Accuracy as Thief </h4>
+                <div id="thief_mcq_chart"></div>
+            </div>
+            <div class="chart-section">
+                <h4>{{ guard_stats.user.username }} -> Last 10 Game Outcomes as Guard</h4>
+                <div id="guard_outcome_chart"></div>
+            </div>
+            <div class="chart-section">
+                <h4>{{ thief_stats.user.username }} -> Last 10 Game Outcomes as Thief</h4>
+                <div id="thief_outcome_chart"></div>
+            </div>
+        </div>
+    </div>
     
     <div class="button-container">
         <a href="{{ url_for('home') }}"><button class="shield-btn game-over-btn">Home Page</button></a>
         <a href="{{ url_for('leaderboard') }}"><button class="shield-btn game-over-btn">See Leaderboard</button></a>
+        <a href="{{ url_for('glossary') }}"><button class="shield-btn game-over-btn">Glossary</button></a>
     </div>
 
+    <script type="text/javascript">
+        function embedChart(containerId, chartJson) {
+            if (chartJson && chartJson !== 'null') {
+                try {
+                    const spec = JSON.parse(chartJson);
+                    
+                    // Add medieval theme to charts
+                    if (spec.config) {
+                        spec.config.title = {
+                            ...spec.config.title,
+                            font: 'Fondamento',
+                            color: '#d4af37'
+                        };
+                        
+                        spec.config.axis = {
+                            ...spec.config.axis,
+                            labelFont: 'Fondamento',
+                            titleFont: 'Fondamento',
+                            labelColor: '#d4af37',
+                            titleColor: '#d4af37'
+                        };
+                        
+                        spec.config.legend = {
+                            ...spec.config.legend,
+                            labelFont: 'Fondamento',
+                            titleFont: 'Fondamento',
+                            labelColor: '#d4af37',
+                            titleColor: '#d4af37'
+                        };
+                    } else {
+                        spec.config = {
+                            title: {
+                                font: 'Fondamento',
+                                color: '#d4af37'
+                            },
+                            axis: {
+                                labelFont: 'Fondamento',
+                                titleFont: 'Fondamento',
+                                labelColor: '#d4af37',
+                                titleColor: '#d4af37'
+                            },
+                            legend: {
+                                labelFont: 'Fondamento',
+                                titleFont: 'Fondamento',
+                                labelColor: '#d4af37',
+                                titleColor: '#d4af37'
+                            }
+                        };
+                    }
+                    // Set medieval color scheme
+                    if (spec.mark && spec.encoding && spec.encoding.color) {
+                        // For charts with color encoding
+                        if (!spec.encoding.color.scale) {
+                            spec.encoding.color.scale = {};
+                        }
+                        spec.encoding.color.scale.range = ['#d4af37', '#8b7500', '#5c3317', '#8b0000'];
+                    } else if (spec.mark) {
+                        // For single color charts
+                        if (containerId.includes('guard')) {
+                            spec.mark.color = '#d4af37'; // Gold for guard
+                        } else if (containerId.includes('thief')) {
+                            spec.mark.color = '#8b0000'; // Dark red for thief
+                        }
+                    }
+                    
+                    // Add grid color
+                    if (!spec.config) spec.config = {};
+                    if (!spec.config.axis) spec.config.axis = {};
+                    spec.config.axis.gridColor = '#3d2817';
+
+                    vegaEmbed(`#${containerId}`, spec, {
+                        actions: false,
+                        theme: 'dark'
+                    }).catch(e => {
+                        console.error(`Vega-Embed error for ${containerId}:`, e);
+                        document.getElementById(containerId).innerHTML = `<p style="color: red;">Error rendering chart: ${e.message}</p>`;
+                    });
+                } catch (e) {
+                    console.error(`Error parsing chart JSON for ${containerId}:`, e);
+                    document.getElementById(containerId).innerHTML = `<p style="color: red;">Invalid chart data received.</p>`;
+                }
+            } else {
+                document.getElementById(containerId).innerHTML = "<p style='font-family: Fondamento, cursive; color: #d4af37; text-align: center;'>Not enough data to generate chart for this player.</p>";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const guardMcqChartData = {{ guard_mcq_chart | tojson | safe }};
+            const thiefMcqChartData = {{ thief_mcq_chart | tojson | safe }};
+            const guardOutcomeChartData = {{ guard_outcome_chart | tojson | safe }};
+            const thiefOutcomeChartData = {{ thief_outcome_chart | tojson | safe }};
+
+            embedChart('guard_mcq_chart', guardMcqChartData);
+            embedChart('thief_mcq_chart', thiefMcqChartData);
+            embedChart('guard_outcome_chart', guardOutcomeChartData);
+            embedChart('thief_outcome_chart', thiefOutcomeChartData);
+        });
+    </script>
 </body>
 </html>
