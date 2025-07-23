@@ -229,9 +229,15 @@ def reset_game_state():
     thief = tf.Thief()
     guard_turn_counter = 1
     thief_turn_counter = 1
-    
+
+guard_total_answers = 0
+guard_right_answers = 0
+thief_total_answers = 0
+thief_right_answers = 0
+
 def update_game_stats(guard_id, thief_id, winner_role):
     
+    global guard_total_answers, guard_right_answers, thief_total_answers, thief_right_answers
     guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
 
@@ -265,6 +271,11 @@ def update_game_stats(guard_id, thief_id, winner_role):
     else:
         thief_stats.answer_accuracy_in_last_game = 0
 
+    guard_total_answers = guard_stats.game_total_questions
+    guard_right_answers = guard_stats.game_right_answers
+    thief_total_answers = thief_stats.game_total_questions
+    thief_right_answers = thief_stats.game_right_answers
+    
     guard_stats.game_total_questions = 0
     guard_stats.game_right_answers = 0
     thief_stats.game_total_questions = 0
@@ -285,7 +296,6 @@ def update_game_stats(guard_id, thief_id, winner_role):
         thief_stats.total_answer_accuracy = round((thief_stats.total_right_answers / thief_stats.total_questions_attempted) * 100)
 
     db.session.commit()
-    print("Player stats updated successfully.")
 
 @app.route("/")
 def home():
@@ -393,7 +403,7 @@ def guard_turn():
             reset_game_state()
             return render_template("guard_game_over.html")
         
-        elif guard_turn_counter > 2:
+        elif guard_turn_counter > 20:
             
             guard_id = session.get('player1_id')
             thief_id = session.get('player2_id')
@@ -2516,26 +2526,22 @@ def tutorial_page(page_num):
 @app.route('/game_stats')
 @players_required
 def game_stats():
-    
+    global guard_total_answers, guard_right_answers, thief_total_answers, thief_right_answers
     guard_id = session.get('player1_id')
     thief_id = session.get('player2_id')    
 
     guard_stats = PlayerStats.query.filter_by(user_id=guard_id).first()
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()
 
-    guard_total_questions_tg = guard_stats.game_total_questions
-    guard_right_answers_tg = guard_stats.game_right_answers
-    thief_total_questions_tg = thief_stats.game_total_questions
-    thief_right_answers_tg = thief_stats.game_right_answers
+    # guard_total_questions_tg = guard_stats.game_total_questions
+    # guard_right_answers_tg = guard_stats.game_right_answers
+    # thief_total_questions_tg = thief_stats.game_total_questions
+    # thief_right_answers_tg = thief_stats.game_right_answers
 
-    print(guard_stats.game_total_questions)
-    print(guard_stats.game_right_answers)
-    print(thief_stats.game_total_questions)
-    print(thief_stats.game_right_answers)
 
     return render_template('game_stats.html', guard_stats=guard_stats, thief_stats=thief_stats,
-                           guard_total_questions=guard_total_questions_tg, guard_right_answers=guard_right_answers_tg,
-                           thief_total_questions=thief_total_questions_tg, thief_right_answers=thief_right_answers_tg)
+                           guard_total_questions=guard_total_answers, guard_right_answers=guard_right_answers,
+                           thief_total_questions=thief_total_answers, thief_right_answers=thief_right_answers)
 
 @app.route('/leaderboard')
 def leaderboard():
