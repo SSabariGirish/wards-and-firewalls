@@ -67,16 +67,13 @@ class PlayerStats(db.Model):
 class GameSession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
-    # Link to players involved
     guard_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     thief_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
-    # Game outcome
     winner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
-    winning_role = db.Column(db.String(10)) # 'guard' or 'thief'
+    winning_role = db.Column(db.String(10)) 
     
-    # Game-specific stats (you'll need to pass these from your game state)
-    final_turn_number = db.Column(db.Integer) # guard_turn_counter when game ends
+    final_turn_number = db.Column(db.Integer) 
 
     guard_mcq_total_questions = db.Column(db.Integer)
     guard_mcq_right_answers = db.Column(db.Integer)
@@ -86,10 +83,8 @@ class GameSession(db.Model):
     thief_mcq_right_answers = db.Column(db.Integer)
     thief_mcq_accuracy = db.Column(db.Float)
 
-    # Timestamps for tracking progression
     timestamp = db.Column(db.DateTime, default=db.func.now())
 
-    # Relationships (optional, but useful for querying)
     guard_player = db.relationship('User', foreign_keys=[guard_user_id], backref='guard_games')
     thief_player = db.relationship('User', foreign_keys=[thief_user_id], backref='thief_games')
     game_winner = db.relationship('User', foreign_keys=[winner_id], backref='won_games')
@@ -346,33 +341,25 @@ def update_game_stats(guard_id, thief_id, winner_role):
     db.session.commit()
 
 def create_mcq_accuracy_chart(player_name, game_sessions, role_type):
-    """
-    Generates an Altair bar chart for MCQ accuracy over the last games.
-    :param player_name: 'Guard' or 'Thief' for chart title.
-    :param game_sessions: List of GameSession objects.
-    :param role_type: 'guard' or 'thief' to access the correct accuracy field.
-    :return: Altair chart JSON as a string, or None if no data.
-    """
+    
     data = []
-    # Loop through games in reverse order to represent most recent as Game 1
     for i, game in enumerate(reversed(game_sessions)):
         accuracy = 0.0
         total_questions = 0
         if role_type == 'guard':
             accuracy = game.guard_mcq_accuracy
             total_questions = game.guard_mcq_total_questions
-        else: # thief
+        else: 
             accuracy = game.thief_mcq_accuracy
             total_questions = game.thief_mcq_total_questions
         
-        # Only include games where questions were actually attempted
         if total_questions is not None and total_questions > 0:
             data.append({'Game Number': i + 1, 'Accuracy': accuracy})
     
     df = pd.DataFrame(data)
     
     if df.empty:
-        return None # No data to plot
+        return None 
 
     chart = alt.Chart(df).mark_bar().encode(
         x=alt.X('Game Number:O', axis=alt.Axis(title='Game (1 = Most Recent)')),
@@ -385,17 +372,10 @@ def create_mcq_accuracy_chart(player_name, game_sessions, role_type):
     return chart.to_json()
 
 def create_game_outcome_chart(player_name, player_user_id, game_sessions, role_type):
-    """
-    Generates an Altair bar chart for game outcomes (Win/Loss).
-    :param player_name: 'Guard' or 'Thief' for chart title.
-    :param player_user_id: The user_id of the player whose outcomes are being charted.
-    :param game_sessions: List of GameSession objects.
-    :param role_type: 'guard' or 'thief' (used for context, but winner_id is key).
-    :return: Altair chart JSON as a string, or None if no data.
-    """
+    
     outcomes = []
     for game in game_sessions:
-        if game.winner_id is None: # Handle draws if applicable in your game logic
+        if game.winner_id is None: 
             outcomes.append('Draw')
         elif game.winner_id == player_user_id:
             outcomes.append('Win')
@@ -403,13 +383,12 @@ def create_game_outcome_chart(player_name, player_user_id, game_sessions, role_t
             outcomes.append('Loss')
     
     if not outcomes:
-        return None # No data to plot
+        return None 
 
     outcome_counts = pd.Series(outcomes).value_counts().reset_index()
     outcome_counts.columns = ['Outcome', 'Count']
 
-    # Define the order for outcomes for consistent display
-    outcome_order = ['Win', 'Loss', 'Draw'] # Add 'Draw' if you support it
+    outcome_order = ['Win', 'Loss', 'Draw'] 
 
     chart = alt.Chart(outcome_counts).mark_bar().encode(
         x=alt.X('Outcome:N', sort=outcome_order, axis=alt.Axis(title='Game Outcome')),
@@ -1983,7 +1962,7 @@ def roll_d20():
         if roll < min_roll:
             res_msg = 'Nope! The children scattered away and scammed you instead!\nWell well well, how the tables turn...'
         else:
-            res_msg = "Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom earns 20% of the intended Gold in the next turn!"
+            res_msg = "Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom earns only 20% of the intended Gold in the next turn!"
             attack_success = True    
 
     elif card_name == 'The Ratcaller of Elwood':
@@ -2012,21 +1991,21 @@ def roll_d20():
 
     elif card_name == 'Brigands and Bandits':
         if thief.bnb_countdown > 0:
-            res_msg = 'They did NOT forget the last incident \nThe Brigands and Bandits steal ALL of your Gold once again and wound you\nYou are seriously wounded and you lose 5 turns \nBrigands and Bandits may not be played for 15 MORE turns'
+            res_msg = 'They did NOT forget the last incident \nThe Brigands and Bandits steal ALL of your Gold once again and wound you\nYou are seriously wounded and you lose 2 turns \nBrigands and Bandits may not be played for 15 MORE turns'
             thief.bnb_countdown += 15
             thief.guild_gold = 0
-            thief.extreme_wounds += 5
+            thief.extreme_wounds += 2
             idiot = True
         elif thief.weaknesses_found == 0:
-            res_msg = 'What did you expect when you go there with no information?\nThe Brigands and Bandits steal ALL of your Gold once again and wound you\nYou are seriously wounded and you lose 5 turns \nBrigands and Bandits may not be played for 15 MORE turns'
+            res_msg = 'What did you expect when you go there with no information?\nThe Brigands and Bandits steal ALL of your Gold once again and wound you\nYou are seriously wounded and you lose 2 turns \nBrigands and Bandits may not be played for 15 MORE turns'
             thief.bnb_countdown += 15
             thief.guild_gold = 0
-            thief.extreme_wounds += 5   
+            thief.extreme_wounds += 2 
         elif roll < min_roll:
-            res_msg = 'Fresh meat is in the House, and YOU are the entree!\nThe Brigands and Bandits are humiliated by the Guards\nIn retaliation, they wound you and steal ALL of your Gold \nYour wounds are severe and cannot move for 5 turns \nYou are now wanted by the Brigands and Bandits and the card may not be played for 15 turns'
+            res_msg = 'Fresh meat is in the House, and YOU are the entree!\nThe Brigands and Bandits are humiliated by the Guards\nIn retaliation, they wound you and steal ALL of your Gold \nYour wounds are severe and cannot move for 2 turns \nYou are now wanted by the Brigands and Bandits and the card may not be played for 15 turns'
             thief.bnb_countdown += 15
             thief.guild_gold = 0
-            thief.extreme_wounds += 5
+            thief.extreme_wounds += 2
         else:
             if thief.weaknesses_found == 1:
                 thief.guild_gold += 5
@@ -2043,12 +2022,12 @@ def roll_d20():
 
     elif card_name == 'Rags to Riches':
         if not thief.has_access:
-            res_msg = 'You bottled it! You didn\'t have access to the Castle\nThe guards discovered you with minimal effort\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 5 turns'
-            thief.extreme_wounds += 5
+            res_msg = 'You bottled it! You didn\'t have access to the Castle\nThe guards discovered you with minimal effort\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 2 turns'
+            thief.extreme_wounds += 2
         else:
             if roll < min_roll:
-                res_msg = 'You bottled it! That annoying brute of a Guard spotted you!!\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 5 turns and access to the Castle'  
-                thief.extreme_wounds += 5  
+                res_msg = 'You bottled it! That annoying brute of a Guard spotted you!!\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 2 turns and access to the Castle'  
+                thief.extreme_wounds += 2 
                 thief.has_access = False
             else:
                 res_msg = f'Success!! Your silver tongue never fails! \nYou managed to steal {math.floor(50 * guard.exfiltration_multiplier)} Gold from the Royal Vault in the limited time!'
@@ -2276,11 +2255,12 @@ def thief_mcq_result():
 
         elif card_name == 'Clatter of Brats':
             usr_msg = 'The Brats have Cluttered the Gates!'
-            final_msg = 'Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom earns 20% of the intended Gold in the next turn!'
+            final_msg = 'Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom loses 5% of its Gold and earns only 10% of the intended Gold in the next turn!'
             final_msg = final_msg.replace('\n', '<br>')
             msg_list = final_msg.split('<br>')
 
-            guard.income_multiplier = 0.2
+            guard.income_multiplier = 0.1
+            guard.kingdom_gold = math.floor(guard.kingdom_gold * 0.95)
             thief.weaknesses_found += 1
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
@@ -2475,22 +2455,22 @@ def thief_mcq_result():
         
         elif card_name == 'Brigands and Bandits':
             usr_msg = 'You have been Betrayed!!!!'
-            final_msg = 'Fresh meat is in the House, and YOU are the entree!\nThe Brigands and Bandits are humiliated by the Guards\nIn retaliation, they wound you and steal ALL of your Gold \nYour wounds are severe and cannot move for 5 turns \nYou are now wanted by the Brigands and Bandits and the card may not be played for 15 turns'
+            final_msg = 'Fresh meat is in the House, and YOU are the entree!\nThe Brigands and Bandits are humiliated by the Guards\nIn retaliation, they wound you and steal ALL of your Gold \nYour wounds are severe and cannot move for 2 turns \nYou are now wanted by the Brigands and Bandits and the card may not be played for 15 turns'
             final_msg = final_msg.replace('\n', '<br>')
             msg_list = final_msg.split('<br>')
             thief.bnb_countdown += 15
             thief.guild_gold = 0
-            thief.extreme_wounds += 5
+            thief.extreme_wounds += 2
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
         
         elif card_name == 'Rags to Riches':
             usr_msg = 'You have Bottled it!!!!'
-            final_msg = 'That annoying brute of a Guard spotted you!!\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 5 turns and access to the Castle'
+            final_msg = 'That annoying brute of a Guard spotted you!!\nYou were caught and put in the pillory! Do not forget this humiliation!!\nYou lose 2 turns and access to the Castle'
             final_msg = final_msg.replace('\n', '<br>')
             msg_list = final_msg.split('<br>')
-            thief.extreme_wounds += 5  
+            thief.extreme_wounds += 2  
             thief.has_access = False
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
@@ -2606,7 +2586,7 @@ def thief_countdown():
 
     zipped_data = zip(active_cards, countdown)
     return render_template("thief_countdown.html", data=zipped_data, empty_message=empty_message,
-                           weaknesses=thief.weaknesses_found)    
+                           weaknesses=thief.weaknesses_found, access=thief.has_access)    
 
 @app.route("/glossary")
 def glossary():
@@ -2678,7 +2658,7 @@ def game_stats():
     guard_outcome_chart_json = create_game_outcome_chart("Guard", guard_id, guard_last_10_games_as_guard, 'guard')
     thief_outcome_chart_json = create_game_outcome_chart("Thief", thief_id, thief_last_10_games_as_thief, 'thief')
 
-     # --- ADD THESE PRINT STATEMENTS ---
+    
     print("\n--- Guard MCQ Chart JSON (from app.py) ---")
     print(guard_mcq_chart_json)
     print("\n--- Thief MCQ Chart JSON (from app.py) ---")

@@ -8,7 +8,7 @@ def roll_d20():
 
 class Thief:
     def __init__(self):
-        self.guild_gold = 15
+        self.guild_gold = 100
         self.has_access = False
         self.weaknesses_found = 0
 
@@ -544,7 +544,8 @@ thief_attack_explanation_medieval = [
     Real life equivalent - Spear Phishing 
 ''',
     '''
-    Requires castle access to be played !!
+    <span style="color: red">Requires access to the Castle to be played!! </span>
+
     Cost: 10 Gold
     
     You observe a set of loose stones in the castle wall
@@ -564,7 +565,8 @@ thief_attack_explanation_medieval = [
     
     If successful,
         Travelling salesmen will no longer approach the kingdom and will leave for the next kingdom
-        kingdom will earn only 20% Gold in the next turn
+        The Kingdom is fined 5% of its current Gold by the Empire
+        kingdom will earn only 10% Gold in the next turn
         Weakness registered   
     
     Real life equivalent - Denial of Service (Dos)  
@@ -611,7 +613,8 @@ thief_attack_explanation_medieval = [
     Real life equivalent - Brute Force and Initial Access Brokerage (IAB)   
 ''',
     '''
-    Requires access to the Castle !
+    <span style="color: red">Requires access to the Castle to be played!!</span>
+
     Cost: 25 Gold
     
     You impersonate the nobleman and attempt to convince other nobles to give you access to the royal vault
