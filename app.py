@@ -2255,12 +2255,12 @@ def thief_mcq_result():
 
         elif card_name == 'Clatter of Brats':
             usr_msg = 'The Brats have Cluttered the Gates!'
-            final_msg = 'Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom loses 5% of its Gold and earns only 10% of the intended Gold in the next turn!'
+            final_msg = 'Success!! Those little brats annoyed the guards and the travelling salesmen!\nThe Kingdom loses 10% of its Gold and earns only 10% of the intended Gold in the next turn!'
             final_msg = final_msg.replace('\n', '<br>')
             msg_list = final_msg.split('<br>')
 
             guard.income_multiplier = 0.1
-            guard.kingdom_gold = math.floor(guard.kingdom_gold * 0.95)
+            guard.kingdom_gold = math.floor(guard.kingdom_gold * 0.9)
             thief.weaknesses_found += 1
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,

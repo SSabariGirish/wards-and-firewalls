@@ -565,7 +565,7 @@ thief_attack_explanation_medieval = [
     
     If successful,
         Travelling salesmen will no longer approach the kingdom and will leave for the next kingdom
-        The Kingdom is fined 5% of its current Gold by the Empire
+        The Kingdom is fined 10% of its current Gold by the Empire
         kingdom will earn only 10% Gold in the next turn
         Weakness registered   
     
