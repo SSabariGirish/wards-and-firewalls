@@ -21,7 +21,7 @@
                 <div class="scroll-content">
                     <h2>{{ question | safe}}</h2><br>
                     {% for answer in list_of_answers %}
-                        <h3><input type="radio" name="answer" value="{{ answer }}" id="{{ loop.index }}">
+                        <h3><input type="radio" name="answer" value="{{ answer }}" id="{{ loop.index }}" {% if loop.first %} required {% endif %}>
                         <label for="{{ loop.index }}">{{ answer }}</label></h3>
                     {% endfor %}    
                 </div>
