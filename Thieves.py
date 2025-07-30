@@ -740,7 +740,7 @@ thief_attack_explanation_real_life = [
     
     'Hackers use malicious code to trick a website\'s database into giving them access to information, like usernames and passwords'
     '\n\nSignificantly mitigated by Parameterised Queries'
-    '\n\nInput Sanitisation and Web Wpplication Firewalls offer moderate support against SQL Injection'
+    '\n\nInput Sanitisation and Web Application Firewalls offer moderate support against SQL Injection'
     '\n\nIf access to the database is not logged and moderated, hackers may be able to delete the entire database and severely impair the organisation(s)',
     
     'Hackers insert malicious code into a website so that when someone visits it, the code can steal their data or download malware into their systems'
