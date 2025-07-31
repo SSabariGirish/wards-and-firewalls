@@ -20,6 +20,7 @@ kingdom_income_msg = ''
 guild_income_msg = ''
 guard_turn_counter = 1
 thief_turn_counter = 1
+guard_success_attack_info = ''
 
 # Initialising the Thief and Guard characters
 guard = gd.Guard()
@@ -522,14 +523,18 @@ def guard_turn():
             return render_template("thief_game_over.html")
     
         else:
+            global guard_success_attack_info
             kingdom_turn_income,kingdom_income_msg = kingdom_income()
             guard.kingdom_gold += math.floor(kingdom_turn_income * guard.income_multiplier)
             old_val = guard.income_multiplier
             guard.income_multiplier = 1
+            info_to_guard = guard_success_attack_info.replace("\n", "<br>")
+            guard_success_attack_info = ''
 
             return render_template("guard_menu.html", kingdom_income_msg=kingdom_income_msg,
                                 kingdom_turn_income=math.floor(kingdom_turn_income * old_val), guard_turn_counter=guard_turn_counter,
-                                total_gold=guard.kingdom_gold, logged_in=True)
+                                total_gold=guard.kingdom_gold, logged_in=True, guard_success_attack_info=info_to_guard)
+        
     return redirect(url_for('login'))
 
 @app.route("/guard_draws")
@@ -1630,7 +1635,7 @@ def thief_play_result():
                 min_roll = 17
                 guards_defenses.append('Guild of Watchful Scribes')   
             else:
-                min_roll = 11    
+                min_roll = 10    
 
         elif thief.card_headers_medieval[card_choice] == 'Alehouse Swindler':
             thief.guild_gold -= 8 
@@ -1659,12 +1664,12 @@ def thief_play_result():
                 guards_defenses.append('The Flaming Battlements')
             
             if guard.has_zta > 0:
-                min_roll = 12
+                min_roll = 17
                 has_one = True
                 guards_defenses.append('The Ironbound Doctrine')         
             
             if not has_one:
-                min_roll = 7         
+                min_roll = 5         
 
         elif thief.card_headers_medieval[card_choice] == 'Clatter of Brats':
             thief.guild_gold -= 12
@@ -2195,6 +2200,7 @@ def answer_mcq():
 @app.route("/thief_mcq_result", methods=["POST"])
 @players_required
 def thief_mcq_result():
+    global guard_success_attack_info
     heading = True
     right_answer = request.form['right_answer']
     remark = request.form['remark']
@@ -2209,9 +2215,7 @@ def thief_mcq_result():
     thief_stats = PlayerStats.query.filter_by(user_id=thief_id).first()    
     thief_stats.game_total_questions += 1
     db.session.commit()
-
     
-
     if right_answer == user_answer:
 
         thief_stats.game_right_answers += 1
@@ -2224,6 +2228,7 @@ def thief_mcq_result():
             msg_list = final_msg.split('<br>')
             thief.has_access = True
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'The Snake Oil Salesman has charmed a young damsel\n\nThis could have been prevented with the Guild of Watchful Scribes and Twin Seal Protocol!'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list) 
@@ -2235,6 +2240,7 @@ def thief_mcq_result():
             msg_list = final_msg.split('<br>')
             thief.has_access = True
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'A Swindler is in the Castle!!\n\nThe poor nobleman would be safe right now if Guild of Watchful Scribes and Twin Seal Protocol were active'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)    
@@ -2249,6 +2255,7 @@ def thief_mcq_result():
             thief.guild_gold += math.floor(25 * guard.exfiltration_multiplier)          
             guard.exfiltration_multiplier = 1.5 
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'The knaves are using a secret tunnel made out loosened rocks!\n\nThis would have been HARDER if The Whipsering Gargoyles, The Flaming Battlements or The Ironbound Doctrine were active'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2262,6 +2269,7 @@ def thief_mcq_result():
             guard.income_multiplier = 0.1
             guard.kingdom_gold = math.floor(guard.kingdom_gold * 0.9)
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'The brats have caused disarray in the castle!\n\nThe Town Crier\'s blaring voice would have been optimal in scaring them away\n\nThe Ironbound Doctrine, Flaming Battlements, Dwarven Bastion, Walled Districts and Whispering Gargoyles could have helped as well!'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list) 
@@ -2275,6 +2283,7 @@ def thief_mcq_result():
             guard.kingdom_gold -= (200 * guard.exfiltration_multiplier)
             guard.income_multiplier = 0.25
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'A single Ratcaller has nearly destroyed the Castle!!\n\nThe Hidden Borough could have rendered his attack useless\n\nCode of the Squire and the Walled Districts could have significantly helped too\n\nThe Whispering Gargoyles, Flaming Battlements and Ironbound Doctrine could have offered decent protection'
             
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2287,6 +2296,7 @@ def thief_mcq_result():
             guard.income_multiplier = 0.6
             guard.kingdom_gold -= (20 * guard.exfiltration_multiplier)  
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'A few knaves have ruined a longstanding relationship between Kingdoms!\n\nThe Royal Cipher, the Sewer Tunnels and the Silver Vanguard could have rendered those knaves useless'
             
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2308,6 +2318,7 @@ def thief_mcq_result():
             thief.has_access = True
             guard.cost_multiplier = 6
             guard.kingdom_gold = math.floor(guard.kingdom_gold * 0.3)
+            guard_success_attack_info = 'The Castle was ransacked by a horde of bandits!!\n\nThe Iron Gate Lockdown would have been of paramount importance in preventing this attack\n\nThe Whispering Gargoyles, Ironbound Doctrine, Flaming Battlements, Town Crier and Twin Seal Protocol could have been of significant help'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2320,6 +2331,7 @@ def thief_mcq_result():
             guard.kingdom_gold -= math.floor(50 * guard.exfiltration_multiplier) 
             thief.guild_gold += math.floor(50 * guard.exfiltration_multiplier) 
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'A random person impersonated a noble!!\n\nThis may not have happened if the Walled Districts, Ironbound Doctrine or Code of the Squire were active\n\nThe Flaming Battlements, Whispering Gargoyles and Twin Seal Protocol could have helped as well'
                 
             
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
@@ -2332,7 +2344,8 @@ def thief_mcq_result():
             msg_list = final_msg.split('<br>')
             guard.kingdom_gold -= (math.floor(90 * guard.exfiltration_multiplier))
             thief.guild_gold += (math.floor(30 * guard.exfiltration_multiplier)) 
-            thief.weaknesses_found += 1      
+            thief.weaknesses_found += 1  
+            guard_success_attack_info = 'A miscreant manipulated the Oracle\n\nIf the Sylvan Oracle Snare were active, the Oracle would still remain protected\n\nThe Whispering Gargoyles, Ironbound Doctrine, Dwarven Bastion and Ink Purification Ritual could have been of some help'    
             
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2346,6 +2359,7 @@ def thief_mcq_result():
             guard.kingdom_gold -= math.floor(50 * guard.exfiltration_multiplier)
             thief.guild_gold += math.floor(50 * guard.exfiltration_multiplier)
             thief.weaknesses_found += 1 
+            guard_success_attack_info = 'A fake Royal Scribe threw the kingdom into chaos!!\n\nIf the Ink Purification Ritual were conducted, we would not be in this situation!\n\nThe Dwarven Bastion, Whispering Gargoyles and Ironbound Doctrine could have been of significant help'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2359,6 +2373,7 @@ def thief_mcq_result():
             guard.kingdom_gold -= math.floor(65 * guard.exfiltration_multiplier)
             thief.guild_gold += math.floor(35 * guard.exfiltration_multiplier)
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'A Seer has corrupted the mind of a nobleman!\n\nThe Silver Vanguard would have caught him instantly\n\nThe Whispering Garoyles, Ironbound Doctrine, Sewer Tunnels, Guild of Watchful Scribes and Twin Seal Protocol could have been of some help'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
@@ -2372,19 +2387,21 @@ def thief_mcq_result():
             guard.kingdom_gold -= (math.floor(70 * guard.exfiltration_multiplier))
             thief.guild_gold += 40
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'Poisoned grains have breached the Kingdom!\n\nThe Ironbound Doctrine woould have prevented the grains from being spread out\n\nThe Walled Districts and Whipsering Gargoyles could have been of significant help\n\nThe Dwarven Bastion and Flaming Battlements could have provided some protection too'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
         
         elif card_name == 'The Mourning Blightweaver':
             usr_msg = 'Plagued by the Undead!!'
-            final_msg = f'Success!! The rats have wrecked havoc in the Kingdom! \nIn the chaos, you manage to steal {math.floor(55 * guard.exfiltration_multiplier)} Gold from the Castle \nAdditionally, the King is forced to pay {math.floor(80 * guard.exfiltration_multiplier)} Gold to hire mages and exterminators to cleanse the town off these rats \nThe Kingdom earns 10% of the intended Gold in the next turn!'
+            final_msg = f'Success!! The undead have wrecked havoc in the Kingdom! \nIn the chaos, you manage to steal {math.floor(55 * guard.exfiltration_multiplier)} Gold from the Castle \nAdditionally, the King is forced to pay {math.floor(80 * guard.exfiltration_multiplier)} Gold to hire mages and exterminators to cleanse the town off these undead\nThe Kingdom earns 10% of the intended Gold in the next turn!'
             final_msg = final_msg.replace('\n', '<br>')
             msg_list = final_msg.split('<br>')
             guard.income_multiplier = 0.1
             guard.kingdom_gold -= math.floor(135 * guard.exfiltration_multiplier)
             thief.guild_gold += math.floor(55 * guard.exfiltration_multiplier)  
             thief.weaknesses_found += 1
+            guard_success_attack_info = 'The Undead have poisoned the Castle!!\nThe Walled Districts would have rendered them useless\n\nThe Ironbound Doctrine, Whispering Gargoyles and Flaming Battlements would have significantly helped here\n\nThe Dwarven Bastion and Guild of Watchful Scribes could have been of some help'
 
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)

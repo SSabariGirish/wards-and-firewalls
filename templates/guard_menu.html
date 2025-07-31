@@ -5,6 +5,7 @@
     <title>Guard's Turn</title>
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/guard_menu.css">
+    <link rel="stylesheet" href="static/css/tutorial.css">
 </head>
 <body>
     <div class="castle-top"></div>
@@ -12,6 +13,9 @@
     <h2>{{ kingdom_income_msg }}</h2>
     <h2>The Kingdom earned {{ kingdom_turn_income }} Gold this turn</h2>
     <h2>Current Gold: {{ total_gold }}</h2>
+    {% if guard_success_attack_info %}
+        <h2 class="menu-info">{{ guard_success_attack_info | safe}}</h2>
+    {% endif %}    
     <div class="menu-container">
         <div class="guard-plan-image"></div>
         <div class="button-grid">
