@@ -1166,7 +1166,7 @@ param_queries_answer_key = [3,1,1,2,3,1]
 
 input_sanitisation_questions = [
     'What exactly is "Cross-Site Scripting" (XSS) in simple terms?',
-    'If a hacker types things within a <script> tag into a comment box on a website causing abnormal behaviour, what is this a clear sign of?',
+    'If a hacker types things within a script tag into a comment box on a website causing abnormal behaviour, what is this a clear sign of?',
     'What does "input sanitisation" mean when you are dealing with what users type into a website?',
     'Which part of a website is most likely to be open to an XSS attack if it\'s not careful?',
     'What is a really good way for website builders to stop XSS attacks?',
@@ -1182,7 +1182,7 @@ input_sanitisation_answers = [
     ],
     [
         'A sign that the website\'s server has a significant bug in its programming logic',
-        'A failed attempt by a hacker to incorrectly guess a user\'s login password',
+        'An attempt by a hacker to incorrectly guess a user\'s login password',
         'A clear indication of a Cross-Site Scripting (XSS) attack',
         'A common typing mistake made by a user who is not familiar with HTML code'
     ],
