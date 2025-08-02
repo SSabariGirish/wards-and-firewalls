@@ -2511,7 +2511,7 @@ def thief_mcq_result():
             return render_template("thief_mcq_result.html", heading=heading, usr_msg=usr_msg,
                                    right_answer=right_answer, remark=remark, final_msg=msg_list)
         
-        elif card_name == 'Blade of the Doppelgangers':
+        elif card_name == 'Blade of the Doppelganger':
             usr_msg = 'Caught by Weary Eyes!!'
             final_msg = 'Sorlin the Seer bottled it!\n He was spotted and beaten up by the nobleman and his annoying Guards!\nHe is now in recovery, and can\'t be called for 5 turns...'
             final_msg = final_msg.replace('\n', '<br>')
