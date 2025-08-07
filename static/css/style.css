@@ -238,7 +238,6 @@ button.dice-btn:hover {
   color: #ffdf00;
 }
 
-/* Flame wall at bottom */
 .flame-wall {
   height: 120px;
   width: 100%;
@@ -426,7 +425,7 @@ button.dice-btn:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 /* Menu buttons container */
@@ -435,7 +434,7 @@ button.dice-btn:hover {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 /* Side images */
@@ -494,7 +493,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Guards Scroll.jpg');
   left: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -503,7 +501,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves Scroll.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -512,7 +509,14 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Successful Upgrade Guard.jpg');
   left: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
+  top: clamp(9.375rem, 20vh, 12.5rem);
+}
+
+.left-ins-menu-image-guard-play-mcq {
+  width: clamp(11.25rem, 20vw, 18.75rem);
+  height: clamp(11.25rem, 20vw, 18.75rem);
+  background-image: url('/static/images/Menu/Guards MCQ Attack.jpg');
+  left: clamp(0.9375rem, 1.5vw, 1.5625rem);
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -521,7 +525,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Guards Screaming.jpg');
   left: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -530,7 +533,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves Laughing.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -539,7 +541,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Guards Laughing.jpg');
   left: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -548,7 +549,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves Screaming.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -557,7 +557,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves Celebrate.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -566,7 +565,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Guards MCQ Defense.jpg');
   left: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -575,7 +573,6 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves MCQ Attack.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
@@ -584,7 +581,14 @@ button.dice-btn:hover {
   height: clamp(11.25rem, 20vw, 18.75rem);
   background-image: url('/static/images/Menu/Thieves See Castle.jpg');
   right: clamp(0.9375rem, 1.5vw, 1.5625rem);
-  /* This line was changed */
+  top: clamp(9.375rem, 20vh, 12.5rem);
+}
+
+.right-ins-menu-image-guard-play-mcq {
+  width: clamp(11.25rem, 20vw, 18.75rem);
+  height: clamp(11.25rem, 20vw, 18.75rem);
+  background-image: url('/static/images/Menu/Thieves MCQ Defence.jpg');
+  right: clamp(0.9375rem, 1.5vw, 1.5625rem);
   top: clamp(9.375rem, 20vh, 12.5rem);
 }
 
