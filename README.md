@@ -103,22 +103,22 @@ You will need the following software installed on your system:
 
 ## Project Structure
 
-wards-and-firewalls/
+wards-and-firewalls/ <br>
 ├── app.py                  # Main Flask application <br>
-├── Guards.py               # Guard card data and class
-├── Thieves.py              # Thief card data and class
-├── requirements.txt        # Python dependencies
-├── instance/
-│   └── game.db             # SQLite database file
-├── static/
-│   ├── css/
-│   ├── images/
-│   ├── audio/
-│   └── fonts/
-└── templates/
-├── *.html              # All HTML templates
-└── tutorial/
-└── *.html          # Tutorial pages
+├── Guards.py               # Guard card data and class <br>
+├── Thieves.py              # Thief card data and class <br>
+├── requirements.txt        # Python dependencies <br>
+├── instance/ <br>
+│   └── game.db             # SQLite database file <br>
+├── static/ <br>
+│   ├── css/ <br>
+│   ├── images/ <br>
+│   ├── audio/ <br>
+│   └── fonts/ <br>
+└── templates/ <br>
+├── *.html              # All HTML templates <br>
+└── tutorial/ <br>
+└── *.html          # Tutorial pages <br>
 
 ## Author
 
