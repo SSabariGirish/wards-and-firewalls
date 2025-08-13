@@ -104,7 +104,7 @@ You will need the following software installed on your system:
 ## Project Structure
 
 wards-and-firewalls/
-├── app.py                  # Main Flask application
+├── app.py                  # Main Flask application <br>
 ├── Guards.py               # Guard card data and class
 ├── Thieves.py              # Thief card data and class
 ├── requirements.txt        # Python dependencies
