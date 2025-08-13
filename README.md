@@ -102,3 +102,24 @@ You will need the following software installed on your system:
 4.  **Check Stats:** After a game, visit the "Game Stats" page to see your updated win rates and performance.
 
 ## Project Structure
+
+wards-and-firewalls/
+├── app.py                  # Main Flask application
+├── Guards.py               # Guard card data and class
+├── Thieves.py              # Thief card data and class
+├── requirements.txt        # Python dependencies
+├── instance/
+│   └── game.db             # SQLite database file
+├── static/
+│   ├── css/
+│   ├── images/
+│   ├── audio/
+│   └── fonts/
+└── templates/
+├── *.html              # All HTML templates
+└── tutorial/
+└── *.html          # Tutorial pages
+
+## Author
+
+- Sabari Girish Srinivasan
