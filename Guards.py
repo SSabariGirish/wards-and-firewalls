@@ -808,7 +808,7 @@ firewall_q_response = [
     "Outbound traffic means data that is attempting to leave your computer or network and go to an external destination on the internet."
 ]
 
-firewall_answer_key = [1, 0, 3, 2, 3, 1]
+firewall_answer_key = [1, 0, 3, 2, 2, 1]
 
 rate_limiting_questions = [
     'What is the main purpose of "rate limiting" on a website or app?',
